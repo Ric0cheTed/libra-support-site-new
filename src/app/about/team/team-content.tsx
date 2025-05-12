@@ -1,6 +1,6 @@
 "use client";
 
-import { TeamCard } from "@/components/ui/team-card";
+import TeamCard from "@/components/ui/team-card";
 
 export default function TeamPage() {
   return (
