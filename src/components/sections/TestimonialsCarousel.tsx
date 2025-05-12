@@ -52,7 +52,7 @@ export default function TestimonialsCarousel() {
               >
                 <div className="flex flex-col items-center">
                   {t.avatar && (
-                    <img alt="Client photo"
+                    <img
                       src={t.avatar}
                       alt={t.name}
                       className="w-16 h-16 rounded-full mb-4 object-cover border-2 border-primary"
