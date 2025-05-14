@@ -6,6 +6,7 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import TestimonialsCarousel from "@/components/sections/TestimonialsCarousel";
 import LazyClientCareFeatures from "@/components/sections/LazyClientCareFeatures";
 import HeroShowcase from "@/components/sections/HeroShowcase";
+import SocialsButton from '@/components/ui/SocialsButton';
 
 export const metadata = {
   title: "Home | Libra Support Services",
@@ -22,7 +23,6 @@ export default function HomePage() {
         {/* Hero Section */}
         <HeroShowcase />
 
-
         {/* Trust Signals Section */}
         <section className="bg-white py-8 border-t border-b">
           <div className="overflow-x-auto">
@@ -36,6 +36,7 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+		<TestimonialsCarousel />
 
         <CareFeaturesSection />
         <LazyClientCareFeatures />
@@ -113,8 +114,6 @@ export default function HomePage() {
           </div>
         </section>
       </div>
-
-      <TestimonialsCarousel />
     </>
   );
 }

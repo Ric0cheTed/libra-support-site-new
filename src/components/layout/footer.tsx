@@ -1,23 +1,37 @@
+'use client';
+
+import SocialsButton from '@/components/ui/SocialsButton';
+
 export function Footer() {
   return (
     <footer className="bg-primary-100 text-primary-900 border-t border-primary-200 mt-24">
-      <div className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-10 text-sm">
+      <div className="max-w-6xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 text-sm">
 
         {/* Contact Info */}
-        <div className="space-y-3">
-          <h4 className="text-lg font-bold">Libra Support Services</h4>
-          <p>
+        <div className="space-y-4">
+          <h4 className="text-lg font-semibold tracking-wide">Libra Support Services</h4>
+          <address className="not-italic leading-relaxed text-primary-800">
             Room 102, Todmorden Community College<br />
             Todmorden, OL14 7BX
+          </address>
+          <p>
+            Phone:{' '}
+            <a href="tel:01706817672" className="text-primary-700 hover:underline font-medium">
+              (01706) 817672
+            </a>
           </p>
-          <p>Phone: <a href="tel:01706817672" className="hover:underline">(01706) 817672</a></p>
-          <p>Email: <a href="mailto:nicola@librasupport.co.uk" className="hover:underline">nicola@librasupport.co.uk</a></p>
+          <p>
+            Email:{' '}
+            <a href="mailto:nicola@librasupport.co.uk" className="text-primary-700 hover:underline font-medium">
+              nicola@librasupport.co.uk
+            </a>
+          </p>
         </div>
 
         {/* External Links */}
-        <div className="space-y-3">
-          <h4 className="text-lg font-bold">External Links</h4>
-          <ul className="space-y-1 text-primary-800">
+        <div className="space-y-4">
+          <h4 className="text-lg font-semibold tracking-wide">External Links</h4>
+          <ul className="space-y-2 text-primary-800">
             <li>
               <a
                 href="https://find-and-update.company-information.service.gov.uk/company/13185381"
@@ -25,7 +39,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="hover:underline"
               >
-                Company Registration Information
+                Company Registration
               </a>
             </li>
             <li>
@@ -35,7 +49,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="hover:underline"
               >
-                CQC Registration Information
+                CQC Provider Info
               </a>
             </li>
             <li>
@@ -51,12 +65,12 @@ export function Footer() {
           </ul>
         </div>
 
-        {/* Partners / Affiliates */}
-        <div className="space-y-3">
-          <h4 className="text-lg font-bold">Our Partners</h4>
+        {/* Partners + Socials */}
+        <div className="space-y-4">
+          <h4 className="text-lg font-semibold tracking-wide">Our Partners</h4>
           <div className="flex items-center gap-4">
-            <img width="120" height="32" src="/images/andysmanclub.webp" alt="Andy's Man Club" className="h-8 w-auto" />
-            <img width="120" height="32" src="/images/cqc-logo.webp" alt="CQC" className="h-8 w-auto" />
+            <img src="/images/andysmanclub.webp" alt="Andy's Man Club" className="h-8 w-auto" />
+            <img src="/images/cqc-logo.webp" alt="CQC" className="h-8 w-auto" />
           </div>
         </div>
       </div>
