@@ -63,9 +63,9 @@ export default function HomePage() {
                   className="rounded-full h-32 w-32 object-cover mb-4"
                 />
                 <h3 className="text-xl font-semibold text-primary mb-2">Nicola Szymik-Walters</h3>
-                <p className="text-gray-600 mb-4">Registered Care Manager</p>
+                <p className="text-gray-600 mb-4">Service Manager</p>
                 <p className="text-sm text-gray-500">
-                  Passionate about delivering the highest standards of person-centered care.
+                  I am dedicated to making Calderdale a better place for everyone, and spend my spare time engaging in community projects. When I'm not at work I like to spend time with my family, and go to local gigs - mainly at the Golden Lion in Todmorden and the Hebden Bridge Trades Club.
                 </p>
               </div>
 
@@ -80,10 +80,10 @@ export default function HomePage() {
                   blurDataURL="/images/staff-2.webp"
                   className="rounded-full h-32 w-32 object-cover mb-4"
                 />
-                <h3 className="text-xl font-semibold text-primary mb-2">David Johnson</h3>
-                <p className="text-gray-600 mb-4">Senior Support Worker</p>
+                <h3 className="text-xl font-semibold text-primary mb-2">Kelly Carpenter</h3>
+                <p className="text-gray-600 mb-4">Deputy Manager</p>
                 <p className="text-sm text-gray-500">
-                  Building trust and comfort for every family we support.
+                  I am a mum to 4 beautiful and cheeky boys. We live at home with my partner Allen and out dog Bella. I live a busy life but wouldn't have it any other way!
                 </p>
               </div>
 
@@ -98,10 +98,10 @@ export default function HomePage() {
                   blurDataURL="/images/staff-3.webp"
                   className="rounded-full h-32 w-32 object-cover mb-4"
                 />
-                <h3 className="text-xl font-semibold text-primary mb-2">Olivia Davis</h3>
-                <p className="text-gray-600 mb-4">Care Coordinator</p>
+                <h3 className="text-xl font-semibold text-primary mb-2">Jason Walters</h3>
+                <p className="text-gray-600 mb-4">Cleaning Manager</p>
                 <p className="text-sm text-gray-500">
-                  Ensuring smooth, effective care coordination tailored to individual needs.
+                  I am one of the directors at Libra support Services and the operations manager for the cleaning team within the business, so please send any cleaning enquiries direct to me. In my free time I enjoy playing music, going to gigs, and socialising with friends by playing videos games and poker. I spend time at home cooking and walking in the countryside.
                 </p>
               </div>
             </div>

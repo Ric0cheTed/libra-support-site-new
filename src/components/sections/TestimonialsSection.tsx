@@ -5,19 +5,19 @@ import { FaQuoteLeft } from 'react-icons/fa';
 
 const testimonials = [
   {
-    quote: "Libra Support Services gave our family peace of mind. The carers are incredibly compassionate and professional.",
-    name: "Sarah P.",
-    location: "Todmorden"
+    quote: "Thanks to Nicola I managed to get my medication as I could not get myself out the house due to surgery on a broken ankle. One phone call and answered straight away, and as soon as I said what I needed she collected them. Also, when I told her I was struggling as I could not have a shower etc., she told me the right people to contact and what mobility aids I might need. Within 3 days I had all the equipment I needed to shower independently.",
+    name: "Sharon.",
+	location: "Client"
   },
   {
-    quote: "They treated my father like family. Highly recommended if you need true, caring support at home.",
-    name: "James R.",
-    location: "West Yorkshire"
+    quote: "Nicola, Jess and their team support a family member who is elective mute. They have always engaged with him in a really positive way and it is clear that he enjoys the time he spends with them. The respite it gives us as a family has really improved all our lives, and I cannot thank them enough.",
+    name: "Amy.",
+	location: "Family Member"
   },
   {
-    quote: "We couldn't have asked for better home care. Truly life-changing service.",
-    name: "Lisa M.",
-    location: "Calderdale"
+    quote: "I contacted Nicola for some support when I split from my husband, pregnant, suffering with depression and have an autistic daughter to take care of; she was only too happy to help. Nicola came frequently to clean my house, pick some shopping up and helped with day-to-day tasks. She also became a very close confidant and supported me through a very difficult time. Nicola is extremely kind, caring, helpful, professional and trustworthy. I can’t thank her enough.",
+    name: "Emily.",
+	location: "Client"
   },
 ];
 
