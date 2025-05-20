@@ -12,6 +12,9 @@ export const metadata = {
   title: "Home | Libra Support Services",
   description:
     "Compassionate, professional home care services across West Yorkshire. Contact Libra Support Services for trusted support today.",
+	icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function HomePage() {
@@ -28,7 +31,14 @@ export default function HomePage() {
           <div className="overflow-x-auto">
             <div className="flex gap-6 px-4 min-w-[640px] sm:min-w-full whitespace-nowrap text-sm sm:text-base text-gray-700 justify-start sm:justify-center">
               <div>
-                ★ CQC Rated <strong>Good</strong> — <a href="#" className="text-primary underline">See Report</a>
+                ★ CQC Rated <strong>Good</strong> — <a
+				  href="https://www.cqc.org.uk/location/1-11688271981"
+				  className="text-green-700 underline"
+				  target="_blank"
+				  rel="noopener noreferrer"
+				>
+				  See Report
+				</a>
               </div>
               <div>Local, DBS-checked Carers</div>
               <div>24/7 Live-in and Respite Care</div>

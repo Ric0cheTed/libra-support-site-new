@@ -17,22 +17,22 @@ export default function TeamPage() {
 
           <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             <TeamCard
-              name="Jane Walker"
-              role="Registered Manager"
-              image="/images/team/jane.webp"
-              bio="Jane brings over 15 years of experience in adult social care and is dedicated to creating personalised care solutions for every family."
+              name="Nicola Szymik-Walters"
+              role="Service Manager"
+              image="/images/team/staff-1.webp"
+              bio="I am dedicated to making Calderdale a better place for everyone, and spend my spare time engaging in community projects. When I'm not at work I like to spend time with my family, and go to local gigs - mainly at the Golden Lion in Todmorden and the Hebden Bridge Trades Club."
             />
             <TeamCard
-              name="Thomas Gray"
-              role="Care Coordinator"
-              image="/images/team/thomas.webp"
-              bio="Thomas ensures every client receives consistent, high-quality support with empathy, efficiency, and attention to detail."
+              name="Kelly Carpenter"
+              role="Deputy Manager"
+              image="/images/team/staff-2.webp"
+              bio="I am a mum to 4 beautiful and cheeky boys. We live at home with my partner Allen and out dog Bella. I live a busy life but wouldn't have it any other way!"
             />
             <TeamCard
-              name="Ayesha Patel"
-              role="Lead Support Worker"
-              image="/images/team/ayesha.webp"
-              bio="Ayesha is a compassionate leader who trains and supports carers across West Yorkshire with hands-on mentoring and guidance."
+              name="Jason Walters"
+              role="Cleaning Manager"
+              image="/images/team/staff-3.webp"
+              bio="I am one of the directors at Libra support Services and the operations manager for the cleaning team within the business, so please send any cleaning enquiries direct to me. In my free time I enjoy playing music, going to gigs, and socialising with friends by playing videos games and poker. I spend time at home cooking and walking in the countryside."
             />
           </div>
         </div>

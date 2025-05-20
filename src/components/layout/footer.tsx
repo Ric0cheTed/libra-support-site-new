@@ -67,10 +67,32 @@ export function Footer() {
 
         {/* Partners + Socials */}
         <div className="space-y-4">
-          <h4 className="text-lg font-semibold tracking-wide">Our Partners</h4>
+          <h4 className="text-lg font-semibold tracking-wide">Our Affiliates</h4>
           <div className="flex items-center gap-4">
-            <img src="/images/andysmanclub.webp" alt="Andy's Man Club" className="h-8 w-auto" />
-            <img src="/images/cqc-logo.webp" alt="CQC" className="h-8 w-auto" />
+            <a
+              href="https://andysmanclub.co.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Andy's Man Club"
+            >
+              <img src="/images/facebook.webp" alt="Andy's Man Club" className="h-8 w-auto hover:opacity-80 transition" />
+            </a>
+			<a
+              href="https://andysmanclub.co.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Andy's Man Club"
+            >
+              <img src="/images/andysmanclub.webp" alt="Andy's Man Club" className="h-8 w-auto hover:opacity-80 transition" />
+            </a>
+            <a
+              href="https://www.cqc.org.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="CQC"
+            >
+              <img src="/images/cqc-logo.webp" alt="Care Quality Commission" className="h-8 w-auto hover:opacity-80 transition" />
+            </a>
           </div>
         </div>
       </div>
