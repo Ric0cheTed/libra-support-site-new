@@ -1,11 +1,17 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { navItems } from '@/lib/nav'
-import Image from "next/image";
 
-export function Sidebar({ isOpen, toggleSidebar }: { isOpen: boolean, toggleSidebar: () => void }) {
+export function Sidebar({
+  isOpen,
+  toggleSidebar,
+}: {
+  isOpen: boolean
+  toggleSidebar: () => void
+}) {
   const pathname = usePathname()
 
   return (
@@ -18,18 +24,18 @@ export function Sidebar({ isOpen, toggleSidebar }: { isOpen: boolean, toggleSide
       `}
     >
       {/* Sidebar Content */}
-		<div className="h-full flex flex-col p-6">
-		  <div className="mb-8 flex justify-center">
-			<Link href="/" onClick={toggleSidebar}>
-			  <Image
-				src="/images/libra-full-logo.webp"
-				alt="Libra Support Services"
-				width={160}
-				height={40}
-			  />
-			</Link>
-		  </div>
-		</div>
+      <div className="h-full flex flex-col p-6">
+        <div className="mb-8 flex justify-center">
+          <Link href="/" onClick={toggleSidebar}>
+            <Image
+              src="/images/libra-full-logo.webp"
+              alt="Libra Support Services"
+              width={160}
+              height={40}
+              priority
+            />
+          </Link>
+        </div>
 
         <nav className="flex-1 space-y-4">
           {navItems.map((item) => (
