@@ -26,7 +26,6 @@ export function Sidebar({ isOpen, toggleSidebar }: { isOpen: boolean, toggleSide
 				alt="Libra Support Services"
 				width={160}
 				height={40}
-				priority
 			  />
 			</Link>
 		  </div>
