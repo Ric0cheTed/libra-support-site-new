@@ -18,7 +18,7 @@ export default function TeamPage() {
           <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             <TeamCard
               name="Nicola Szymik-Walters"
-              role="Service Manager"
+              role="Registered Manager/Director"
               image="/images/team/staff-1.webp"
               bio="I am dedicated to making Calderdale a better place for everyone, and spend my spare time engaging in community projects. When I'm not at work I like to spend time with my family, and go to local gigs - mainly at the Golden Lion in Todmorden and the Hebden Bridge Trades Club."
             />
@@ -30,9 +30,9 @@ export default function TeamPage() {
             />
             <TeamCard
               name="Jason Walters"
-              role="Cleaning Manager"
+              role="Director"
               image="/images/team/staff-3.webp"
-              bio="I am one of the directors at Libra support Services and the operations manager for the cleaning team within the business, so please send any cleaning enquiries direct to me. In my free time I enjoy playing music, going to gigs, and socialising with friends by playing videos games and poker. I spend time at home cooking and walking in the countryside."
+              bio="I am one of the directors at Libra support Services. In my free time I enjoy playing music, going to gigs, and socialising with friends by playing videos games and poker. I spend time at home cooking and walking in the countryside."
             />
           </div>
         </div>

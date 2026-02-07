@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://libra-support.vercel.app/sitemap.xml
+Sitemap: https://libra-support.co.uk/sitemap.xml

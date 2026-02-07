@@ -24,6 +24,9 @@ export function ContactForm() {
       setSuccess(true);
       setLoading(false);
 
+      // Auto-hide success toast after a short delay
+      setTimeout(() => setSuccess(false), 6000);
+
       // Safe form reset after successful send
       setTimeout(() => {
         form.reset();
@@ -31,7 +34,11 @@ export function ContactForm() {
     
     }).catch((error) => {
       console.error('FAILED:', error);
+      setError(true);
       setLoading(false);
+
+      // Auto-hide error toast after a short delay
+      setTimeout(() => setError(false), 6000);
     });
   };
 

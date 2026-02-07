@@ -50,8 +50,11 @@ export default function HeroShowcase() {
         <h1 className="text-4xl sm:text-5xl font-bold mb-4">
           Libra Support Services
         </h1>
-        <p className="text-lg sm:text-xl max-w-2xl mx-auto mb-6">
+        <p className="text-lg sm:text-xl max-w-2xl mx-auto mb-3">
           {slides[index].text}
+        </p>
+        <p className="text-sm sm:text-base text-white/90 max-w-2xl mx-auto mb-6">
+          Providing CQC-regulated home care in Todmorden, Hebden Bridge, Mytholmroyd and Burnley.
         </p>
         <div className="flex gap-4 flex-wrap justify-center">
           <a

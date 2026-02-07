@@ -2,11 +2,10 @@ import Image from "next/image";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { CareFeaturesSection } from "@/components/sections/CareFeaturesSection";
 import ServicesOverviewSection from "@/components/sections/ServicesOverviewSection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import TestimonialsCarousel from "@/components/sections/TestimonialsCarousel";
 import LazyClientCareFeatures from "@/components/sections/LazyClientCareFeatures";
 import HeroShowcase from "@/components/sections/HeroShowcase";
-import SocialsButton from '@/components/ui/SocialsButton';
+import CqcRatingCard from "@/components/sections/CqcRatingCard";
 
 export const metadata = {
   title: "Home | Libra Support Services",
@@ -41,8 +40,24 @@ export default function HomePage() {
 				</a>
               </div>
               <div>Local, DBS-checked Carers</div>
+			  <div>Regulated Care at Home</div>
               <div>24/7 Live-in and Respite Care</div>
               <div>Established in <strong>2021</strong></div>
+            </div>
+          </div>
+        </section>
+
+        {/* Official CQC Widget */}
+        <section className="bg-white py-10">
+          <div className="max-w-6xl mx-auto px-4 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-3">CQC Rating</h2>
+            <p className="text-gray-700 mb-6">
+              Official Care Quality Commission rating widget for Libra Support Services.
+            </p>
+            <div className="flex justify-center">
+              <div className="w-full max-w-md border border-gray-200 rounded-lg bg-gray-50 p-4">
+                <CqcRatingCard />
+              </div>
             </div>
           </div>
         </section>
@@ -73,7 +88,7 @@ export default function HomePage() {
                   className="rounded-full h-32 w-32 object-cover mb-4"
                 />
                 <h3 className="text-xl font-semibold text-primary mb-2">Nicola Szymik-Walters</h3>
-                <p className="text-gray-600 mb-4">Service Manager</p>
+                <p className="text-gray-600 mb-4">Registered Manager/Director</p>
                 <p className="text-sm text-gray-500">
                   I am dedicated to making Calderdale a better place for everyone, and spend my spare time engaging in community projects. When I'm not at work I like to spend time with my family, and go to local gigs - mainly at the Golden Lion in Todmorden and the Hebden Bridge Trades Club.
                 </p>
@@ -109,9 +124,9 @@ export default function HomePage() {
                   className="rounded-full h-32 w-32 object-cover mb-4"
                 />
                 <h3 className="text-xl font-semibold text-primary mb-2">Jason Walters</h3>
-                <p className="text-gray-600 mb-4">Cleaning Manager</p>
+                <p className="text-gray-600 mb-4">Director</p>
                 <p className="text-sm text-gray-500">
-                  I am one of the directors at Libra support Services and the operations manager for the cleaning team within the business, so please send any cleaning enquiries direct to me. In my free time I enjoy playing music, going to gigs, and socialising with friends by playing videos games and poker. I spend time at home cooking and walking in the countryside.
+                  I am one of the directors at Libra support Services. In my free time I enjoy playing music, going to gigs, and socialising with friends by playing videos games and poker. I spend time at home cooking and walking in the countryside.
                 </p>
               </div>
             </div>

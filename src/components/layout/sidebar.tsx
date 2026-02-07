@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { navItems } from '@/lib/nav'
-import Image from 'next/image'
 
 export function Sidebar({ isOpen, toggleSidebar }: { isOpen: boolean, toggleSidebar: () => void }) {
   const pathname = usePathname()
@@ -21,7 +20,7 @@ export function Sidebar({ isOpen, toggleSidebar }: { isOpen: boolean, toggleSide
       <div className="h-full flex flex-col p-6">
         <div className="mb-8 flex justify-center">
           <Link href="/" onClick={toggleSidebar}>
-            <Image
+            <img
               src="/images/libra-full-logo.webp"
               alt="Libra Support Services"
               width={160}

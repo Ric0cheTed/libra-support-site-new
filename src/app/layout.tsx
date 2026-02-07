@@ -11,7 +11,9 @@ import '@/styles/globals.css'; // Ensure Tailwind CSS is loaded
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'Services', href: '/services' },
+  { name: 'Care Fees', href: '/care-fees' },
   { name: 'About', href: '/about' },
+  { name: 'Careers', href: '/careers' },
   { name: 'Contact', href: '/contact' },
 ];
 
@@ -21,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col font-sans text-gray-900 bg-gray-50 text-[1.05rem] leading-relaxed">
+      <body className="min-h-screen flex flex-col text-gray-900 bg-gray-50 text-[1.05rem] leading-relaxed">
         {/* Top Navigation */}
         <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
@@ -50,6 +52,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </Link>
               ))}
             </nav>
+
+            {/* Always-visible contact (desktop) */}
+            <div className="hidden md:flex items-center gap-4">
+              <a
+                href="tel:01706817672"
+                className="text-sm font-semibold text-primary hover:underline"
+              >
+                Call: 01706 817 672
+              </a>
+            </div>
+
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="md:hidden p-2 rounded text-primary hover:bg-blue-100"
@@ -71,6 +84,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   {item.name}
                 </Link>
               ))}
+
+              <div className="pt-3 border-t border-gray-100">
+                <a
+                  href="tel:01706817672"
+                  className="block text-base font-semibold text-primary hover:underline"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Call: 01706 817 672
+                </a>
+                <a
+                  href="mailto:nicola@librasupport.co.uk"
+                  className="block text-base text-muted-foreground hover:text-primary mt-2"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  nicola@librasupport.co.uk
+                </a>
+              </div>
             </div>
           )}
         </header>

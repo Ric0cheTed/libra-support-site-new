@@ -9,6 +9,7 @@ export const navItems = [
       { title: "Respite Care", href: "/services/respite-care" },
     ],
   },
+  { title: "Care Fees", href: "/care-fees" },
   {
     title: "About",
     href: "/about",

@@ -34,7 +34,7 @@ export default function ContactPage() {
         <div className="overflow-hidden rounded-xl shadow">
           <iframe
             title="Libra Support Services Office"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2362.9063238141016!2d-2.099311084417781!3d53.71390217999967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487b7f2ad55f40b5%3A0x93a65b339f6a7331!2sTodmorden%20Community%20College!5e0!3m2!1sen!2suk!4v1715890000000!5m2!1sen!2suk"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d951.4129929293816!2d-2.1014253!3d53.7137928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bddf5f1265d1b%3A0x56ae2222483c8d62!2sTodmorden%20Community%20College!5e0!3m2!1sen!2suk!4v1716999999999!5m2!1sen!2suk"
             width="100%"
             height="300"
             style={{ border: 0 }}

@@ -58,7 +58,7 @@ export function CareFeaturesSection() {
       icon: <FaBuilding className="text-orange-500 text-4xl mb-4 mx-auto" />,
       title: 'Local Support',
       description:
-        "We work with Andy’s Man Club and Women's Open Talk for peer support. Learn more via our Facebook pages.",
+        "We work with Women's Open Talk for peer support. Learn more via our Facebook pages.",
     },
   ]
 
