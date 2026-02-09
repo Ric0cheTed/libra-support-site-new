@@ -1,5 +1,8 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+<<<<<<< HEAD
 import CqcRatingCard from "@/components/sections/CqcRatingCard";
+=======
+>>>>>>> 3926bbd (Add FAQs page + homepage FAQ teaser; remove CQC widget)
 
 export const metadata = {
   title: "Care Fees | Libra Support Services",
@@ -123,6 +126,7 @@ export default function CareFeesPage() {
           </div>
         </section>
 
+<<<<<<< HEAD
         {/* CQC widget */}
         <section className="bg-white rounded-lg border border-gray-200 p-6 text-center">
           <h2 className="text-2xl font-bold mb-3">CQC Rating</h2>
@@ -135,6 +139,8 @@ export default function CareFeesPage() {
             </div>
           </div>
         </section>
+=======
+>>>>>>> 3926bbd (Add FAQs page + homepage FAQ teaser; remove CQC widget)
       </div>
     </>
   );

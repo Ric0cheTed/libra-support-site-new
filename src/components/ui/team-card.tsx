@@ -12,7 +12,7 @@ type TeamCardProps = {
 export default function TeamCard({ name, role, image, bio }: TeamCardProps) {
   return (
     <div className="bg-white rounded-lg shadow-md p-6 text-center">
-      <Image
+      <Img
         src={image}
         alt={name}
         width={128}

@@ -5,7 +5,10 @@ import ServicesOverviewSection from "@/components/sections/ServicesOverviewSecti
 import TestimonialsCarousel from "@/components/sections/TestimonialsCarousel";
 import LazyClientCareFeatures from "@/components/sections/LazyClientCareFeatures";
 import HeroShowcase from "@/components/sections/HeroShowcase";
+<<<<<<< HEAD
 import CqcRatingCard from "@/components/sections/CqcRatingCard";
+=======
+>>>>>>> 3926bbd (Add FAQs page + homepage FAQ teaser; remove CQC widget)
 
 export const metadata = {
   title: "Home | Libra Support Services",
@@ -47,6 +50,7 @@ export default function HomePage() {
           </div>
         </section>
 
+<<<<<<< HEAD
         {/* Official CQC Widget */}
         <section className="bg-white py-10">
           <div className="max-w-6xl mx-auto px-4 text-center">
@@ -61,6 +65,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+=======
+>>>>>>> 3926bbd (Add FAQs page + homepage FAQ teaser; remove CQC widget)
 		<TestimonialsCarousel />
 
         <CareFeaturesSection />
