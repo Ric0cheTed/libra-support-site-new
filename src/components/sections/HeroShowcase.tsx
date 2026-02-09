@@ -61,15 +61,18 @@ export default function HeroShowcase() {
             className="bg-green-700 hover:bg-green-800 text-white font-semibold px-6 py-3 rounded shadow"
             href="/contact"
           >
-            Request Support
+            Book a Free Needs Assessment
           </a>
           <a
             className="border border-white text-white hover:bg-white hover:text-green-700 font-semibold px-6 py-3 rounded"
-            href="/contact"
+            href="tel:01706817672"
           >
-            Speak to a Care Advisor
+            Call 01706 817 672
           </a>
         </div>
+        <p className="mt-4 text-sm sm:text-base text-white/90">
+          We’ll respond within 1 working day.
+        </p>
       </div>
     </section>
   )

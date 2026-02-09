@@ -5,6 +5,7 @@ import ServicesOverviewSection from "@/components/sections/ServicesOverviewSecti
 import TestimonialsCarousel from "@/components/sections/TestimonialsCarousel";
 import LazyClientCareFeatures from "@/components/sections/LazyClientCareFeatures";
 import HeroShowcase from "@/components/sections/HeroShowcase";
+import WhyChooseLibra from "@/components/sections/WhyChooseLibra";
 import FaqTeaserAccordion from "@/components/sections/FaqTeaserAccordion";
 
 export const metadata = {
@@ -47,6 +48,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        <WhyChooseLibra />
+
 		<TestimonialsCarousel />
 
         <CareFeaturesSection />
