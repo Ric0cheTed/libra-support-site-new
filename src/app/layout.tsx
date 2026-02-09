@@ -7,23 +7,22 @@ import SocialsButton from '@/components/ui/SocialsButton';
 import { Footer } from '@/components/layout/footer';
 import Image from 'next/image';
 import '@/styles/globals.css'; // Ensure Tailwind CSS is loaded
+import { Lexend } from "next/font/google";
+import { navItems } from "@/lib/nav";
 
-const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'Services', href: '/services' },
-  { name: 'Care Fees', href: '/care-fees' },
-  { name: 'About', href: '/about' },
-  { name: 'Careers', href: '/careers' },
-  { name: 'Contact', href: '/contact' },
-];
+const lexend = Lexend({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+});
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <html lang="en">
-      <body className="min-h-screen flex flex-col text-gray-900 bg-gray-50 text-[1.05rem] leading-relaxed">
+    <html lang="en" className={lexend.variable}>
+      <body className={`${lexend.className} min-h-screen flex flex-col font-sans text-gray-900 bg-gray-50 text-[1.05rem] leading-relaxed`}>
         {/* Top Navigation */}
         <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
@@ -39,16 +38,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 />
               </Link>
             </div>
-            <nav className="hidden md:flex space-x-6 text-base font-medium text-muted-foreground">
+            <nav className="hidden md:flex space-x-6 text-base font-medium text-gray-700">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`hover:text-primary transition ${
-                    pathname === item.href ? 'text-primary font-semibold' : ''
-                  }`}
+                  className={`text-gray-700 hover:text-primary transition ${
+					  pathname === item.href ? 'text-primary font-semibold' : ''
+					}`}
                 >
-                  {item.name}
+                  {item.title}
                 </Link>
               ))}
             </nav>
@@ -78,10 +77,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block text-base text-muted-foreground hover:text-primary"
+                  className="block text-base text-gray-700 hover:text-primary"
                   onClick={() => setMenuOpen(false)}
                 >
-                  {item.name}
+                  {item.title}
                 </Link>
               ))}
 
@@ -95,7 +94,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </a>
                 <a
                   href="mailto:nicola@librasupport.co.uk"
-                  className="block text-base text-muted-foreground hover:text-primary mt-2"
+                  className="block text-base text-gray-700 hover:text-primary mt-2"
                   onClick={() => setMenuOpen(false)}
                 >
                   nicola@librasupport.co.uk

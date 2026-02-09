@@ -1,5 +1,3 @@
-'use client'
-
 import Image from "next/image";
 
 type TeamCardProps = {
@@ -18,7 +16,6 @@ export default function TeamCard({ name, role, image, bio }: TeamCardProps) {
         width={128}
         height={128}
         className="mx-auto rounded-full mb-4 object-cover"
-		priority={false}
       />
       <h3 className="text-lg font-semibold text-primary mb-1">{name}</h3>
       <p className="text-gray-600 font-medium mb-2">{role}</p>
