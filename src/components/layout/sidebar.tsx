@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from "next/image";
 import { usePathname } from 'next/navigation'
 import { navItems } from '@/lib/nav'
 
@@ -27,13 +27,12 @@ export function Sidebar({
       <div className="h-full flex flex-col p-6">
         <div className="mb-8 flex justify-center">
           <Link href="/" onClick={toggleSidebar}>
-            <img
-              src="/images/libra-full-logo.webp"
-              alt="Libra Support Services"
-              width={160}
-              height={40}
-              priority
-            />
+            <Image
+			  src="/images/libra-full-logo.webp"
+			  alt="Libra Support Services"
+			  width={160}
+			  height={40}
+			/>
           </Link>
         </div>
 
