@@ -1,32 +1,39 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-<<<<<<< HEAD
-import CqcRatingCard from "@/components/sections/CqcRatingCard";
-=======
->>>>>>> 3926bbd (Add FAQs page + homepage FAQ teaser; remove CQC widget)
 
 export const metadata = {
   title: "Care Fees | Libra Support Services",
   description:
-    "Transparent care fees for Libra Support Services, including urban and rural hourly rates and what's included.",
+    "Clear, transparent pricing for home care services. Urban and rural hourly rates, what’s included, and how to get in touch.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
+
+function formatGBP(amount: number) {
+  return new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+    minimumFractionDigits: 2,
+  }).format(amount);
+}
+
+type CostRow = {
+  label: string;
+  minutes: number;
+};
+
+const COST_ROWS: CostRow[] = [
+  { label: "30 minutes", minutes: 30 },
+  { label: "45 minutes", minutes: 45 },
+  { label: "1 hour", minutes: 60 },
+  { label: "2 hours", minutes: 120 },
+];
 
 const URBAN_RATE = 24.28;
 const RURAL_RATE = 25.46;
 
-type ExampleRow = {
-  label: string;
-  hours: number;
-};
-
-const EXAMPLES: ExampleRow[] = [
-  { label: "30 minutes", hours: 0.5 },
-  { label: "45 minutes", hours: 0.75 },
-  { label: "1 hour", hours: 1 },
-  { label: "2 hours", hours: 2 },
-];
-
-function money(value: number) {
-  return `£${value.toFixed(2)}`;
+function costFor(rate: number, minutes: number) {
+  return (rate / 60) * minutes;
 }
 
 export default function CareFeesPage() {
@@ -34,63 +41,74 @@ export default function CareFeesPage() {
     <>
       <Breadcrumbs />
 
-      <div className="max-w-4xl mx-auto py-16 px-4 space-y-10">
+      <div className="max-w-4xl mx-auto py-16 px-4 space-y-12">
         <header className="text-center space-y-3">
           <h1 className="text-4xl font-bold">Our Care Fees</h1>
           <p className="text-lg text-gray-700">
             We offer clear, transparent pricing with no hidden costs.
           </p>
-          <p className="text-sm text-gray-600">
-            Rural rates reflect additional travel time and fuel costs, ensuring reliable visits and fair pay for carers.
-          </p>
         </header>
 
         {/* Rates */}
-        <section className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div className="bg-white rounded-lg border border-gray-200 p-6 text-center">
-            <h2 className="text-xl font-semibold mb-2">Hourly Rate (Urban)</h2>
-            <p className="text-3xl font-bold text-primary">{money(URBAN_RATE)}</p>
-            <p className="text-gray-600 mt-2">Per hour – Urban areas</p>
+        <section className="bg-white rounded-2xl border border-black/10 p-6 sm:p-8 space-y-6">
+          <h2 className="text-2xl font-semibold">Hourly Rates</h2>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl border border-black/10 p-5">
+              <p className="text-sm text-black/60">Urban areas</p>
+              <p className="text-3xl font-bold mt-1">{formatGBP(URBAN_RATE)} per hour</p>
+            </div>
+
+            <div className="rounded-xl border border-black/10 p-5">
+              <p className="text-sm text-black/60">Rural areas</p>
+              <p className="text-3xl font-bold mt-1">{formatGBP(RURAL_RATE)} per hour</p>
+            </div>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-6 text-center">
-            <h2 className="text-xl font-semibold mb-2">Hourly Rate (Rural)</h2>
-            <p className="text-3xl font-bold text-primary">{money(RURAL_RATE)}</p>
-            <p className="text-gray-600 mt-2">Per hour – Rural areas</p>
-          </div>
+
+          <p className="text-gray-700">
+            Rural rates reflect additional travel time and fuel costs, ensuring reliable visits and fair
+            pay for carers.
+          </p>
         </section>
 
-        {/* Examples */}
-        <section className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-2xl font-bold mb-4">Typical Visit Costs (Examples)</h2>
+        {/* Typical costs */}
+        <section className="bg-white rounded-2xl border border-black/10 p-6 sm:p-8 space-y-4">
+          <h2 className="text-2xl font-semibold">Typical Visit Costs</h2>
+          <p className="text-gray-700">
+            Examples below are based on our hourly rates. Exact costs depend on your care plan and location.
+          </p>
+
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b">
-                  <th className="py-3 pr-4">Visit length</th>
-                  <th className="py-3 pr-4">Urban</th>
-                  <th className="py-3">Rural</th>
+                <tr className="border-b border-black/10">
+                  <th className="py-3 pr-4 font-semibold">Visit length</th>
+                  <th className="py-3 pr-4 font-semibold">Urban</th>
+                  <th className="py-3 pr-4 font-semibold">Rural</th>
                 </tr>
               </thead>
               <tbody>
-                {EXAMPLES.map((row) => (
-                  <tr key={row.label} className="border-b last:border-b-0">
-                    <td className="py-3 pr-4 text-gray-800">{row.label}</td>
-                    <td className="py-3 pr-4 text-gray-800">{money(URBAN_RATE * row.hours)}</td>
-                    <td className="py-3 text-gray-800">{money(RURAL_RATE * row.hours)}</td>
+                {COST_ROWS.map((row) => (
+                  <tr key={row.label} className="border-b border-black/5">
+                    <td className="py-3 pr-4">{row.label}</td>
+                    <td className="py-3 pr-4">
+                      {formatGBP(costFor(URBAN_RATE, row.minutes))}
+                    </td>
+                    <td className="py-3 pr-4">
+                      {formatGBP(costFor(RURAL_RATE, row.minutes))}
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="text-sm text-gray-600 mt-4">
-            These examples are for guidance only. We’ll confirm your exact care plan and visit schedule during a free needs assessment.
-          </p>
         </section>
 
-        {/* What's included */}
-        <section className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-2xl font-bold mb-4">What’s Included</h2>
-          <p className="text-gray-700 mb-4">Our rates include:</p>
+        {/* Included */}
+        <section className="bg-white rounded-2xl border border-black/10 p-6 sm:p-8 space-y-6">
+          <h2 className="text-2xl font-semibold">What’s Included</h2>
+          <p className="text-gray-700">Our rates include:</p>
+
           <ul className="space-y-2 text-gray-800">
             <li>✔ CQC-regulated care</li>
             <li>✔ Trained, DBS-checked care staff</li>
@@ -99,48 +117,34 @@ export default function CareFeesPage() {
             <li>✔ Medication support and care planning</li>
             <li>✔ Management oversight and on-call support</li>
           </ul>
-          <p className="text-gray-700 mt-5">
+
+          <p className="text-gray-700">
             No extra charges for administration, emergency cover, or compliance.
           </p>
         </section>
 
         {/* Talk to us */}
-        <section className="bg-white rounded-lg border border-gray-200 p-6 text-center">
-          <h2 className="text-2xl font-bold mb-3">Talk to Us</h2>
-          <p className="text-gray-700 mb-6">
+        <section className="bg-white rounded-2xl border border-black/10 p-6 sm:p-8 space-y-4">
+          <h2 className="text-2xl font-semibold">Talk to Us</h2>
+          <p className="text-gray-700">
             If you’d like to discuss your care needs or funding options, we’re happy to help.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="tel:01706817672"
-              className="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded hover:bg-primary-dark"
-            >
-              Call: 01706 817 672
-            </a>
-            <a
-              href="mailto:nicola@librasupport.co.uk"
-              className="inline-flex items-center justify-center px-6 py-3 border border-blue-600 text-primary rounded hover:bg-accent"
-            >
-              Email Nicola
-            </a>
-          </div>
-        </section>
 
-<<<<<<< HEAD
-        {/* CQC widget */}
-        <section className="bg-white rounded-lg border border-gray-200 p-6 text-center">
-          <h2 className="text-2xl font-bold mb-3">CQC Rating</h2>
-          <p className="text-gray-700 mb-6">
-            Official Care Quality Commission rating widget for Libra Support Services.
-          </p>
-          <div className="flex justify-center">
-            <div className="w-full max-w-md border border-gray-200 rounded-lg bg-gray-50 p-4">
-              <CqcRatingCard />
-            </div>
+          <div className="space-y-2">
+            <p>
+              <span className="font-semibold">📞</span>{" "}
+              <a className="underline" href="tel:01706817672">
+                01706 817 672
+              </a>
+            </p>
+            <p>
+              <span className="font-semibold">📧</span>{" "}
+              <a className="underline" href="mailto:nicola@librasupport.co.uk">
+                nicola@librasupport.co.uk
+              </a>
+            </p>
           </div>
         </section>
-=======
->>>>>>> 3926bbd (Add FAQs page + homepage FAQ teaser; remove CQC widget)
       </div>
     </>
   );
