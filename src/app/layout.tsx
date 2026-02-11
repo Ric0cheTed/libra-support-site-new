@@ -1,18 +1,13 @@
 import '@/styles/globals.css';
 
 import type { Metadata } from 'next';
-import { Lexend } from 'next/font/google';
 
 import SiteHeader from '@/components/layout/SiteHeader';
 import SocialsButton from '@/components/ui/SocialsButton';
 import { Footer } from '@/components/layout/footer';
 import { getOrganizationStructuredData, seo } from '@/lib/seo';
 
-const lexend = Lexend({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-sans',
-});
+const lexend = { variable: '--font-sans' };
 
 export const metadata: Metadata = {
   metadataBase: new URL(seo.siteUrl),
