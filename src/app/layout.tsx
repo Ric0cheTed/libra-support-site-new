@@ -7,8 +7,6 @@ import SocialsButton from '@/components/ui/SocialsButton';
 import { Footer } from '@/components/layout/footer';
 import { getOrganizationStructuredData, seo } from '@/lib/seo';
 
-const lexend = { variable: '--font-sans' };
-
 export const metadata: Metadata = {
   metadataBase: new URL(seo.siteUrl),
   title: {
@@ -47,8 +45,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const structuredData = getOrganizationStructuredData();
 
   return (
-    <html lang="en" className={lexend.variable}>
-      <body className="min-h-screen flex flex-col font-sans text-gray-900 bg-gray-50 text-[1.05rem] leading-relaxed">
+    <html lang="en" className="font-sans">
+      <body className="min-h-screen flex flex-col text-gray-900 bg-gray-50 text-[1.05rem] leading-relaxed">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
