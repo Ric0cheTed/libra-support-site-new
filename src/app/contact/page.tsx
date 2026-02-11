@@ -1,10 +1,12 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { buildPageMetadata } from '@/lib/seo';
 import { ContactForm } from "./contact-form";
 
-export const metadata = {
-  title: "Contact Us | Libra Support Services",
-  description: "Reach out to Libra Support Services for compassionate home care solutions across West Yorkshire.",
-};
+export const metadata = buildPageMetadata({
+  title: 'Contact Libra Support Services',
+  description: 'Speak with Libra Support Services about home care in Todmorden, Hebden Bridge and nearby areas. Book a free needs assessment.',
+  path: '/contact',
+});
 
 export default function ContactPage() {
   return (
@@ -12,6 +14,12 @@ export default function ContactPage() {
       <Breadcrumbs />
 
       <div className="space-y-10 max-w-5xl mx-auto py-10 px-4">
+        <header className="text-center space-y-3">
+          <h1 className="text-4xl font-bold">Contact Libra Support Services</h1>
+          <p className="text-lg text-gray-700">
+            Speak with our team about tailored home care in Todmorden and nearby areas.
+          </p>
+        </header>
 
         {/* Contact CTA */}
         <div className="bg-blue-50 p-6 rounded-xl shadow text-center space-y-3">

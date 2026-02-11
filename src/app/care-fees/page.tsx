@@ -1,10 +1,11 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Care Fees | Libra Support Services",
-  description:
-    "Transparent care fees for Libra Support Services, including urban and rural hourly rates and what's included.",
-};
+export const metadata = buildPageMetadata({
+  title: 'Care Fees',
+  description: 'Transparent home care pricing from Libra Support Services, including urban and rural hourly rates.',
+  path: '/care-fees',
+});
 
 const URBAN_RATE = 24.28;
 const RURAL_RATE = 25.46;

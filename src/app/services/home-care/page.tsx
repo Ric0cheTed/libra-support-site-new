@@ -1,10 +1,12 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { buildPageMetadata } from '@/lib/seo';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 
-export const metadata = {
-  title: "Home Care Services | Libra Support Services",
-  description: "Flexible and compassionate in-home care services tailored to your family's needs in Todmorden and West Yorkshire.",
-}
+export const metadata = buildPageMetadata({
+  title: 'Home Care Services in Todmorden',
+  description: 'Flexible and compassionate in-home care tailored to daily living needs in Todmorden and surrounding communities.',
+  path: '/services/home-care',
+});
 
 export default function HomeCarePage() {
   return (

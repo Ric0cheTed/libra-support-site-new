@@ -1,9 +1,11 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Careers and Open Roles | Libra Support Services",
-  description: "View available job opportunities and join our growing team of care professionals.",
-}
+export const metadata = buildPageMetadata({
+  title: 'Open Care Roles',
+  description: 'View current care job opportunities at Libra Support Services.',
+  path: '/careers/open-roles',
+});
 
 export default function OpenRolesPage() {
   return (

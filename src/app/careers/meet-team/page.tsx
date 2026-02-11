@@ -1,9 +1,11 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Meet the Team | Libra Support Services",
-  description: "Get to know the compassionate carers and management team behind Libra Support Services.",
-}
+export const metadata = buildPageMetadata({
+  title: 'Meet Our Care Team',
+  description: 'Get to know the carers and management team behind Libra Support Services.',
+  path: '/careers/meet-team',
+});
 
 export default function MeetTeamPage() {
   return (

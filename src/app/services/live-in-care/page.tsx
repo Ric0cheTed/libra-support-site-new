@@ -1,10 +1,12 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { buildPageMetadata } from '@/lib/seo';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 
-export const metadata = {
-  title: "Live-in Care | Libra Support Services",
-  description: "24-hour live-in care offering professional, compassionate support within the comfort of your home.",
-}
+export const metadata = buildPageMetadata({
+  title: 'Live-in Care Services in Todmorden',
+  description: '24-hour live-in care providing professional and compassionate support in the comfort of your home.',
+  path: '/services/live-in-care',
+});
 
 export default function LiveInCarePage() {
   return (

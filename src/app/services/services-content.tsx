@@ -7,7 +7,7 @@ export default function ServicesPage() {
       {/* Services Overview Section */}
       <section className="py-20 bg-gray-50 animate-fade-slide-up">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6 text-primary">Our Care Services</h2>
+          <h1 className="text-4xl font-bold mb-6 text-primary">Our Care Services</h1>
           <p className="text-lg text-gray-700 mb-12">
             Libra Support Services offers compassionate, flexible care solutions to fit your family's needs across Todmorden and West Yorkshire.
           </p>

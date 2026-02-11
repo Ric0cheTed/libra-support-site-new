@@ -1,10 +1,12 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { buildPageMetadata } from '@/lib/seo';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 
-export const metadata = {
-  title: "Respite Care | Libra Support Services",
-  description: "Short-term and emergency care support for families needing temporary assistance.",
-}
+export const metadata = buildPageMetadata({
+  title: 'Respite Care Services in Todmorden',
+  description: 'Short-term and emergency respite care support for families needing reliable temporary assistance.',
+  path: '/services/respite-care',
+});
 
 export default function RespiteCarePage() {
   return (
