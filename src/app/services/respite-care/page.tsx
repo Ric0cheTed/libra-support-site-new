@@ -16,7 +16,7 @@ export default function RespiteCarePage() {
       <div className="space-y-10 max-w-4xl mx-auto py-10 px-4">
         <h1 className="text-4xl font-bold mb-4">Respite Care Services</h1>
         <p className="text-lg text-gray-600">
-          Short-term care solutions offering flexible support to families and regular caregivers.
+          Short-term care that gives families trusted cover during illness, recovery periods, or planned breaks across Todmorden and nearby Calderdale areas.
         </p>
 
         <section className="space-y-4">
@@ -25,7 +25,16 @@ export default function RespiteCarePage() {
             <li>Emergency coverage or carer sickness</li>
             <li>Short breaks for family caregivers</li>
             <li>Transitional support post-hospital stay</li>
+            <li>CQC-regulated support from trained, DBS-checked carers</li>
           </ul>
+          <div className="flex flex-wrap gap-3 pt-2">
+            <a href="tel:01706817672" className="inline-block px-5 py-3 bg-primary text-white rounded hover:bg-primary-dark">
+              Call now: 01706 817 672
+            </a>
+            <a href="/contact" className="inline-block px-5 py-3 border border-blue-600 text-primary rounded hover:bg-accent">
+              Request a call back
+            </a>
+          </div>
         </section>
 
         <TestimonialsSection />

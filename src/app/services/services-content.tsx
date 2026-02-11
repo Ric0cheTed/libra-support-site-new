@@ -8,10 +8,23 @@ export default function ServicesPage() {
       {/* Services Overview Section */}
       <section className="py-20 bg-gray-50 animate-fade-slide-up">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-6 text-primary">Our Care Services</h1>
-          <p className="text-lg text-gray-700 mb-12">
-            Libra Support Services offers compassionate, flexible care solutions to fit your family's needs across Todmorden and West Yorkshire.
+          <h1 className="text-4xl font-bold mb-6 text-primary">Home Care Services in Todmorden & West Yorkshire</h1>
+          <p className="text-lg text-gray-700 mb-4">
+            Choose flexible, CQC-regulated support that keeps people safe, comfortable and independent at home.
           </p>
+          <ul className="text-gray-700 max-w-3xl mx-auto text-left sm:text-center space-y-1 mb-6">
+            <li>• Home care visits, live-in care and respite cover</li>
+            <li>• Trained, DBS-checked carers with safeguarding focus</li>
+            <li>• Support across Todmorden, Calderdale and nearby West Yorkshire areas</li>
+          </ul>
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+            <a href="tel:01706817672" className="inline-block px-5 py-3 bg-primary text-white rounded hover:bg-primary-dark">
+              Call now: 01706 817 672
+            </a>
+            <a href="/contact" className="inline-block px-5 py-3 border border-blue-600 text-primary rounded hover:bg-accent">
+              Request a call back
+            </a>
+          </div>
 
           <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             {/* Service Card 1 */}

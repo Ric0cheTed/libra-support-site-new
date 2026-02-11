@@ -48,26 +48,31 @@ export default function HeroShowcase() {
       <div className="absolute inset-0 bg-black/40 z-0" />
       <div className="relative z-10 max-w-3xl transition-opacity duration-1000 ease-in-out">
         <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-          Libra Support Services
+          Reliable Home Care in Todmorden
         </h1>
         <p className="text-lg sm:text-xl max-w-2xl mx-auto mb-3">
+          Safe, compassionate support at home for older adults and families across Calderdale and West Yorkshire.
+        </p>
+        <p className="text-sm sm:text-base text-white/90 max-w-2xl mx-auto mb-3">
           {slides[index].text}
         </p>
-        <p className="text-sm sm:text-base text-white/90 max-w-2xl mx-auto mb-6">
-          Providing CQC-regulated home care in Todmorden, Hebden Bridge, Mytholmroyd and Burnley.
-        </p>
+        <ul className="text-sm sm:text-base text-white/90 max-w-2xl mx-auto mb-6 space-y-1">
+          <li>• CQC-regulated care with trained, DBS-checked carers</li>
+          <li>• Home care, live-in care and respite care tailored to your routine</li>
+          <li>• Local team supporting Todmorden, Hebden Bridge, Mytholmroyd and Burnley</li>
+        </ul>
         <div className="flex gap-4 flex-wrap justify-center">
           <a
             className="bg-green-700 hover:bg-green-800 text-white font-semibold px-6 py-3 rounded shadow"
-            href="/contact"
+            href="tel:01706817672"
           >
-            Book a Free Needs Assessment
+            Call now: 01706 817 672
           </a>
           <a
             className="border border-white text-white hover:bg-white hover:text-green-700 font-semibold px-6 py-3 rounded"
-            href="tel:01706817672"
+            href="/contact"
           >
-            Call 01706 817 672
+            Request a call back
           </a>
         </div>
         <p className="mt-4 text-sm sm:text-base text-white/90">

@@ -16,7 +16,7 @@ export default function HomeCarePage() {
       <div className="space-y-10 max-w-4xl mx-auto py-10 px-4">
         <h1 className="text-4xl font-bold mb-4">Home Care Services</h1>
         <p className="text-lg text-gray-600">
-          Flexible, personalized home care to support daily living and independence, provided by compassionate carers.
+          Practical day-to-day support that helps people stay safe and independent at home across Todmorden, Calderdale and nearby West Yorkshire communities.
         </p>
 
         <section className="space-y-4">
@@ -25,7 +25,16 @@ export default function HomeCarePage() {
             <li>Help with bathing, dressing, mobility, and hygiene</li>
             <li>Household chores, medication support, and meals</li>
             <li>Friendly companionship and wellness checks</li>
+            <li>CQC-regulated care from trained, DBS-checked carers</li>
           </ul>
+          <div className="flex flex-wrap gap-3 pt-2">
+            <a href="tel:01706817672" className="inline-block px-5 py-3 bg-primary text-white rounded hover:bg-primary-dark">
+              Call now: 01706 817 672
+            </a>
+            <a href="/contact" className="inline-block px-5 py-3 border border-blue-600 text-primary rounded hover:bg-accent">
+              Request a call back
+            </a>
+          </div>
         </section>
 
         <TestimonialsSection />
