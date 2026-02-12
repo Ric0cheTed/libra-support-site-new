@@ -3,6 +3,8 @@
 import { useState } from "react";
 import emailjs from 'emailjs-com';
 
+import { trackEvent } from '@/lib/ga';
+
 export function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -15,6 +17,8 @@ export function ContactForm() {
     setSuccess(false);
     setError(false);
 
+    trackEvent('contact_form_submit_attempt');
+
     emailjs.sendForm(
       'service_j012een',      // Replace
       'template_70ybm0f',     // Replace
@@ -23,6 +27,10 @@ export function ContactForm() {
       ).then(() => {
       setSuccess(true);
       setLoading(false);
+
+      trackEvent('generate_lead', {
+        form_name: 'contact',
+      });
 
       // Auto-hide success toast after a short delay
       setTimeout(() => setSuccess(false), 6000);
@@ -37,6 +45,8 @@ export function ContactForm() {
       setError(true);
       setLoading(false);
 
+      trackEvent('contact_form_submit_error');
+
       // Auto-hide error toast after a short delay
       setTimeout(() => setError(false), 6000);
     });
@@ -44,7 +54,7 @@ export function ContactForm() {
 
   return (
     <div className="max-w-2xl mx-auto py-16 px-4">
-      <h1 className="text-3xl font-bold mb-8">Contact Us</h1>
+      <h2 className="text-3xl font-bold mb-8">Send us a message</h2>
 
       {/* Toast Notifications */}
       <div className="fixed top-6 right-6 z-50">

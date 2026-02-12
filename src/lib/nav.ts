@@ -10,6 +10,7 @@ export const navItems = [
     ],
   },
   { title: "Care Fees", href: "/care-fees" },
+  { title: "Areas", href: "/areas" },
   { title: "FAQs", href: "/faqs" },
   {
     title: "About",

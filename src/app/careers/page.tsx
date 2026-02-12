@@ -1,9 +1,11 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Careers | Libra Support Services",
-  description: "Join the Libra Support Services team and make a real difference in people's lives. View open roles and meet our compassionate team.",
-}
+export const metadata = buildPageMetadata({
+  title: 'Careers',
+  description: 'Join Libra Support Services and help deliver compassionate care across Todmorden and West Yorkshire.',
+  path: '/careers',
+});
 
 export default function CareersPage() {
   return (

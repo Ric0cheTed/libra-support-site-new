@@ -1,5 +1,8 @@
-export const metadata = {
-  title: "About Us | Libra Support Services",
+import { buildPageMetadata } from '@/lib/seo';
+
+export const metadata = buildPageMetadata({
+  title: 'About Libra Support Services',
   description:
-    "Learn more about Libra Support Services, our mission, values, and dedication to person-centered home care across West Yorkshire.",
-};
+    'Learn about Libra Support Services and our person-centred, CQC-regulated home care across Todmorden and West Yorkshire.',
+  path: '/about',
+});
