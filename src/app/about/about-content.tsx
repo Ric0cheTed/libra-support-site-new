@@ -1,14 +1,15 @@
 "use client";
 
+import Image from 'next/image';
+
 export default function AboutPage() {
   return (
     <>
-
       <section className="py-20 bg-gray-50 animate-fade-slide-up">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold mb-6 text-primary">About Libra Support Services</h1>
           <p className="text-lg text-gray-700 mb-12">
-            At Libra Support Services, we believe everyone deserves compassionate, professional care in the comfort of their own home. 
+            At Libra Support Services, we believe everyone deserves compassionate, professional care in the comfort of their own home.
             Our team proudly supports families across Todmorden and West Yorkshire with tailored solutions to meet each individual’s needs.
           </p>
         </div>
@@ -26,20 +27,26 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="rounded-lg overflow-hidden shadow-md">
-            <img src="/images/about-team.webp" alt="Our Team" className="w-full h-auto object-cover" />
+            <Image
+              src="/images/about-team.webp"
+              alt="Our Team"
+              width={768}
+              height={512}
+              className="w-full h-auto object-cover"
+            />
           </div>
         </div>
       </section>
-	  
-	  <section className="text-center mt-12">
-		  <p className="text-gray-600 text-lg mb-4">Want to learn more about the people behind Libra?</p>
-		  <a
-			href="/about/team"
-			className="inline-block px-6 py-3 bg-primary text-white rounded hover:bg-primary-dark transition"
-		  >
-			Meet the Team
-		  </a>
-		</section>
+
+      <section className="text-center mt-12">
+        <p className="text-gray-600 text-lg mb-4">Want to learn more about the people behind Libra?</p>
+        <a
+          href="/about/team"
+          className="inline-block px-6 py-3 bg-primary text-white rounded hover:bg-primary-dark transition"
+        >
+          Meet the Team
+        </a>
+      </section>
     </>
-  )
+  );
 }
