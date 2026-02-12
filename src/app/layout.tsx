@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 
 import type { Metadata } from 'next';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 import SiteHeader from '@/components/layout/SiteHeader';
 import SocialsButton from '@/components/ui/SocialsButton';
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <SocialsButton />
         <Footer />
+        <GoogleAnalytics gaId="G-2VETK5Z1DT" />
       </body>
     </html>
   );

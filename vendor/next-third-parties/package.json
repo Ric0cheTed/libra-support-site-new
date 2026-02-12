@@ -1,0 +1,6 @@
+{
+  "name": "@next/third-parties",
+  "version": "0.0.0-local",
+  "main": "google.js",
+  "types": "google.d.ts"
+}

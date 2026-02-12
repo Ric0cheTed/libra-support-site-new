@@ -10,6 +10,7 @@
     "check:font": "node scripts/check-font.js"
   },
   "dependencies": {
+    "@next/third-parties": "file:vendor/next-third-parties",
     "autoprefixer": "^10.4.14",
     "class-variance-authority": "^0.7.0",
     "emailjs-com": "^3.2.0",
