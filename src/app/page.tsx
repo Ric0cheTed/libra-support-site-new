@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { buildPageMetadata } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { CareFeaturesSection } from "@/components/sections/CareFeaturesSection";
 import ServicesOverviewSection from "@/components/sections/ServicesOverviewSection";
@@ -8,14 +9,12 @@ import HeroShowcase from "@/components/sections/HeroShowcase";
 import WhyChooseLibra from "@/components/sections/WhyChooseLibra";
 import FaqTeaserAccordion from "@/components/sections/FaqTeaserAccordion";
 
-export const metadata = {
-  title: "Home | Libra Support Services",
+export const metadata = buildPageMetadata({
+  title: 'Home Care in Todmorden, UK',
   description:
-    "Compassionate, professional home care services across West Yorkshire. Contact Libra Support Services for trusted support today.",
-	icons: {
-    icon: "/favicon.ico",
-  },
-};
+    'Compassionate, CQC-regulated home care services across Todmorden, Hebden Bridge, Mytholmroyd and nearby areas.',
+  path: '/',
+});
 
 export default function HomePage() {
   return (

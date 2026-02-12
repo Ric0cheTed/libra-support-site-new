@@ -5,11 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "npm run check:font && next build",
-    "start": "next start",
+    "start": "python3 -m http.server 3000 --directory out",
     "export": "next export",
-    "check:font": "node scripts/check-font.js"
+    "check:font": "node scripts/check-font.js",
+    "lint": "next lint"
   },
   "dependencies": {
+    "@next/third-parties": "file:vendor/next-third-parties",
     "autoprefixer": "^10.4.14",
     "class-variance-authority": "^0.7.0",
     "emailjs-com": "^3.2.0",

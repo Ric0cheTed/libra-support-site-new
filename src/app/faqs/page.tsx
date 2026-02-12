@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "FAQs | Libra Support Services",
-  description:
-    "Frequently asked questions about Libra Support Services, including getting started, pricing, continuity of care, and how quickly care can begin.",
-};
+export const metadata = buildPageMetadata({
+  title: 'Home Care FAQs',
+  description: 'Answers to frequently asked questions about home care, pricing and support from Libra Support Services.',
+  path: '/faqs',
+});
 
 type FaqItem = {
   q: string;
