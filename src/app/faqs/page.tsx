@@ -89,11 +89,13 @@ const FAQ_GROUPS: FaqGroup[] = [
   },
 ];
 
-const faqStructuredData = {
+const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: FAQ_GROUPS.flatMap((group) =>
-    group.items.map((item) => ({
+    group.items
+      .filter((item) => item.q.trim().length > 0 && item.a.trim().length > 0)
+      .map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: {
@@ -109,7 +111,7 @@ export default function FaqsPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd, null, 2) }}
       />
 
       <Breadcrumbs />
