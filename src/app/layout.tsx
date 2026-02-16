@@ -2,12 +2,19 @@ import '@/styles/globals.css';
 
 import type { Metadata } from 'next';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { Lexend } from 'next/font/google';
 
 import SiteHeader from '@/components/layout/SiteHeader';
 import SocialsButton from '@/components/ui/SocialsButton';
 import { Footer } from '@/components/layout/footer';
 import AnalyticsEvents from '@/components/analytics/AnalyticsEvents';
 import { getOrganizationStructuredData, seo } from '@/lib/seo';
+
+const lexend = Lexend({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(seo.siteUrl),
@@ -47,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const structuredData = getOrganizationStructuredData();
 
   return (
-    <html lang="en" className="font-sans">
+    <html lang="en" className={`${lexend.variable} font-sans`}>
       <body className="min-h-screen flex flex-col text-gray-900 bg-gray-50 text-[1.05rem] leading-relaxed">
         <script
           type="application/ld+json"
