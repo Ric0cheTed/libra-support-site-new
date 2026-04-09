@@ -22,6 +22,17 @@ export default function AreasPage() {
           We provide care and support in <strong>Todmorden</strong>, <strong>Hebden Bridge</strong>, and{' '}
           <strong>Mytholmroyd</strong>.
         </p>
+        <p className="text-sm text-gray-600 mb-8">
+          Not sure which support fits?{' '}
+          <Link href="/services" className="underline">
+            Explore our services
+          </Link>{' '}
+          or{' '}
+          <Link href="/faqs" className="underline">
+            read the FAQs
+          </Link>
+          .
+        </p>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <Link
@@ -66,7 +77,7 @@ export default function AreasPage() {
         <div className="mt-10 rounded-xl border border-amber-200 bg-amber-50 p-6">
           <h2 className="text-2xl font-bold">Coming soon</h2>
           <p className="text-gray-800 mt-2">
-            Weâ€™re expanding and will soon offer services in <strong>Cliviger</strong>, <strong>Worsthorne</strong>, and{' '}
+            We're expanding and will soon offer services in <strong>Cliviger</strong>, <strong>Worsthorne</strong>, and{' '}
             <strong>Pike Hill</strong>.
           </p>
           <p className="text-gray-700 mt-2">
@@ -74,7 +85,7 @@ export default function AreasPage() {
             <Link href="/contact" className="underline">
               Send us a message
             </Link>{' '}
-            and weâ€™ll keep you updated.
+            and we'll keep you updated.
           </p>
         </div>
       </div>

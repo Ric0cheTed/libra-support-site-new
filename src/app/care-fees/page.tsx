@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { buildPageMetadata } from '@/lib/seo';
 import { BUSINESS_PROFILE } from '@/lib/business-profile';
@@ -110,6 +112,17 @@ export default function CareFeesPage() {
           <p className="text-gray-700 mb-6">
             If you’d like to discuss your care needs or funding options, we’re happy to help.
           </p>
+          <p className="text-sm text-gray-600 mb-6">
+            Want to explore support options first?{' '}
+            <Link href="/services" className="underline">
+              Explore services
+            </Link>{' '}
+            or{' '}
+            <Link href="/areas" className="underline">
+              see areas we cover
+            </Link>
+            .
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href={phones.primary.href}
@@ -130,3 +143,4 @@ export default function CareFeesPage() {
     </>
   );
 }
+

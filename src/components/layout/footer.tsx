@@ -97,7 +97,8 @@ export function Footer() {
 
       {/* Bottom Line */}
       <div className="text-xs text-center text-neutral-500 py-4 border-t border-gray-100">
-        © {new Date().getFullYear()} Libra Support Services. All rights reserved.
+        <div>© {new Date().getFullYear()} Libra Support Services. All rights reserved.</div>
+        <div className="mt-1 text-[0.7rem] text-neutral-400">Website by Szymik Digital</div>
       </div>
     </footer>
   );

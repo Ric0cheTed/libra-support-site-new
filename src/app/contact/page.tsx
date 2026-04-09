@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { buildPageMetadata } from '@/lib/seo';
 import { BUSINESS_PROFILE } from '@/lib/business-profile';
@@ -75,6 +77,22 @@ export default function ContactPage() {
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
+
+        <p className="text-center text-sm text-gray-600">
+          Prefer to explore first?{' '}
+          <Link href="/services" className="underline">
+            View services
+          </Link>
+          ,{' '}
+          <Link href="/care-fees" className="underline">
+            care fees
+          </Link>
+          , or{' '}
+          <Link href="/faqs" className="underline">
+            FAQs
+          </Link>
+          .
+        </p>
 
         {/* Form */}
         <ContactForm />

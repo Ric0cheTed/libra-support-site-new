@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 import { CallRequestCallbackCta } from '@/components/ui/call-request-callback-cta';
 import { MobileStickyCallBar } from '@/components/ui/mobile-sticky-call-bar';
@@ -22,6 +24,12 @@ export default function HomeCarePage() {
           Practical day-to-day support that helps people stay safe and independent at home across Todmorden,
           Calderdale and nearby West Yorkshire communities.
         </p>
+        <p className="text-sm text-gray-600">
+          Serving <Link href="/areas/todmorden" className="underline">Todmorden</Link>,{' '}
+          <Link href="/areas/hebden-bridge" className="underline">Hebden Bridge</Link>, and{' '}
+          <Link href="/areas/mytholmroyd" className="underline">Mytholmroyd</Link>.{' '}
+          <Link href="/areas" className="underline">See all areas we cover</Link>.
+        </p>
 
         <section className="space-y-4">
           <h2 className="text-2xl font-semibold">What We Offer</h2>
@@ -32,6 +40,10 @@ export default function HomeCarePage() {
             <li>CQC-regulated care from trained, DBS-checked carers</li>
           </ul>
           <CallRequestCallbackCta className="pt-2" />
+          <p className="text-sm text-gray-600">
+            Want to compare options? <Link href="/care-fees" className="underline">View care fees</Link> or{' '}
+            <Link href="/faqs" className="underline">read our FAQs</Link>.
+          </p>
         </section>
 
         <TestimonialsSection />

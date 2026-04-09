@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { CallRequestCallbackCta } from '@/components/ui/call-request-callback-cta';
 
@@ -22,6 +23,18 @@ export default function ServicesPage() {
           <div className="mb-12 flex justify-center">
             <CallRequestCallbackCta />
           </div>
+
+          <p className="text-sm text-gray-600 mb-10">
+            Looking for local availability?{' '}
+            <Link href="/areas" className="underline">
+              See areas we cover
+            </Link>
+            . Want pricing details?{' '}
+            <Link href="/care-fees" className="underline">
+              View care fees
+            </Link>
+            .
+          </p>
 
           <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">

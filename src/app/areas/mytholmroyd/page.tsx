@@ -44,7 +44,11 @@ export default function MytholmroydAreaPage() {
           comfortable and independent at home.
         </p>
 
-        <CallRequestCallbackCta className="mb-10" />
+        <CallRequestCallbackCta className="mb-4" />
+        <p className="text-sm text-gray-600 mb-10">
+          New to care? <Link href="/faqs" className="underline">Read our FAQs</Link> or{' '}
+          <Link href="/services" className="underline">explore services</Link>.
+        </p>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
