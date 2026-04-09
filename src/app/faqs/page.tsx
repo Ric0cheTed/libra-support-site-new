@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { buildPageMetadata } from '@/lib/seo';
+import { BUSINESS_PROFILE } from '@/lib/business-profile';
 
 export const metadata = buildPageMetadata({
   title: 'Home Care FAQs',
@@ -107,6 +108,8 @@ const faqJsonLd = {
 };
 
 export default function FaqsPage() {
+  const { phones, email } = BUSINESS_PROFILE;
+
   return (
     <>
       <script
@@ -124,11 +127,11 @@ export default function FaqsPage() {
           </p>
           <p className="text-sm text-gray-600">
             If you’d like to talk through your needs, call{' '}
-            <a className="underline" href="tel:01706817672">
-              01706 817 672
+            <a className="underline" href={phones.primary.href}>
+              {phones.primary.display}
             </a>{' '}
             or{' '}
-            <a className="underline" href="mailto:nicola@librasupport.co.uk">
+            <a className="underline" href={`mailto:${email}`}>
               email us
             </a>.
           </p>
@@ -141,10 +144,10 @@ export default function FaqsPage() {
               Contact Us
             </Link>
             <a
-              href="tel:01706817672"
+              href={phones.primary.href}
               className="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-black/15 bg-white text-black font-semibold hover:bg-black/5 transition"
             >
-              Call Now: 01706 817 672
+              Call Now: {phones.primary.display}
             </a>
           </div>
         </header>
@@ -183,10 +186,10 @@ export default function FaqsPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:01706817672"
+              href={phones.primary.href}
               className="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded hover:bg-primary-dark"
             >
-              Call: 01706 817 672
+              Call: {phones.primary.display}
             </a>
             <Link
               href="/contact"
@@ -200,3 +203,4 @@ export default function FaqsPage() {
     </>
   );
 }
+

@@ -1,21 +1,21 @@
 import Link from 'next/link';
 
+import { BUSINESS_PROFILE } from '@/lib/business-profile';
+
 type CallRequestCallbackCtaProps = {
   className?: string;
 };
 
-const PHONE_HREF = 'tel:01706817672';
-const PHONE_LABEL = '01706 817 672';
-
 export function CallRequestCallbackCta({ className = '' }: CallRequestCallbackCtaProps) {
+  const phone = BUSINESS_PROFILE.phones.primary;
   return (
     <div className={`flex flex-col sm:flex-row gap-3 ${className}`.trim()}>
       <a
-        href={PHONE_HREF}
+        href={phone.href}
         data-cta="call"
         className="inline-flex items-center justify-center px-5 py-3 bg-primary text-white rounded hover:bg-primary-dark transition"
       >
-        Call now: {PHONE_LABEL}
+        Call now: {phone.display}
       </a>
       <Link
         href="/contact"

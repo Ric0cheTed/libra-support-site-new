@@ -1,5 +1,6 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { buildPageMetadata } from '@/lib/seo';
+import { BUSINESS_PROFILE } from '@/lib/business-profile';
 
 export const metadata = buildPageMetadata({
   title: 'Care Fees',
@@ -27,6 +28,8 @@ function money(value: number) {
 }
 
 export default function CareFeesPage() {
+  const { phones, email } = BUSINESS_PROFILE;
+
   return (
     <>
       <Breadcrumbs />
@@ -109,13 +112,13 @@ export default function CareFeesPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:01706817672"
+              href={phones.primary.href}
               className="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded hover:bg-primary-dark"
             >
-              Call: 01706 817 672
+              Call: {phones.primary.display}
             </a>
             <a
-              href="mailto:nicola@librasupport.co.uk"
+              href={`mailto:${email}`}
               className="inline-flex items-center justify-center px-6 py-3 border border-blue-600 text-primary rounded hover:bg-accent"
             >
               Email Nicola

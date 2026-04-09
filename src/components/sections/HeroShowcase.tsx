@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 
+import { BUSINESS_PROFILE, formatInlineList } from '@/lib/business-profile'
+
 const slides = [
   {
     text: 'CQC Rated Good – Trusted, Accredited Care',
@@ -24,6 +26,8 @@ const slides = [
 export default function HeroShowcase() {
   const [index, setIndex] = useState(0)
   const [fade, setFade] = useState(true)
+  const areaList = formatInlineList(BUSINESS_PROFILE.areas.current)
+  const phone = BUSINESS_PROFILE.phones.primary
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -48,13 +52,13 @@ export default function HeroShowcase() {
       <div className="absolute inset-0 bg-black/40 z-0" />
       <div className="relative z-10 max-w-3xl transition-opacity duration-1000 ease-in-out">
         <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-          Libra Support Services
+          {BUSINESS_PROFILE.name}
         </h1>
         <p className="text-lg sm:text-xl max-w-2xl mx-auto mb-3">
           {slides[index].text}
         </p>
         <p className="text-sm sm:text-base text-white/90 max-w-2xl mx-auto mb-6">
-          Providing CQC-regulated home care in Todmorden, Hebden Bridge, Mytholmroyd and Burnley.
+          Providing CQC-regulated home care in {areaList}.
         </p>
         <div className="flex gap-4 flex-wrap justify-center">
           <a
@@ -65,9 +69,9 @@ export default function HeroShowcase() {
           </a>
           <a
             className="border border-white text-white hover:bg-white hover:text-green-700 font-semibold px-6 py-3 rounded"
-            href="tel:01706817672"
+            href={phone.href}
           >
-            Call 01706 817 672
+            Call {phone.display}
           </a>
         </div>
         <p className="mt-4 text-sm sm:text-base text-white/90">

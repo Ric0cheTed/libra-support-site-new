@@ -16,7 +16,6 @@ export default function AreasPage() {
   return (
     <>
       <Breadcrumbs />
-
       <div className="max-w-4xl mx-auto pb-24 sm:pb-0">
         <h1 className="text-4xl font-extrabold tracking-tight mb-4">Areas we cover</h1>
         <p className="text-lg text-gray-700 mb-8">
@@ -67,7 +66,7 @@ export default function AreasPage() {
         <div className="mt-10 rounded-xl border border-amber-200 bg-amber-50 p-6">
           <h2 className="text-2xl font-bold">Coming soon</h2>
           <p className="text-gray-800 mt-2">
-            We’re expanding and will soon offer services in <strong>Cliviger</strong>, <strong>Worsthorne</strong>, and{' '}
+            Weâ€™re expanding and will soon offer services in <strong>Cliviger</strong>, <strong>Worsthorne</strong>, and{' '}
             <strong>Pike Hill</strong>.
           </p>
           <p className="text-gray-700 mt-2">
@@ -75,7 +74,7 @@ export default function AreasPage() {
             <Link href="/contact" className="underline">
               Send us a message
             </Link>{' '}
-            and we’ll keep you updated.
+            and weâ€™ll keep you updated.
           </p>
         </div>
       </div>

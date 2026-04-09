@@ -1,6 +1,10 @@
 'use client';
 
+import { BUSINESS_PROFILE, formatInlineList } from '@/lib/business-profile';
+
 export function Footer() {
+  const { address, areas, phones, email, links } = BUSINESS_PROFILE;
+
   return (
     <footer className="bg-white mt-8 border-t border-gray-200">
       <div className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-12 text-sm text-neutral-700">
@@ -9,17 +13,22 @@ export function Footer() {
         <div className="text-center space-y-2">
           <h4 className="text-lg font-semibold text-primary-900">How to find us:</h4>
           <address className="not-italic leading-relaxed">
-            Room 102,<br />
-            Todmorden Community College,<br />
-            Todmorden,<br />
-            OL14 7BX
+            {address.lines.map((line, index) => (
+              <span key={`${line}-${index}`}>
+                {line}
+                <br />
+              </span>
+            ))}
           </address>
 
           <div className="pt-3">
             <h5 className="font-semibold text-primary-900">Areas We Cover</h5>
             <p className="text-neutral-700">
-              Todmorden • Hebden Bridge • Mytholmroyd • Burnley • Cliviger • Worsthorne • Pike Hill
+              {formatInlineList(areas.current)}
             </p>
+            {areas.comingSoon.length > 0 ? (
+              <p className="text-neutral-600 mt-2">Coming soon: {formatInlineList(areas.comingSoon)}</p>
+            ) : null}
           </div>
         </div>
 
@@ -27,21 +36,23 @@ export function Footer() {
         <div className="text-center space-y-2">
           <h4 className="text-lg font-semibold text-primary-900">Contact Information</h4>
           <p>
-            <a href="tel:01706817672" className="hover:underline">
-              01706 817 672
+            <a href={phones.primary.href} className="hover:underline">
+              {phones.primary.display}
             </a>
           </p>
-          <p>
-            <a href="tel:07751123507" className="hover:underline">
-              07751 123 507
-            </a>
-          </p>
+          {phones.secondary ? (
+            <p>
+              <a href={phones.secondary.href} className="hover:underline">
+                {phones.secondary.display}
+              </a>
+            </p>
+          ) : null}
           <p>
             <a
-              href="mailto:nicola@librasupport.co.uk"
+              href={`mailto:${email}`}
               className="hover:underline text-primary-700 font-medium"
             >
-              nicola@librasupport.co.uk
+              {email}
             </a>
           </p>
         </div>
@@ -52,7 +63,7 @@ export function Footer() {
           <ul className="space-y-1">
             <li>
               <a
-                href="https://find-and-update.company-information.service.gov.uk/company/13185381"
+                href={links.companiesHouse}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline text-primary-700"
@@ -62,7 +73,7 @@ export function Footer() {
             </li>
             <li>
               <a
-                href="https://www.cqc.org.uk/provider/1-10610346970"
+                href={links.cqcProvider}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline text-primary-700"
@@ -72,7 +83,7 @@ export function Footer() {
             </li>
             <li>
               <a
-                href="https://www.cqc.org.uk/location/1-11688271981"
+                href={links.cqcLocation}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline text-primary-700"

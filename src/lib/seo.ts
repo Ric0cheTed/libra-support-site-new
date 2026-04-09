@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 
+import { BUSINESS_PROFILE } from './business-profile';
+
 const SITE_URL = 'https://libra-support.co.uk';
-const SITE_NAME = 'Libra Support Services';
+const SITE_NAME = BUSINESS_PROFILE.name;
 const DEFAULT_DESCRIPTION =
   'CQC-regulated home care in Todmorden, Hebden Bridge, Mytholmroyd and nearby areas. Compassionate support for home care, live-in care and respite care.';
 
@@ -60,6 +62,13 @@ export function buildPageMetadata({ title, description, path }: BuildPageMetadat
 }
 
 export function getOrganizationStructuredData() {
+  const sameAs = [
+    BUSINESS_PROFILE.links.facebook,
+    BUSINESS_PROFILE.links.companiesHouse,
+    BUSINESS_PROFILE.links.cqcProvider,
+    BUSINESS_PROFILE.links.cqcLocation,
+  ].filter((link): link is string => Boolean(link));
+
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -67,26 +76,30 @@ export function getOrganizationStructuredData() {
         '@type': 'LocalBusiness',
         '@id': `${seo.siteUrl}/#localbusiness`,
         name: seo.siteName,
+        ...(BUSINESS_PROFILE.legalName ? { legalName: BUSINESS_PROFILE.legalName } : {}),
         url: seo.siteUrl,
         image: absoluteUrl(seo.defaultImage),
         description: seo.defaultDescription,
-        telephone: '+44 1706 817672',
-        email: 'nicola@librasupport.co.uk',
-        areaServed: ['Todmorden', 'Hebden Bridge', 'Mytholmroyd', 'Burnley'],
+        telephone: BUSINESS_PROFILE.phones.primary.display,
+        email: BUSINESS_PROFILE.email,
+        areaServed: BUSINESS_PROFILE.areas.current,
         address: {
           '@type': 'PostalAddress',
-          addressLocality: 'Todmorden',
-          addressRegion: 'West Yorkshire',
-          addressCountry: 'GB',
+          streetAddress: BUSINESS_PROFILE.address.line1,
+          addressLocality: BUSINESS_PROFILE.address.city,
+          addressRegion: BUSINESS_PROFILE.address.region,
+          postalCode: BUSINESS_PROFILE.address.postalCode,
+          addressCountry: BUSINESS_PROFILE.address.country,
         },
         openingHoursSpecification: [
           {
             '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            opens: '09:00',
-            closes: '17:00',
+            dayOfWeek: BUSINESS_PROFILE.openingHours.days,
+            opens: BUSINESS_PROFILE.openingHours.opens,
+            closes: BUSINESS_PROFILE.openingHours.closes,
           },
         ],
+        ...(sameAs.length ? { sameAs } : {}),
       },
       {
         '@type': 'Service',
