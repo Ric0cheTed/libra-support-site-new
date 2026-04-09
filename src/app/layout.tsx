@@ -8,7 +8,7 @@ import SiteHeader from '@/components/layout/SiteHeader';
 import SocialsButton from '@/components/ui/SocialsButton';
 import { Footer } from '@/components/layout/footer';
 import AnalyticsEvents from '@/components/analytics/AnalyticsEvents';
-import { getOrganizationStructuredData, seo } from '@/lib/seo';
+import { canonicalUrl, getOrganizationStructuredData, seo } from '@/lib/seo';
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -24,12 +24,12 @@ export const metadata: Metadata = {
   },
   description: seo.defaultDescription,
   alternates: {
-    canonical: seo.siteUrl,
+    canonical: canonicalUrl('/'),
   },
   openGraph: {
     type: 'website',
     locale: seo.locale,
-    url: seo.siteUrl,
+    url: canonicalUrl('/'),
     siteName: seo.siteName,
     title: seo.defaultTitle,
     description: seo.defaultDescription,

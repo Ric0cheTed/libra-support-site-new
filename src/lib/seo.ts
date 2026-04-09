@@ -5,12 +5,12 @@ import { BUSINESS_PROFILE } from './business-profile';
 const SITE_URL = 'https://libra-support.co.uk';
 const SITE_NAME = BUSINESS_PROFILE.name;
 const DEFAULT_DESCRIPTION =
-  'CQC-regulated home care in Todmorden, Hebden Bridge, Mytholmroyd and nearby areas. Compassionate support for home care, live-in care and respite care.';
+  'CQC-regulated home care in Todmorden, Hebden Bridge, and Mytholmroyd, with flexible support for home care, live-in care, and respite care.';
 
 export const seo = {
   siteUrl: SITE_URL,
   siteName: SITE_NAME,
-  defaultTitle: `${SITE_NAME} | Home Care in Todmorden, UK`,
+  defaultTitle: `${SITE_NAME} | Home Care in Todmorden & West Yorkshire`,
   defaultDescription: DEFAULT_DESCRIPTION,
   defaultImage: '/images/default.webp',
   locale: 'en_GB',
@@ -21,6 +21,12 @@ export function absoluteUrl(path = '/') {
   return new URL(normalizedPath, seo.siteUrl).toString();
 }
 
+export function canonicalUrl(path = '/') {
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  const withTrailingSlash = normalizedPath === '/' ? '/' : `${normalizedPath.replace(/\/$/, '')}/`;
+  return new URL(withTrailingSlash, seo.siteUrl).toString();
+}
+
 type BuildPageMetadataInput = {
   title: string;
   description: string;
@@ -28,7 +34,7 @@ type BuildPageMetadataInput = {
 };
 
 export function buildPageMetadata({ title, description, path }: BuildPageMetadataInput): Metadata {
-  const canonical = absoluteUrl(path);
+  const canonical = canonicalUrl(path);
 
   return {
     title,
