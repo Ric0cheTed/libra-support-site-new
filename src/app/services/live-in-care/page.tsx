@@ -1,4 +1,6 @@
-import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { Breadcrumbs } from '@/components/ui/breadcrumbs';
+import { CallRequestCallbackCta } from '@/components/ui/call-request-callback-cta';
+import { MobileStickyCallBar } from '@/components/ui/mobile-sticky-call-bar';
 import { buildPageMetadata } from '@/lib/seo';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 
@@ -13,10 +15,11 @@ export default function LiveInCarePage() {
     <>
       <Breadcrumbs />
 
-      <div className="space-y-10 max-w-4xl mx-auto py-10 px-4">
+      <div className="space-y-10 max-w-4xl mx-auto py-10 px-4 pb-24 sm:pb-10">
         <h1 className="text-4xl font-bold mb-4">Live-in Care Services</h1>
         <p className="text-lg text-gray-600">
-          24/7 one-to-one care at home for families in Todmorden and surrounding areas who need reliable daily and overnight support.
+          24/7 one-to-one care at home for families in Todmorden and surrounding areas who need reliable daily and
+          overnight support.
         </p>
 
         <section className="space-y-4">
@@ -27,18 +30,13 @@ export default function LiveInCarePage() {
             <li>Emotional reassurance and tailored routines</li>
             <li>CQC-regulated care with safeguarding-focused oversight</li>
           </ul>
-          <div className="flex flex-wrap gap-3 pt-2">
-            <a href="tel:01706817672" className="inline-block px-5 py-3 bg-primary text-white rounded hover:bg-primary-dark">
-              Call now: 01706 817 672
-            </a>
-            <a href="/contact" className="inline-block px-5 py-3 border border-blue-600 text-primary rounded hover:bg-accent">
-              Request a call back
-            </a>
-          </div>
+          <CallRequestCallbackCta className="pt-2" />
         </section>
 
         <TestimonialsSection />
       </div>
+
+      <MobileStickyCallBar />
     </>
-  )
+  );
 }
