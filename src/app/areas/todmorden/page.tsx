@@ -1,17 +1,39 @@
 import Link from 'next/link';
 
-export const metadata = {
-  title: 'Home Care in Todmorden',
+import { absoluteUrl, buildPageMetadata, seo } from '@/lib/seo';
+
+export const metadata = buildPageMetadata({
+  title: 'Home care in Todmorden | Libra Support Services',
   description:
-    'Reliable home care and support in Todmorden. Flexible visits, companionship, personal care, and help at home. Call Libra Support Services today.',
+    'Reliable home care in Todmorden. Flexible visits, companionship, personal care, and practical help at home. Call Libra Support Services today.',
+  path: '/areas/todmorden',
+});
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Home care',
+  areaServed: {
+    '@type': 'Place',
+    name: 'Todmorden',
+  },
+  provider: {
+    '@id': `${seo.siteUrl}/#localbusiness`,
+    name: seo.siteName,
+    url: seo.siteUrl,
+  },
+  url: absoluteUrl('/areas/todmorden'),
 };
 
 export default function TodmordenAreaPage() {
   return (
     <div className="max-w-4xl mx-auto">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData, null, 2) }} />
+
       <h1 className="text-4xl font-extrabold tracking-tight mb-4">Home care in Todmorden</h1>
       <p className="text-lg text-gray-700 mb-6">
-        Libra Support Services provides compassionate, practical support in Todmorden, helping people stay safe, comfortable, and independent at home.
+        Libra Support Services provides compassionate, practical support in Todmorden, helping people stay safe,
+        comfortable, and independent at home.
       </p>
 
       <div className="flex flex-col sm:flex-row gap-3 mb-10">
@@ -69,6 +91,12 @@ export default function TodmordenAreaPage() {
             className="inline-flex items-center justify-center px-5 py-3 border border-gray-300 rounded hover:bg-white transition"
           >
             View our services
+          </Link>
+          <Link
+            href="/care-fees"
+            className="inline-flex items-center justify-center px-5 py-3 border border-gray-300 rounded hover:bg-white transition"
+          >
+            Care fees
           </Link>
         </div>
       </div>

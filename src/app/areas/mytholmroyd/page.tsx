@@ -1,17 +1,39 @@
 import Link from 'next/link';
 
-export const metadata = {
-  title: 'Home Care in Mytholmroyd',
+import { absoluteUrl, buildPageMetadata, seo } from '@/lib/seo';
+
+export const metadata = buildPageMetadata({
+  title: 'Home care in Mytholmroyd | Libra Support Services',
   description:
     'Home care and support in Mytholmroyd. Flexible visits, companionship, personal care, and help at home. Contact Libra Support Services today.',
+  path: '/areas/mytholmroyd',
+});
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Home care',
+  areaServed: {
+    '@type': 'Place',
+    name: 'Mytholmroyd',
+  },
+  provider: {
+    '@id': `${seo.siteUrl}/#localbusiness`,
+    name: seo.siteName,
+    url: seo.siteUrl,
+  },
+  url: absoluteUrl('/areas/mytholmroyd'),
 };
 
 export default function MytholmroydAreaPage() {
   return (
     <div className="max-w-4xl mx-auto">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData, null, 2) }} />
+
       <h1 className="text-4xl font-extrabold tracking-tight mb-4">Home care in Mytholmroyd</h1>
       <p className="text-lg text-gray-700 mb-6">
-        Libra Support Services supports families in Mytholmroyd with kind, consistent care that helps people stay comfortable and independent at home.
+        Libra Support Services supports families in Mytholmroyd with kind, consistent care that helps people stay
+        comfortable and independent at home.
       </p>
 
       <div className="flex flex-col sm:flex-row gap-3 mb-10">
@@ -55,9 +77,7 @@ export default function MytholmroydAreaPage() {
 
       <div className="mt-10 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
         <h2 className="text-2xl font-bold">Speak to our team</h2>
-        <p className="text-gray-700 mt-2">
-          If you’re exploring care in Mytholmroyd, we’re happy to chat and help you understand your options.
-        </p>
+        <p className="text-gray-700 mt-2">If you’re exploring care in Mytholmroyd, we’re happy to chat and help you understand your options.</p>
         <div className="mt-4 flex flex-col sm:flex-row gap-3">
           <Link
             href="/contact"
@@ -71,6 +91,18 @@ export default function MytholmroydAreaPage() {
           >
             Call: 01706 817 672
           </a>
+          <Link
+            href="/services"
+            className="inline-flex items-center justify-center px-5 py-3 border border-gray-300 rounded hover:bg-white transition"
+          >
+            View our services
+          </Link>
+          <Link
+            href="/care-fees"
+            className="inline-flex items-center justify-center px-5 py-3 border border-gray-300 rounded hover:bg-white transition"
+          >
+            Care fees
+          </Link>
         </div>
       </div>
 

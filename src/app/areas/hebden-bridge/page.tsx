@@ -1,17 +1,39 @@
 import Link from 'next/link';
 
-export const metadata = {
-  title: 'Home Care in Hebden Bridge',
+import { absoluteUrl, buildPageMetadata, seo } from '@/lib/seo';
+
+export const metadata = buildPageMetadata({
+  title: 'Home care in Hebden Bridge | Libra Support Services',
   description:
     'Home care and support in Hebden Bridge. Flexible visits, companionship, personal care, and help at home. Contact Libra Support Services today.',
+  path: '/areas/hebden-bridge',
+});
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Home care',
+  areaServed: {
+    '@type': 'Place',
+    name: 'Hebden Bridge',
+  },
+  provider: {
+    '@id': `${seo.siteUrl}/#localbusiness`,
+    name: seo.siteName,
+    url: seo.siteUrl,
+  },
+  url: absoluteUrl('/areas/hebden-bridge'),
 };
 
 export default function HebdenBridgeAreaPage() {
   return (
     <div className="max-w-4xl mx-auto">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData, null, 2) }} />
+
       <h1 className="text-4xl font-extrabold tracking-tight mb-4">Home care in Hebden Bridge</h1>
       <p className="text-lg text-gray-700 mb-6">
-        We provide reliable care and support for individuals and families in Hebden Bridge, helping people remain independent at home.
+        We provide reliable care and support for individuals and families in Hebden Bridge, helping people remain
+        independent at home.
       </p>
 
       <div className="flex flex-col sm:flex-row gap-3 mb-10">
@@ -55,9 +77,21 @@ export default function HebdenBridgeAreaPage() {
             Contact us
           </Link>
           <Link
-            href="/areas"
+            href="/services"
             className="inline-flex items-center justify-center px-5 py-3 border border-gray-300 rounded hover:bg-white transition"
           >
+            View our services
+          </Link>
+          <Link
+            href="/care-fees"
+            className="inline-flex items-center justify-center px-5 py-3 border border-gray-300 rounded hover:bg-white transition"
+          >
+            Care fees
+          </Link>
+        </div>
+
+        <div className="mt-4">
+          <Link href="/areas" className="underline">
             View all areas
           </Link>
         </div>
