@@ -6,3 +6,9 @@ dist/
 *.log
 .DS_Store
 .env
+
+# local artifacts
+*.patch
+*.zip
+tsconfig.tsbuildinfo
+New Text Document.txt
