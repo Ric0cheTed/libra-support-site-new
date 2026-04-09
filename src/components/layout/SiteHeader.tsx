@@ -6,10 +6,12 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import { navItems } from '@/lib/nav';
+import { BUSINESS_PROFILE } from '@/lib/business-profile';
 
 export default function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { phones, email } = BUSINESS_PROFILE;
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -44,8 +46,8 @@ export default function SiteHeader() {
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
-          <a href="tel:01706817672" className="text-sm font-semibold text-primary hover:underline">
-            Call: 01706 817 672
+          <a href={phones.primary.href} className="text-sm font-semibold text-primary hover:underline">
+            Call: {phones.primary.display}
           </a>
         </div>
 
@@ -73,18 +75,18 @@ export default function SiteHeader() {
 
           <div className="pt-3 border-t border-gray-100">
             <a
-              href="tel:01706817672"
+              href={phones.primary.href}
               className="block text-base font-semibold text-primary hover:underline"
               onClick={closeMenu}
             >
-              Call: 01706 817 672
+              Call: {phones.primary.display}
             </a>
             <a
-              href="mailto:nicola@librasupport.co.uk"
+              href={`mailto:${email}`}
               className="block text-base text-gray-700 hover:text-primary mt-2"
               onClick={closeMenu}
             >
-              nicola@librasupport.co.uk
+              {email}
             </a>
           </div>
         </div>

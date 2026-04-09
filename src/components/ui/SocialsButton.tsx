@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Twitter, Linkedin, Facebook, Share2 } from 'lucide-react';
+import { Facebook, Share2 } from 'lucide-react';
 
-const socials = [
-  { name: 'Twitter', Icon: Twitter, url: 'https://twitter.com/yourprofile', angle: -175 },
-  { name: 'Facebook', Icon: Facebook, url: 'https://www.facebook.com/LibraSupportCalderdale', angle: -135 },
-  { name: 'LinkedIn', Icon: Linkedin, url: 'https://linkedin.com/in/yourprofile', angle: -90 },
-];
+import { BUSINESS_PROFILE } from '@/lib/business-profile';
+
+const socials = BUSINESS_PROFILE.links.facebook
+  ? [{ name: 'Facebook', Icon: Facebook, url: BUSINESS_PROFILE.links.facebook, angle: -135 }]
+  : [];
 
 const radius = 100;
 
@@ -25,6 +25,8 @@ export default function SocialsButton() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  if (socials.length === 0) return null;
 
   return (
     <div
