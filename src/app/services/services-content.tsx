@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 
+import { CallRequestCallbackCta } from '@/components/ui/call-request-callback-cta';
+
 export default function ServicesPage() {
   return (
     <>
@@ -17,17 +19,11 @@ export default function ServicesPage() {
             <li>• Trained, DBS-checked carers with safeguarding focus</li>
             <li>• Support across Todmorden, Calderdale and nearby West Yorkshire areas</li>
           </ul>
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
-            <a href="tel:01706817672" className="inline-block px-5 py-3 bg-primary text-white rounded hover:bg-primary-dark">
-              Call now: 01706 817 672
-            </a>
-            <a href="/contact" className="inline-block px-5 py-3 border border-blue-600 text-primary rounded hover:bg-accent">
-              Request a call back
-            </a>
+          <div className="mb-12 flex justify-center">
+            <CallRequestCallbackCta />
           </div>
 
           <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-            {/* Service Card 1 */}
             <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
               <Image
                 width={600}
@@ -45,7 +41,6 @@ export default function ServicesPage() {
               </a>
             </div>
 
-            {/* Service Card 2 */}
             <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
               <Image
                 width={600}
@@ -63,7 +58,6 @@ export default function ServicesPage() {
               </a>
             </div>
 
-            {/* Service Card 3 */}
             <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
               <Image
                 width={600}

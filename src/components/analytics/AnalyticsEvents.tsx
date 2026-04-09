@@ -8,6 +8,10 @@ function normalizeHref(href: string) {
   return href.trim();
 }
 
+function isRequestCallbackLink(href: string) {
+  return href === '/contact' || href.startsWith('/contact?') || href.startsWith('/contact#');
+}
+
 export default function AnalyticsEvents() {
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
@@ -21,7 +25,16 @@ export default function AnalyticsEvents() {
       if (!href) return;
 
       if (href.startsWith('tel:')) {
-        trackEvent('click_to_call', {
+        trackEvent('click_call', {
+          link_url: href,
+          link_text: anchor.textContent?.trim() ?? '',
+        });
+        return;
+      }
+
+      const ctaType = anchor.dataset.cta ?? '';
+      if (ctaType === 'request-callback' || isRequestCallbackLink(href)) {
+        trackEvent('click_request_callback', {
           link_url: href,
           link_text: anchor.textContent?.trim() ?? '',
         });
