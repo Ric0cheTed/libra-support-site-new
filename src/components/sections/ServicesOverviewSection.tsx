@@ -55,6 +55,18 @@ export default function ServicesOverviewSection() {
             </motion.div>
           ))}
         </div>
+
+        <p className="mt-10 text-sm text-gray-600">
+          Not sure where to start?{' '}
+          <Link href="/areas" className="underline">
+            See areas we cover
+          </Link>{' '}
+          or{' '}
+          <Link href="/care-fees" className="underline">
+            view care fees
+          </Link>
+          .
+        </p>
       </div>
     </section>
   );

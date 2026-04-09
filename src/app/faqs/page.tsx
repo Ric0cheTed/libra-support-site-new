@@ -135,6 +135,11 @@ export default function FaqsPage() {
               email us
             </a>.
           </p>
+          <p className="text-sm text-gray-600">
+            Looking for next steps? <Link href="/services" className="underline">Explore services</Link>,{' '}
+            <Link href="/areas" className="underline">areas we cover</Link>, or{' '}
+            <Link href="/care-fees" className="underline">care fees</Link>.
+          </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
             <Link
@@ -203,4 +208,5 @@ export default function FaqsPage() {
     </>
   );
 }
+
 

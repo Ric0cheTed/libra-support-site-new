@@ -44,7 +44,11 @@ export default function HebdenBridgeAreaPage() {
           independent at home.
         </p>
 
-        <CallRequestCallbackCta className="mb-10" />
+        <CallRequestCallbackCta className="mb-4" />
+        <p className="text-sm text-gray-600 mb-10">
+          New to care? <Link href="/faqs" className="underline">Read our FAQs</Link> or{' '}
+          <Link href="/services" className="underline">explore services</Link>.
+        </p>
 
         <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
           <h2 className="text-2xl font-bold">How we can help</h2>

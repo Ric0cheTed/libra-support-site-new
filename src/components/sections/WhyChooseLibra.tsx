@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function WhyChooseLibra() {
   const items = [
     {
@@ -26,6 +28,17 @@ export default function WhyChooseLibra() {
           <h2 className="text-3xl sm:text-4xl font-bold text-primary">Why Choose Libra</h2>
           <p className="mt-2 text-gray-700">
             Trusted, relationship-based care designed to keep people safe, independent and supported at home.
+          </p>
+          <p className="mt-3 text-sm text-gray-600">
+            Want the details?{' '}
+            <Link href="/faqs" className="underline">
+              Read our FAQs
+            </Link>{' '}
+            or{' '}
+            <Link href="/care-fees" className="underline">
+              see care fees
+            </Link>
+            .
           </p>
         </div>
 
