@@ -16,28 +16,33 @@ if (!fs.existsSync(globalsPath)) {
 const layoutSrc = fs.readFileSync(layoutPath, 'utf8');
 const globalsSrc = fs.readFileSync(globalsPath, 'utf8');
 
-const hasLexendVariable =
-  globalsSrc.includes('--font-sans: "Lexend"') ||
-  globalsSrc.includes("--font-sans: 'Lexend'") ||
-  globalsSrc.includes('--font-sans:"Lexend"') ||
-  globalsSrc.includes("--font-sans:'Lexend'");
+const hasNextFontLexendImport =
+  layoutSrc.includes("import { Lexend } from 'next/font/google';") ||
+  layoutSrc.includes('import { Lexend } from "next/font/google";');
+
+const hasLexendVariableBinding =
+  /Lexend\(\{[\s\S]*variable\s*:\s*['"]--font-sans['"]/m.test(layoutSrc);
+
+const hasRootFontSansClass = /<html\s+lang=["']en["']\s+className=\{?`?\$\{lexend\.variable\}\s+font-sans`?\}?/m.test(layoutSrc);
 
 const appliesFontFamilyGlobally =
   /html\s*,\s*\n\s*body\s*\{[\s\S]*font-family\s*:\s*var\(--font-sans\)/m.test(globalsSrc) ||
   /body\s*\{[\s\S]*font-family\s*:\s*var\(--font-sans\)/m.test(globalsSrc);
 
-const hasRootFontSansClass =
-  layoutSrc.includes('<html lang="en" className="font-sans">') ||
-  layoutSrc.includes("<html lang='en' className='font-sans'>");
-
 const hasConflictingRootFontClass =
   layoutSrc.includes('className="font-serif"') ||
   layoutSrc.includes('className="font-mono"');
 
-if (!hasLexendVariable || !appliesFontFamilyGlobally || !hasRootFontSansClass || hasConflictingRootFontClass) {
-  console.error('❌ Font check failed: Lexend must remain the global font source and root class must be font-sans.');
+if (
+  !hasNextFontLexendImport ||
+  !hasLexendVariableBinding ||
+  !hasRootFontSansClass ||
+  !appliesFontFamilyGlobally ||
+  hasConflictingRootFontClass
+) {
+  console.error('❌ Font check failed: Lexend must be loaded via next/font/google and applied globally through --font-sans + font-sans.');
   console.error(
-    `   hasLexendVariable=${hasLexendVariable} appliesFontFamilyGlobally=${appliesFontFamilyGlobally} hasRootFontSansClass=${hasRootFontSansClass} hasConflictingRootFontClass=${hasConflictingRootFontClass}`,
+    `   hasNextFontLexendImport=${hasNextFontLexendImport} hasLexendVariableBinding=${hasLexendVariableBinding} hasRootFontSansClass=${hasRootFontSansClass} appliesFontFamilyGlobally=${appliesFontFamilyGlobally} hasConflictingRootFontClass=${hasConflictingRootFontClass}`,
   );
   process.exit(1);
 }
