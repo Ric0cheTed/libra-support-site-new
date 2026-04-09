@@ -6,8 +6,9 @@ import { BUSINESS_PROFILE } from '@/lib/business-profile';
 import { ContactForm } from "./contact-form";
 
 export const metadata = buildPageMetadata({
-  title: 'Contact Libra Support Services',
-  description: 'Speak with Libra Support Services about home care in Todmorden, Hebden Bridge and nearby areas. Book a free needs assessment.',
+  title: 'Contact Our Care Team',
+  description:
+    'Call or message Libra Support Services about home care in Todmorden, Hebden Bridge, and Mytholmroyd, and book a free needs assessment.',
   path: '/contact',
 });
 

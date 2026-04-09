@@ -7,8 +7,9 @@ import { buildPageMetadata } from '@/lib/seo';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 
 export const metadata = buildPageMetadata({
-  title: 'Live-in Care Services in Todmorden',
-  description: '24-hour live-in care providing professional and compassionate support in the comfort of your home.',
+  title: 'Live-in Care in Todmorden & West Yorkshire',
+  description:
+    '24-hour live-in care and companionship in Todmorden, Hebden Bridge, and Mytholmroyd, with consistent, one-to-one support at home.',
   path: '/services/live-in-care',
 });
 

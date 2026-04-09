@@ -6,9 +6,9 @@ import { MobileStickyCallBar } from '@/components/ui/mobile-sticky-call-bar';
 import { absoluteUrl, buildPageMetadata, seo } from '@/lib/seo';
 
 export const metadata = buildPageMetadata({
-  title: 'Home Care in Hebden Bridge | Libra Support Services',
+  title: 'Home Care in Hebden Bridge',
   description:
-    'Home care in Hebden Bridge from Libra Support Services, with flexible visits, companionship, and practical support for daily life.',
+    'Home care in Hebden Bridge with flexible visits, companionship, and practical support for daily life.',
   path: '/areas/hebden-bridge',
 });
 

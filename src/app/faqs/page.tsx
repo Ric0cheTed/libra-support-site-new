@@ -5,7 +5,8 @@ import { BUSINESS_PROFILE } from '@/lib/business-profile';
 
 export const metadata = buildPageMetadata({
   title: 'Home Care FAQs',
-  description: 'Answers to frequently asked questions about home care, pricing and support from Libra Support Services.',
+  description:
+    'Answers to common questions about starting care, pricing, and support for families in Todmorden, Hebden Bridge, and Mytholmroyd.',
   path: '/faqs',
 });
 

@@ -6,9 +6,9 @@ import { MobileStickyCallBar } from '@/components/ui/mobile-sticky-call-bar';
 import { absoluteUrl, buildPageMetadata, seo } from '@/lib/seo';
 
 export const metadata = buildPageMetadata({
-  title: 'Home Care in Todmorden | Libra Support Services',
+  title: 'Home Care in Todmorden',
   description:
-    'Reliable home care in Todmorden from Libra Support Services, including personal care, companionship, and flexible support at home.',
+    'Reliable home care in Todmorden with personal care, companionship, and flexible day-to-day support at home.',
   path: '/areas/todmorden',
 });
 

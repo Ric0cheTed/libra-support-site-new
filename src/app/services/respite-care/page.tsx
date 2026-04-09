@@ -7,8 +7,9 @@ import { buildPageMetadata } from '@/lib/seo';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 
 export const metadata = buildPageMetadata({
-  title: 'Respite Care Services in Todmorden',
-  description: 'Short-term and emergency respite care support for families needing reliable temporary assistance.',
+  title: 'Respite Care in Todmorden & West Yorkshire',
+  description:
+    'Short-term respite care in Todmorden, Hebden Bridge, and Mytholmroyd for family breaks, recovery periods, or emergency cover.',
   path: '/services/respite-care',
 });
 

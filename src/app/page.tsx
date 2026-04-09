@@ -10,9 +10,9 @@ import WhyChooseLibra from "@/components/sections/WhyChooseLibra";
 import FaqTeaserAccordion from "@/components/sections/FaqTeaserAccordion";
 
 export const metadata = buildPageMetadata({
-  title: 'Home Care in Todmorden, UK',
+  title: 'Home Care in Todmorden & West Yorkshire',
   description:
-    'Compassionate, CQC-regulated home care services across Todmorden, Hebden Bridge, Mytholmroyd and nearby areas.',
+    'Local, CQC-regulated home care in Todmorden, Hebden Bridge, and Mytholmroyd, with flexible home care, live-in care, and respite support.',
   path: '/',
 });
 

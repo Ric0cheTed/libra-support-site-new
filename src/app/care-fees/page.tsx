@@ -5,8 +5,8 @@ import { buildPageMetadata } from '@/lib/seo';
 import { BUSINESS_PROFILE } from '@/lib/business-profile';
 
 export const metadata = buildPageMetadata({
-  title: 'Care Fees',
-  description: 'Transparent home care pricing from Libra Support Services, including urban and rural hourly rates.',
+  title: 'Care Fees for Home Care',
+  description: 'Transparent home care pricing in Todmorden and Calderdale, including urban and rural hourly rates.',
   path: '/care-fees',
 });
 

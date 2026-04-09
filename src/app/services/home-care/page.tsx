@@ -7,9 +7,9 @@ import { buildPageMetadata } from '@/lib/seo';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 
 export const metadata = buildPageMetadata({
-  title: 'Home Care Services in Todmorden',
+  title: 'Home Care in Todmorden & West Yorkshire',
   description:
-    'Flexible and compassionate in-home care tailored to daily living needs in Todmorden and surrounding communities.',
+    'Daily home care and companionship in Todmorden, Hebden Bridge, and Mytholmroyd, tailored to routines and personal support needs.',
   path: '/services/home-care',
 });
 
