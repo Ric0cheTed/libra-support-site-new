@@ -14,6 +14,7 @@ export const metadata = buildPageMetadata({
 
 export default function ContactPage() {
   const { phones, whatsapp, address, openingHours, map } = BUSINESS_PROFILE;
+  const contactEmail = 'kelly@librasupport.co.uk';
 
   return (
     <>
@@ -37,11 +38,20 @@ export default function ContactPage() {
             <li>• Flexible care plans tailored to your routine</li>
           </ul>
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 font-medium">
-            <a href={phones.primary.href} className="text-blue-600 underline">Call now: {phones.primary.display}</a>
+            <a href={phones.primary.href} className="text-blue-600 underline">
+              Call now: {phones.primary.display}
+            </a>
             {phones.secondary ? (
-              <a href={phones.secondary.href} className="text-blue-600 underline">Call now: {phones.secondary.display}</a>
+              <a href={phones.secondary.href} className="text-blue-600 underline">
+                Out of hours: {phones.secondary.display}
+              </a>
             ) : null}
-            <a href={whatsapp.href} className="text-green-600 underline">{whatsapp.display}</a>
+            <a href={`mailto:${contactEmail}`} className="text-blue-600 underline">
+              Email: {contactEmail}
+            </a>
+            <a href={whatsapp.href} className="text-green-600 underline">
+              {whatsapp.display}
+            </a>
           </div>
 
           <div className="text-sm sm:text-base text-gray-700">

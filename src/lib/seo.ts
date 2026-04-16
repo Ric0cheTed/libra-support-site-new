@@ -6,6 +6,7 @@ const SITE_URL = 'https://libra-support.co.uk';
 const SITE_NAME = BUSINESS_PROFILE.name;
 const DEFAULT_DESCRIPTION =
   'CQC-regulated home care in Todmorden, Hebden Bridge, and Mytholmroyd, with flexible support for home care, live-in care, and respite care.';
+const CONTACT_EMAIL = 'kelly@librasupport.co.uk';
 
 export const seo = {
   siteUrl: SITE_URL,
@@ -75,6 +76,11 @@ export function getOrganizationStructuredData() {
     BUSINESS_PROFILE.links.cqcLocation,
   ].filter((link): link is string => Boolean(link));
 
+  const streetAddress =
+    Array.isArray(BUSINESS_PROFILE.address.lines) && BUSINESS_PROFILE.address.lines.length > 0
+      ? BUSINESS_PROFILE.address.lines.slice(0, 2).join(', ')
+      : BUSINESS_PROFILE.address.line1;
+
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -87,11 +93,11 @@ export function getOrganizationStructuredData() {
         image: absoluteUrl(seo.defaultImage),
         description: seo.defaultDescription,
         telephone: BUSINESS_PROFILE.phones.primary.display,
-        email: BUSINESS_PROFILE.email,
+        email: CONTACT_EMAIL,
         areaServed: BUSINESS_PROFILE.areas.current,
         address: {
           '@type': 'PostalAddress',
-          streetAddress: BUSINESS_PROFILE.address.line1,
+          streetAddress,
           addressLocality: BUSINESS_PROFILE.address.city,
           addressRegion: BUSINESS_PROFILE.address.region,
           postalCode: BUSINESS_PROFILE.address.postalCode,

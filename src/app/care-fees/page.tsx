@@ -10,8 +10,8 @@ export const metadata = buildPageMetadata({
   path: '/care-fees',
 });
 
-const URBAN_RATE = 24.28;
-const RURAL_RATE = 25.46;
+const URBAN_RATE = 25.14;
+const RURAL_RATE = 26.35;
 
 type ExampleRow = {
   label: string;
@@ -30,7 +30,8 @@ function money(value: number) {
 }
 
 export default function CareFeesPage() {
-  const { phones, email } = BUSINESS_PROFILE;
+  const { phones } = BUSINESS_PROFILE;
+  const contactEmail = 'kelly@librasupport.co.uk';
 
   return (
     <>
@@ -131,10 +132,10 @@ export default function CareFeesPage() {
               Call: {phones.primary.display}
             </a>
             <a
-              href={`mailto:${email}`}
+              href={`mailto:${contactEmail}`}
               className="inline-flex items-center justify-center px-6 py-3 border border-blue-600 text-primary rounded hover:bg-accent"
             >
-              Email Nicola
+              Email Kelly
             </a>
           </div>
         </section>
@@ -143,4 +144,3 @@ export default function CareFeesPage() {
     </>
   );
 }
-

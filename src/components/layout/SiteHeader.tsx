@@ -11,9 +11,16 @@ import { BUSINESS_PROFILE } from '@/lib/business-profile';
 export default function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const { phones, email } = BUSINESS_PROFILE;
+  const { phones } = BUSINESS_PROFILE;
 
   const closeMenu = () => setMenuOpen(false);
+
+  const outOfHoursPhone = {
+    href: 'tel:07777157530',
+    display: '07777 157 530',
+  };
+
+  const contactEmail = 'kelly@librasupport.co.uk';
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
@@ -49,6 +56,12 @@ export default function SiteHeader() {
           <a href={phones.primary.href} className="text-sm font-semibold text-primary hover:underline">
             Call: {phones.primary.display}
           </a>
+          <a
+            href={outOfHoursPhone.href}
+            className="text-sm font-semibold text-primary hover:underline"
+          >
+            Out of hours: {outOfHoursPhone.display}
+          </a>
         </div>
 
         <button
@@ -82,11 +95,18 @@ export default function SiteHeader() {
               Call: {phones.primary.display}
             </a>
             <a
-              href={`mailto:${email}`}
+              href={outOfHoursPhone.href}
+              className="block text-base font-semibold text-primary hover:underline mt-2"
+              onClick={closeMenu}
+            >
+              Out of hours: {outOfHoursPhone.display}
+            </a>
+            <a
+              href={`mailto:${contactEmail}`}
               className="block text-base text-gray-700 hover:text-primary mt-2"
               onClick={closeMenu}
             >
-              {email}
+              {contactEmail}
             </a>
           </div>
         </div>

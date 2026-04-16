@@ -51,7 +51,7 @@ export type BusinessProfile = {
 };
 
 const directionsQuery =
-  'Room 102, Todmorden Community College, Todmorden, West Yorkshire OL14 7BX, United Kingdom';
+  '44 Burnley Road, Room 102, Todmorden Community College, Todmorden, West Yorkshire OL14 7BX, United Kingdom';
 
 export const BUSINESS_PROFILE: BusinessProfile = {
   name: 'Libra Support Services',
@@ -61,22 +61,24 @@ export const BUSINESS_PROFILE: BusinessProfile = {
       href: 'tel:01706817672',
     },
     secondary: {
-      display: '07751 123 507',
-      href: 'tel:07751123507',
+      display: '07777 157 530',
+      href: 'tel:07777157530',
     },
   },
-  email: 'nicola@librasupport.co.uk',
+  email: 'kelly@librasupport.co.uk',
   whatsapp: {
     display: 'Request a call back (WhatsApp)',
     href: 'https://wa.me/447943157855',
   },
   address: {
-    line1: 'Room 102, Todmorden Community College',
+    line1: '44 Burnley Road',
+    line2: 'Room 102, Todmorden Community College',
     city: 'Todmorden',
     region: 'West Yorkshire',
     postalCode: 'OL14 7BX',
     country: 'United Kingdom',
     lines: [
+      '44 Burnley Road',
       'Room 102, Todmorden Community College',
       'Todmorden',
       'West Yorkshire',

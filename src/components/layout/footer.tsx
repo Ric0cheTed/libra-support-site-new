@@ -3,12 +3,16 @@
 import { BUSINESS_PROFILE, formatInlineList } from '@/lib/business-profile';
 
 export function Footer() {
-  const { address, areas, phones, email, links } = BUSINESS_PROFILE;
+  const { address, areas, phones, links } = BUSINESS_PROFILE;
+  const contactEmail = 'kelly@librasupport.co.uk';
+  const outOfHoursPhone = {
+    href: 'tel:07777157530',
+    display: '07777 157 530',
+  };
 
   return (
     <footer className="bg-white mt-8 border-t border-gray-200">
       <div className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-12 text-sm text-neutral-700">
-
         {/* How to Find Us */}
         <div className="text-center space-y-2">
           <h4 className="text-lg font-semibold text-primary-900">How to find us:</h4>
@@ -23,11 +27,11 @@ export function Footer() {
 
           <div className="pt-3">
             <h5 className="font-semibold text-primary-900">Areas We Cover</h5>
-            <p className="text-neutral-700">
-              {formatInlineList(areas.current)}
-            </p>
+            <p className="text-neutral-700">{formatInlineList(areas.current)}</p>
             {areas.comingSoon.length > 0 ? (
-              <p className="text-neutral-600 mt-2">Coming soon: {formatInlineList(areas.comingSoon)}</p>
+              <p className="text-neutral-600 mt-2">
+                Coming soon: {formatInlineList(areas.comingSoon)}
+              </p>
             ) : null}
           </div>
         </div>
@@ -40,19 +44,17 @@ export function Footer() {
               {phones.primary.display}
             </a>
           </p>
-          {phones.secondary ? (
-            <p>
-              <a href={phones.secondary.href} className="hover:underline">
-                {phones.secondary.display}
-              </a>
-            </p>
-          ) : null}
+          <p>
+            <a href={outOfHoursPhone.href} className="hover:underline">
+              {outOfHoursPhone.display}
+            </a>
+          </p>
           <p>
             <a
-              href={`mailto:${email}`}
+              href={`mailto:${contactEmail}`}
               className="hover:underline text-primary-700 font-medium"
             >
-              {email}
+              {contactEmail}
             </a>
           </p>
         </div>

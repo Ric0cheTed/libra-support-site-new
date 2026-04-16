@@ -30,16 +30,16 @@ export default function HomePage() {
           <div className="overflow-x-auto">
             <div className="flex gap-6 px-4 min-w-[640px] sm:min-w-full whitespace-nowrap text-sm sm:text-base text-gray-700 justify-start sm:justify-center">
               <div>
-			    ★ CQC Rated <strong>Good</strong> —{" "}
-			    <a
-				  href="https://www.cqc.org.uk/location/1-11688271981"
-				  className="text-green-700 underline"
-				  target="_blank"
-				  rel="noopener noreferrer"
-			    >
-				  See Report
-			    </a>
-			  </div>
+                ★ CQC Rated <strong>Good</strong> —{" "}
+                <a
+                  href="https://www.cqc.org.uk/location/1-11688271981"
+                  className="text-green-700 underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  See Report
+                </a>
+              </div>
               <div>Local, DBS-checked carers</div>
               <div>Managed rotas & continuity</div>
               <div>On-call support</div>
@@ -50,7 +50,7 @@ export default function HomePage() {
 
         <WhyChooseLibra />
 
-		<TestimonialsCarousel />
+        <TestimonialsCarousel />
 
         <CareFeaturesSection />
         <LazyClientCareFeatures />
@@ -68,11 +68,29 @@ export default function HomePage() {
             </p>
 
             <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+              {/* Team Member 2 */}
+              <div className="bg-gray-50 rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
+                <Image
+                  src="/images/staff-2.webp"
+                  alt="Kelly Carpenter"
+                  width={128}
+                  height={128}
+                  placeholder="blur"
+                  blurDataURL="/images/staff-2.webp"
+                  className="rounded-full h-32 w-32 object-cover mb-4"
+                />
+                <h3 className="text-xl font-semibold text-primary mb-2">Kelly Carpenter</h3>
+                <p className="text-gray-600 mb-4">Registered Manager</p>
+                <p className="text-sm text-gray-500">
+                  Kelly is an experienced care leader who supports the team in delivering safe, person-centred care across our local community. She is passionate about maintaining high standards, supporting staff development, and helping families feel confident in the care their loved ones receive.
+                </p>
+              </div>
+			  
               {/* Team Member 1 */}
               <div className="bg-gray-50 rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
                 <Image
                   src="/images/staff-1.webp"
-                  alt="Emma Smith"
+                  alt="Nicola Szymik-Walters"
                   width={128}
                   height={128}
                   placeholder="blur"
@@ -82,25 +100,7 @@ export default function HomePage() {
                 <h3 className="text-xl font-semibold text-primary mb-2">Nicola Szymik-Walters</h3>
                 <p className="text-gray-600 mb-4">Registered Manager/Director</p>
                 <p className="text-sm text-gray-500">
-                  I am dedicated to making Calderdale a better place for everyone, and spend my spare time engaging in community projects. When I'm not at work I like to spend time with my family, and go to local gigs - mainly at the Golden Lion in Todmorden and the Hebden Bridge Trades Club.
-                </p>
-              </div>
-
-              {/* Team Member 2 */}
-              <div className="bg-gray-50 rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
-                <Image
-                  src="/images/staff-2.webp"
-                  alt="David Johnson"
-                  width={128}
-                  height={128}
-                  placeholder="blur"
-                  blurDataURL="/images/staff-2.webp"
-                  className="rounded-full h-32 w-32 object-cover mb-4"
-                />
-                <h3 className="text-xl font-semibold text-primary mb-2">Kelly Carpenter</h3>
-                <p className="text-gray-600 mb-4">Deputy Manager</p>
-                <p className="text-sm text-gray-500">
-                  I am a mum to 4 beautiful and cheeky boys. We live at home with my partner Allen and out dog Bella. I live a busy life but wouldn't have it any other way!
+                  Nicola is dedicated to making Calderdale a better place for everyone and spends much of her spare time supporting community projects. Outside of work, she enjoys spending time with her family and visiting local music venues in Todmorden and Hebden Bridge.
                 </p>
               </div>
 
@@ -108,7 +108,7 @@ export default function HomePage() {
               <div className="bg-gray-50 rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
                 <Image
                   src="/images/staff-3.webp"
-                  alt="Olivia Davis"
+                  alt="Jason Walters"
                   width={128}
                   height={128}
                   placeholder="blur"
@@ -118,7 +118,7 @@ export default function HomePage() {
                 <h3 className="text-xl font-semibold text-primary mb-2">Jason Walters</h3>
                 <p className="text-gray-600 mb-4">Director</p>
                 <p className="text-sm text-gray-500">
-                  I am one of the directors at Libra support Services. In my free time I enjoy playing music, going to gigs, and socialising with friends by playing videos games and poker. I spend time at home cooking and walking in the countryside.
+                  Jason is one of the directors at Libra Support Services. He is committed to supporting the organisation’s growth and helping the team provide dependable, high-quality care. Outside of work, he enjoys music, cooking, spending time with friends and family, and walking in the countryside.
                 </p>
               </div>
             </div>
