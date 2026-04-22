@@ -1,14 +1,20 @@
 'use client';
 
+import Link from 'next/link';
+
 import { BUSINESS_PROFILE, formatInlineList } from '@/lib/business-profile';
 
 export function Footer() {
-  const { address, areas, phones, email, links } = BUSINESS_PROFILE;
+  const { address, areas, phones, links } = BUSINESS_PROFILE;
+  const contactEmail = 'kelly@librasupport.co.uk';
+  const mobilePhone = {
+    href: 'tel:07777157530',
+    display: '07777 157 530',
+  };
 
   return (
     <footer className="bg-white mt-8 border-t border-gray-200">
       <div className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-12 text-sm text-neutral-700">
-
         {/* How to Find Us */}
         <div className="text-center space-y-2">
           <h4 className="text-lg font-semibold text-primary-900">How to find us:</h4>
@@ -23,11 +29,11 @@ export function Footer() {
 
           <div className="pt-3">
             <h5 className="font-semibold text-primary-900">Areas We Cover</h5>
-            <p className="text-neutral-700">
-              {formatInlineList(areas.current)}
-            </p>
+            <p className="text-neutral-700">{formatInlineList(areas.current)}</p>
             {areas.comingSoon.length > 0 ? (
-              <p className="text-neutral-600 mt-2">Coming soon: {formatInlineList(areas.comingSoon)}</p>
+              <p className="text-neutral-600 mt-2">
+                Coming soon: {formatInlineList(areas.comingSoon)}
+              </p>
             ) : null}
           </div>
         </div>
@@ -40,19 +46,17 @@ export function Footer() {
               {phones.primary.display}
             </a>
           </p>
-          {phones.secondary ? (
-            <p>
-              <a href={phones.secondary.href} className="hover:underline">
-                {phones.secondary.display}
-              </a>
-            </p>
-          ) : null}
+          <p>
+            <a href={mobilePhone.href} className="hover:underline">
+              {mobilePhone.display}
+            </a>
+          </p>
           <p>
             <a
-              href={`mailto:${email}`}
+              href={`mailto:${contactEmail}`}
               className="hover:underline text-primary-700 font-medium"
             >
-              {email}
+              {contactEmail}
             </a>
           </p>
         </div>
@@ -97,6 +101,17 @@ export function Footer() {
 
       {/* Bottom Line */}
       <div className="text-xs text-center text-neutral-500 py-4 border-t border-gray-100">
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-2">
+          <Link href="/privacy" className="hover:underline">
+            Privacy Policy
+          </Link>
+          <Link href="/cookies" className="hover:underline">
+            Cookie Policy
+          </Link>
+          <Link href="/terms" className="hover:underline">
+            Terms of Use
+          </Link>
+        </div>
         <div>© {new Date().getFullYear()} Libra Support Services. All rights reserved.</div>
         <div className="mt-1 text-[0.7rem] text-neutral-400">Website by Szymik Digital</div>
       </div>

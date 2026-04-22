@@ -98,18 +98,19 @@ const faqJsonLd = {
     group.items
       .filter((item) => item.q.trim().length > 0 && item.a.trim().length > 0)
       .map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.a,
-      },
-    })),
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.a,
+        },
+      })),
   ),
 };
 
 export default function FaqsPage() {
-  const { phones, email } = BUSINESS_PROFILE;
+  const { phones } = BUSINESS_PROFILE;
+  const contactEmail = 'kelly@librasupport.co.uk';
 
   return (
     <>
@@ -132,7 +133,7 @@ export default function FaqsPage() {
               {phones.primary.display}
             </a>{' '}
             or{' '}
-            <a className="underline" href={`mailto:${email}`}>
+            <a className="underline" href={`mailto:${contactEmail}`}>
               email us
             </a>.
           </p>
@@ -209,5 +210,3 @@ export default function FaqsPage() {
     </>
   );
 }
-
-
