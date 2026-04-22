@@ -1,11 +1,13 @@
 'use client';
 
+import Link from 'next/link';
+
 import { BUSINESS_PROFILE, formatInlineList } from '@/lib/business-profile';
 
 export function Footer() {
   const { address, areas, phones, links } = BUSINESS_PROFILE;
   const contactEmail = 'kelly@librasupport.co.uk';
-  const outOfHoursPhone = {
+  const mobilePhone = {
     href: 'tel:07777157530',
     display: '07777 157 530',
   };
@@ -45,8 +47,8 @@ export function Footer() {
             </a>
           </p>
           <p>
-            <a href={outOfHoursPhone.href} className="hover:underline">
-              {outOfHoursPhone.display}
+            <a href={mobilePhone.href} className="hover:underline">
+              {mobilePhone.display}
             </a>
           </p>
           <p>
@@ -99,6 +101,17 @@ export function Footer() {
 
       {/* Bottom Line */}
       <div className="text-xs text-center text-neutral-500 py-4 border-t border-gray-100">
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-2">
+          <Link href="/privacy" className="hover:underline">
+            Privacy Policy
+          </Link>
+          <Link href="/cookies" className="hover:underline">
+            Cookie Policy
+          </Link>
+          <Link href="/terms" className="hover:underline">
+            Terms of Use
+          </Link>
+        </div>
         <div>© {new Date().getFullYear()} Libra Support Services. All rights reserved.</div>
         <div className="mt-1 text-[0.7rem] text-neutral-400">Website by Szymik Digital</div>
       </div>

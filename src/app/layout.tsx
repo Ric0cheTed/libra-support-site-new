@@ -5,8 +5,9 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { Lexend } from 'next/font/google';
 
 import SiteHeader from '@/components/layout/SiteHeader';
+import SiteFooter from '@/components/layout/SiteFooter';
+import { UtilityTrustStrip } from '@/components/layout/UtilityTrustStrip';
 import SocialsButton from '@/components/ui/SocialsButton';
-import { Footer } from '@/components/layout/footer';
 import AnalyticsEvents from '@/components/analytics/AnalyticsEvents';
 import { canonicalUrl, getOrganizationStructuredData, seo } from '@/lib/seo';
 
@@ -61,13 +62,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
 
+        <UtilityTrustStrip />
         <SiteHeader />
         <AnalyticsEvents />
 
         <main className="flex-1 px-4 sm:px-6 lg:px-8 py-8">{children}</main>
 
         <SocialsButton />
-        <Footer />
+        <SiteFooter />
         <GoogleAnalytics gaId="G-2VETK5Z1DT" />
       </body>
     </html>

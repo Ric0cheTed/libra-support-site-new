@@ -143,6 +143,36 @@ export function getOrganizationStructuredData() {
         areaServed: 'Todmorden, West Yorkshire, UK',
         url: absoluteUrl('/services/respite-care'),
       },
+      {
+        '@type': 'Service',
+        name: 'Dementia Support',
+        serviceType: 'Dementia support at home',
+        provider: {
+          '@id': `${seo.siteUrl}/#localbusiness`,
+        },
+        areaServed: 'Todmorden, West Yorkshire, UK',
+        url: absoluteUrl('/services/dementia-support'),
+      },
+      {
+        '@type': 'Service',
+        name: 'Companionship',
+        serviceType: 'Companionship at home',
+        provider: {
+          '@id': `${seo.siteUrl}/#localbusiness`,
+        },
+        areaServed: 'Todmorden, West Yorkshire, UK',
+        url: absoluteUrl('/services/companionship'),
+      },
+      {
+        '@type': 'Service',
+        name: 'Personal Care',
+        serviceType: 'Personal care at home',
+        provider: {
+          '@id': `${seo.siteUrl}/#localbusiness`,
+        },
+        areaServed: 'Todmorden, West Yorkshire, UK',
+        url: absoluteUrl('/services/personal-care'),
+      },
     ],
   };
 }
