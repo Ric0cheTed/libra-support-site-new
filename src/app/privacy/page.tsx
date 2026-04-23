@@ -9,7 +9,7 @@ export const metadata = buildPageMetadata({
   path: "/privacy",
 });
 
-const { email, phones, address } = BUSINESS_PROFILE;
+const { emails, phones, address } = BUSINESS_PROFILE;
 
 export default function PrivacyPage() {
   return (
@@ -38,10 +38,10 @@ export default function PrivacyPage() {
             {address.lines.map((line, index) => (
               <p key={`${line}-${index}`}>{line}</p>
             ))}
-            <p className="pt-2">
+              <p className="pt-2">
               Email:{" "}
-              <a href={`mailto:${email}`} className="text-primary underline">
-                {email}
+              <a href={`mailto:${emails.admin}`} className="text-primary underline">
+                {emails.admin}
               </a>
             </p>
             <p>

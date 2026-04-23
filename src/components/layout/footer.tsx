@@ -5,12 +5,7 @@ import Link from 'next/link';
 import { BUSINESS_PROFILE, formatInlineList } from '@/lib/business-profile';
 
 export function Footer() {
-  const { address, areas, phones, links } = BUSINESS_PROFILE;
-  const contactEmail = 'kelly@librasupport.co.uk';
-  const mobilePhone = {
-    href: 'tel:07777157530',
-    display: '07777 157 530',
-  };
+  const { address, areas, phones, links, emails, branches } = BUSINESS_PROFILE;
 
   return (
     <footer className="bg-white mt-8 border-t border-gray-200">
@@ -35,6 +30,14 @@ export function Footer() {
                 Coming soon: {formatInlineList(areas.comingSoon)}
               </p>
             ) : null}
+            <div className="mt-3">
+              <h5 className="font-semibold text-primary-900">Active Branches</h5>
+              <ul className="mt-1 space-y-1 text-neutral-700">
+                {branches.map((branch) => (
+                  <li key={branch.name}>Our {branch.name} branch</li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -47,16 +50,24 @@ export function Footer() {
             </a>
           </p>
           <p>
-            <a href={mobilePhone.href} className="hover:underline">
-              {mobilePhone.display}
+            <a href={phones.mobile.href} className="hover:underline">
+              {phones.mobile.display}
             </a>
           </p>
           <p>
             <a
-              href={`mailto:${contactEmail}`}
+              href={`mailto:${emails.careEnquiries}`}
               className="hover:underline text-primary-700 font-medium"
             >
-              {contactEmail}
+              Contact our team
+            </a>
+          </p>
+          <p>
+            <a
+              href={`mailto:${emails.admin}`}
+              className="hover:underline text-primary-700 font-medium"
+            >
+              Ask about jobs
             </a>
           </p>
         </div>

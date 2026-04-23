@@ -5,13 +5,20 @@ import { BUSINESS_PROFILE } from './business-profile';
 const SITE_URL = 'https://libra-support.co.uk';
 const SITE_NAME = BUSINESS_PROFILE.name;
 const DEFAULT_DESCRIPTION =
-  'CQC-regulated home care in Todmorden, Hebden Bridge, and Mytholmroyd, with flexible support for home care, live-in care, and respite care.';
-const CONTACT_EMAIL = 'kelly@librasupport.co.uk';
+  'CQC-regulated home care from Libra Support Services, with active branches in Todmorden and Burnley and flexible support across Todmorden, Hebden Bridge, Mytholmroyd, and nearby areas.';
+const GENERAL_CONTACT_EMAIL = BUSINESS_PROFILE.emails.admin;
+
+const activeAreaServed = Array.from(
+  new Set([
+    ...BUSINESS_PROFILE.areas.current,
+    ...BUSINESS_PROFILE.branches.map((branch) => branch.name),
+  ])
+);
 
 export const seo = {
   siteUrl: SITE_URL,
   siteName: SITE_NAME,
-  defaultTitle: `${SITE_NAME} | Home Care in Todmorden & West Yorkshire`,
+  defaultTitle: `${SITE_NAME} | Home Care in Todmorden, Burnley & Calderdale`,
   defaultDescription: DEFAULT_DESCRIPTION,
   defaultImage: '/images/default.webp',
   locale: 'en_GB',
@@ -93,8 +100,33 @@ export function getOrganizationStructuredData() {
         image: absoluteUrl(seo.defaultImage),
         description: seo.defaultDescription,
         telephone: BUSINESS_PROFILE.phones.primary.display,
-        email: CONTACT_EMAIL,
-        areaServed: BUSINESS_PROFILE.areas.current,
+        email: GENERAL_CONTACT_EMAIL,
+        areaServed: activeAreaServed,
+        contactPoint: [
+          {
+            '@type': 'ContactPoint',
+            contactType: 'care enquiries',
+            telephone: BUSINESS_PROFILE.phones.primary.display,
+            email: BUSINESS_PROFILE.emails.careEnquiries,
+          },
+          {
+            '@type': 'ContactPoint',
+            contactType: 'administration',
+            telephone: BUSINESS_PROFILE.phones.primary.display,
+            email: BUSINESS_PROFILE.emails.admin,
+          },
+          {
+            '@type': 'ContactPoint',
+            contactType: 'recruitment',
+            telephone: BUSINESS_PROFILE.phones.primary.display,
+            email: BUSINESS_PROFILE.emails.jobs,
+          },
+        ],
+        department: BUSINESS_PROFILE.branches.map((branch) => ({
+          '@type': 'Organization',
+          name: `${seo.siteName} ${branch.name} Branch`,
+          description: branch.summary,
+        })),
         address: {
           '@type': 'PostalAddress',
           streetAddress,
@@ -120,7 +152,7 @@ export function getOrganizationStructuredData() {
         provider: {
           '@id': `${seo.siteUrl}/#localbusiness`,
         },
-        areaServed: 'Todmorden, West Yorkshire, UK',
+        areaServed: activeAreaServed,
         url: absoluteUrl('/services/home-care'),
       },
       {
@@ -130,7 +162,7 @@ export function getOrganizationStructuredData() {
         provider: {
           '@id': `${seo.siteUrl}/#localbusiness`,
         },
-        areaServed: 'Todmorden, West Yorkshire, UK',
+        areaServed: activeAreaServed,
         url: absoluteUrl('/services/live-in-care'),
       },
       {
@@ -140,7 +172,7 @@ export function getOrganizationStructuredData() {
         provider: {
           '@id': `${seo.siteUrl}/#localbusiness`,
         },
-        areaServed: 'Todmorden, West Yorkshire, UK',
+        areaServed: activeAreaServed,
         url: absoluteUrl('/services/respite-care'),
       },
       {
@@ -150,7 +182,7 @@ export function getOrganizationStructuredData() {
         provider: {
           '@id': `${seo.siteUrl}/#localbusiness`,
         },
-        areaServed: 'Todmorden, West Yorkshire, UK',
+        areaServed: activeAreaServed,
         url: absoluteUrl('/services/dementia-support'),
       },
       {
@@ -160,7 +192,7 @@ export function getOrganizationStructuredData() {
         provider: {
           '@id': `${seo.siteUrl}/#localbusiness`,
         },
-        areaServed: 'Todmorden, West Yorkshire, UK',
+        areaServed: activeAreaServed,
         url: absoluteUrl('/services/companionship'),
       },
       {
@@ -170,7 +202,7 @@ export function getOrganizationStructuredData() {
         provider: {
           '@id': `${seo.siteUrl}/#localbusiness`,
         },
-        areaServed: 'Todmorden, West Yorkshire, UK',
+        areaServed: activeAreaServed,
         url: absoluteUrl('/services/personal-care'),
       },
     ],

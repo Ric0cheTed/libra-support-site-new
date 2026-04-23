@@ -1,7 +1,22 @@
 import { BUSINESS_PROFILE, formatInlineList } from "@/lib/business-profile";
 import type { ContactContent } from "@/types/contact";
 
-const { phones, whatsapp, address, openingHours, areas, map, email } = BUSINESS_PROFILE;
+const { phones, whatsapp, address, openingHours, areas, map, emails, branches } = BUSINESS_PROFILE;
+const fallbackTodmordenBranch: (typeof branches)[number] = {
+  name: "Todmorden",
+  lead: "Kelly",
+  summary: "Our Todmorden branch.",
+};
+const fallbackBurnleyBranch: (typeof branches)[number] = {
+  name: "Burnley",
+  lead: "Nic",
+  summary: "Our Burnley branch.",
+};
+const burnleyOfficeAddress = "3-5 Red Lion Street, Burnley, BB11 2AE";
+const todmordenBranch =
+  branches.find((branch) => branch.name === "Todmorden") ?? fallbackTodmordenBranch;
+const burnleyBranch =
+  branches.find((branch) => branch.name === "Burnley") ?? fallbackBurnleyBranch;
 
 const contactMethods: ContactContent["methods"]["items"] = [
   {
@@ -11,19 +26,27 @@ const contactMethods: ContactContent["methods"]["items"] = [
       "Best if you want to talk something through straight away, ask about care options, or discuss the next step for yourself or a loved one.",
     href: phones.primary.href,
     ctaLabel: `Call ${phones.primary.display}`,
-    detail: phones.secondary
-      ? `Landline: ${phones.primary.display} | Mobile: ${phones.secondary.display} | Best for immediate questions during ${openingHours.display}.`
-      : `Best for immediate questions during ${openingHours.display}.`,
+    detail: `Landline: ${phones.primary.display} | Mobile: ${phones.mobile.display} | Best for immediate questions during ${openingHours.display}.`,
     ctaVariant: "primary",
   },
   {
     kind: "email",
-    title: "Email us",
+    title: "Care enquiries",
     description:
-      "Best if you want to send details in writing, ask a non-urgent question, or give us background information before we speak.",
-    href: `mailto:${email}`,
-    ctaLabel: "Email the team",
-    detail: email,
+      "If you are asking about support for yourself or a loved one, this is the simplest way to send a care enquiry and receive the right follow-up.",
+    href: `mailto:${emails.careEnquiries}`,
+    ctaLabel: "Send a care enquiry",
+    detail: "Best for care questions, support options, and next-step guidance.",
+    ctaVariant: "secondary",
+  },
+  {
+    kind: "careers",
+    title: "Jobs and admin enquiries",
+    description:
+      "If you are asking about vacancies, applications, or general office matters, we will make sure your message reaches the right team.",
+    href: `mailto:${emails.jobs}`,
+    ctaLabel: "Ask about jobs",
+    detail: "Helpful for vacancies, applications, CVs, and general office queries.",
     ctaVariant: "secondary",
   },
   {
@@ -33,7 +56,8 @@ const contactMethods: ContactContent["methods"]["items"] = [
       "Use the enquiry form if you want us to review your situation and come back to you, especially if it helps to explain things properly in writing.",
     href: "#contact-form",
     ctaLabel: "Send an enquiry",
-    detail: "Useful for care enquiries, callback requests, general questions, and follow-up contact.",
+    detail:
+      "Choose care, general/admin, or job enquiry in the form so we can direct it to the right person as cleanly as possible.",
     ctaVariant: "secondary",
   },
   {
@@ -50,7 +74,7 @@ const contactMethods: ContactContent["methods"]["items"] = [
     kind: "office",
     title: "Office and local support",
     description:
-      "We are based locally and support families across our current core coverage areas with responsive, nearby communication.",
+      "We have active Libra branches in Todmorden and Burnley, helping families reach a nearby team while we keep local availability clear and realistic.",
     href: map.directionsUrl,
     ctaLabel: "Get directions",
     detailLines: address.lines,
@@ -63,14 +87,14 @@ export const contactContent: ContactContent = {
   metadata: {
     title: "Contact Our Care Team",
     description:
-      "Call, email, or send an enquiry to Libra Support Services about home care, next steps, local availability, or working with our team.",
+      "Call, email, or send an enquiry to Libra Support Services about home care, local availability, Burnley and Todmorden branch support, or working with our team.",
     path: "/contact",
   },
   hero: {
     eyebrow: "Talk to our team",
     title: "Contact Libra Support Services for care enquiries, next steps, or general support",
     description:
-      "If you are exploring care for yourself or a loved one, or you would like to ask about working with Libra, our local team is here to help. We keep the first conversation calm, clear, and focused on what support may be needed next.",
+      "If you are exploring care for yourself or a loved one, or you would like to ask about working with Libra, our team is here to help. We keep the first conversation calm, clear, and focused on what support may be needed next.",
     primaryCta: {
       label: "Call Our Team",
       href: phones.primary.href,
@@ -82,15 +106,16 @@ export const contactContent: ContactContent = {
     },
     highlights: [
       "Talk through care needs and next steps",
-      "General enquiries and callback requests",
-      `Local support across ${formatInlineList(areas.current)}`,
+      "Send a care enquiry online or by email",
+      "Ask about jobs or office queries separately",
+      `${todmordenBranch.name} and ${burnleyBranch.name} branches with clear local guidance`,
       `Available ${openingHours.display}`,
     ],
     supportCard: {
-      eyebrow: "Care and general contact",
+      eyebrow: "Care and branch contact",
       title: "It should feel easy to ask questions and get clear guidance",
       description:
-        "Whether you are ready to arrange support or simply want to understand the options, we will help you take the next step with confidence.",
+        "Whether you are ready to arrange support, want to ask about Burnley availability, or need to speak about working with Libra, we will help you take the next step with confidence.",
     },
     image: {
       src: "/images/hero-2.webp",
@@ -101,7 +126,7 @@ export const contactContent: ContactContent = {
     eyebrow: "Contact options",
     title: "Choose the simplest way to get in touch",
     description:
-      "Some people want to call straight away, others prefer to send a message first. However you contact us, we aim to make the process clear, reassuring, and easy to follow.",
+      "Some people want to call straight away, others prefer to send a message first. However you contact us, we aim to make care enquiries, job enquiries, and local branch contact feel clear, reassuring, and easy to follow.",
     items: contactMethods,
   },
   support: {
@@ -123,7 +148,7 @@ export const contactContent: ContactContent = {
       {
         title: "We arrange the right follow-up",
         description:
-          "If appropriate, we can guide you towards a consultation, a care conversation, or the right team for work-related enquiries.",
+          "If appropriate, we can guide you towards a consultation, the right care follow-up, or the right team for work-related enquiries.",
       },
     ],
   },
@@ -131,19 +156,23 @@ export const contactContent: ContactContent = {
     eyebrow: "Send an enquiry",
     title: "Share a little about your situation and we will get back to you",
     description:
-      "If writing is easier, use the form below. Families often use this to outline care needs, ask about availability, or request a conversation at a better time.",
+      "If writing is easier, use the form below. Families often use this to outline care needs, ask about Burnley or Todmorden availability, or request a conversation at a better time.",
     guidanceTitle: "Helpful things to include",
     guidancePoints: [
       "Who support is for and the kind of help you are exploring",
       "Your area or the area where support is needed",
       "Whether the enquiry is general, urgent, or time-sensitive",
       "The best way and time for us to get back to you",
-      "If your message is about working with Libra, mention the role or type of work you are interested in",
+      "If your message is about working with Libra, choose job enquiry so it reaches the right team quickly",
     ],
     supportLinks: [
       {
         label: "View Care Services",
         href: "/services",
+      },
+      {
+        label: "Explore Burnley Care",
+        href: "/areas/burnley",
       },
       {
         label: "See Open Roles",
@@ -155,18 +184,40 @@ export const contactContent: ContactContent = {
     eyebrow: "Local reassurance",
     title: "A nearby team families can reach and trust",
     description:
-      "We are based in Todmorden and currently support families across our core local areas. If you are nearby and unsure about availability, get in touch and we will guide you clearly.",
-    officeLabel: "Current contact base",
+      "We now have active Libra branches in Todmorden and Burnley. That gives families two clear local bases while keeping our current coverage and availability guidance grounded and honest.",
+    officeLabel: "Todmorden contact base",
     addressLines: address.lines,
     openingHours: openingHours.display,
     directionsCta: {
       label: "Get directions",
       href: map.directionsUrl,
     },
-    areasLabel: "Current core coverage",
+    areasLabel: "Current Calderdale coverage",
     areas: areas.current,
     note:
-      "We can also talk you through nearby availability without overpromising or pushing you into a decision before you are ready.",
+      `Our Todmorden branch and our Burnley branch at ${burnleyOfficeAddress} give families clear local points of contact. If you are in or around Burnley and unsure about availability, get in touch and we will guide you clearly without overpromising.`,
+    branchesTitle: "Active Libra branches",
+    branches: [
+      {
+        name: `${todmordenBranch.name} branch`,
+        lead: todmordenBranch.lead,
+        description:
+          "Our established Todmorden base remains the main day-to-day contact point for families across our current Calderdale coverage.",
+      },
+      {
+        name: `${burnleyBranch.name} branch`,
+        lead: burnleyBranch.lead,
+        description:
+          `Our active Burnley base at ${burnleyOfficeAddress} gives Libra a second trusted local presence as we continue expanding carefully and responsibly.`,
+      },
+    ],
+    trustImage: burnleyBranch.image
+      ? {
+          ...burnleyBranch.image,
+          caption:
+            "Our Burnley branch adds a visible Libra office presence alongside our Todmorden base.",
+        }
+      : undefined,
     mapTitle: "Libra Support Services contact location",
   },
   faqs: {
@@ -199,7 +250,7 @@ export const contactContent: ContactContent = {
         question: "Do you support people in my area?",
         answer: `We currently support families across ${formatInlineList(
           areas.current
-        )}. If you are nearby and unsure about availability, get in touch and we will guide you clearly.`,
+        )}. We also have an active Burnley branch, so if you are nearby and unsure about availability, get in touch and we will guide you clearly.`,
       },
       {
         question: "What if my enquiry is urgent or time-sensitive?",
@@ -209,14 +260,14 @@ export const contactContent: ContactContent = {
       {
         question: "How do I ask about working with Libra?",
         answer:
-          "You can view our open roles online or send us an enquiry if you would like to ask about joining the team or working with Libra more generally.",
+          "You can view our open roles online, use the jobs contact option, or send a job enquiry through the contact form. If your question is about care, use the care enquiry option and we will route it appropriately.",
       },
     ],
   },
   finalCta: {
     title: "Need to talk something through?",
     description:
-      "Call our team or send an enquiry and we will help you take the next step in a calm, practical way.",
+      "Call our team or send an enquiry and we will direct your message to the right person in a calm, practical way.",
     primaryCta: {
       label: "Call Our Team",
       href: phones.primary.href,

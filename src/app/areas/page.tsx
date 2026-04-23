@@ -8,7 +8,7 @@ import { buildPageMetadata } from '@/lib/seo';
 export const metadata = buildPageMetadata({
   title: 'Areas We Cover',
   description:
-    'Explore home care availability in Todmorden, Hebden Bridge, and Mytholmroyd, with local support tailored to each area.',
+    'Explore home care availability in Todmorden, Hebden Bridge, Mytholmroyd, and Burnley, with local support tailored to each area.',
   path: '/areas',
 });
 
@@ -20,7 +20,11 @@ export default function AreasPage() {
         <h1 className="text-4xl font-extrabold tracking-tight mb-4">Areas we cover</h1>
         <p className="text-lg text-gray-700 mb-8">
           We provide care and support in <strong>Todmorden</strong>, <strong>Hebden Bridge</strong>, and{' '}
-          <strong>Mytholmroyd</strong>.
+          <strong>Mytholmroyd</strong>, with an active Libra branch now also serving <strong>Burnley</strong>.
+        </p>
+        <p className="text-sm text-gray-600 mb-8">
+          Burnley is now part of our active location story, alongside our established Calderdale coverage and our
+          nearby Todmorden base.
         </p>
         <p className="text-sm text-gray-600 mb-8">
           Not sure which support fits?{' '}
@@ -35,6 +39,17 @@ export default function AreasPage() {
         </p>
 
         <div className="grid gap-4 sm:grid-cols-2">
+          <Link
+            href="/areas/burnley"
+            className="block rounded-xl border border-gray-200 bg-white p-5 shadow-sm hover:shadow-md transition"
+          >
+            <h2 className="text-xl font-semibold">Burnley</h2>
+            <p className="text-gray-700 mt-1">
+              Local home care in Burnley with practical day-to-day support, a visible office on Red Lion Street, and
+              a growing local presence for families exploring support.
+            </p>
+          </Link>
+
           <Link
             href="/areas/todmorden"
             className="block rounded-xl border border-gray-200 bg-white p-5 shadow-sm hover:shadow-md transition"

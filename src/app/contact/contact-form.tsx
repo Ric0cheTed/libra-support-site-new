@@ -5,13 +5,36 @@ import emailjs from "emailjs-com";
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
 
 import { buttonVariants } from "@/components/shared/Button";
+import { BUSINESS_PROFILE } from "@/lib/business-profile";
 import { trackEvent } from "@/lib/ga";
 import { cn } from "@/lib/utils";
+
+const enquiryRoutes = {
+  care: {
+    label: "Care enquiry",
+    email: BUSINESS_PROFILE.emails.careEnquiries,
+  },
+  general: {
+    label: "General or admin enquiry",
+    email: BUSINESS_PROFILE.emails.admin,
+  },
+  jobs: {
+    label: "Job enquiry",
+    email: BUSINESS_PROFILE.emails.jobs,
+  },
+} as const;
+
+type EnquiryType = keyof typeof enquiryRoutes;
+
+const DEFAULT_ENQUIRY_TYPE: EnquiryType = "care";
 
 export function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [enquiryType, setEnquiryType] = useState<EnquiryType>(DEFAULT_ENQUIRY_TYPE);
+
+  const activeRoute = enquiryRoutes[enquiryType];
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,7 +43,10 @@ export function ContactForm() {
     setSuccess(false);
     setError(false);
 
-    trackEvent("contact_form_submit_attempt");
+    trackEvent("contact_form_submit_attempt", {
+      enquiry_type: enquiryType,
+      destination_label: activeRoute.label,
+    });
 
     emailjs
       .sendForm(
@@ -32,9 +58,12 @@ export function ContactForm() {
       .then(() => {
         setSuccess(true);
         setLoading(false);
+        setEnquiryType(DEFAULT_ENQUIRY_TYPE);
 
         trackEvent("generate_lead", {
           form_name: "contact",
+          enquiry_type: enquiryType,
+          destination_email: activeRoute.email,
         });
 
         setTimeout(() => setSuccess(false), 6000);
@@ -72,6 +101,11 @@ export function ContactForm() {
       </div>
 
       <form onSubmit={sendEmail} className="space-y-5">
+        <input type="hidden" name="enquiry_type" value={enquiryType} />
+        <input type="hidden" name="to_email" value={activeRoute.email} />
+        <input type="hidden" name="destination_email" value={activeRoute.email} />
+        <input type="hidden" name="destination_label" value={activeRoute.label} />
+
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label htmlFor="name" className="mb-2 block text-sm font-semibold text-slate-900">
@@ -100,6 +134,26 @@ export function ContactForm() {
               className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
             />
           </div>
+        </div>
+
+        <div>
+          <label htmlFor="enquiryType" className="mb-2 block text-sm font-semibold text-slate-900">
+            Enquiry type
+          </label>
+          <select
+            id="enquiryType"
+            name="enquiry_type_label"
+            value={enquiryType}
+            onChange={(event) => setEnquiryType(event.target.value as EnquiryType)}
+            className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
+          >
+            <option value="care">Care enquiry</option>
+            <option value="general">General or admin enquiry</option>
+            <option value="jobs">Job enquiry</option>
+          </select>
+          <p className="mt-2 text-sm text-slate-600">
+            This helps us send your message to the right inbox straight away.
+          </p>
         </div>
 
         <div>

@@ -20,20 +20,39 @@ export type OpeningHours = {
   display: string;
 };
 
+export type EmailContacts = {
+  careEnquiries: string;
+  admin: string;
+  jobs: string;
+};
+
+export type BranchImage = {
+  src: string;
+  alt: string;
+};
+
+export type BranchProfile = {
+  name: string;
+  lead: string;
+  summary: string;
+  image?: BranchImage;
+};
+
 export type BusinessProfile = {
   name: string;
   legalName?: string;
   phones: {
     primary: PhoneContact;
-    secondary?: PhoneContact;
+    mobile: PhoneContact;
   };
-  email: string;
+  emails: EmailContacts;
   whatsapp: {
     display: string;
     href: string;
   };
   address: Address;
   openingHours: OpeningHours;
+  branches: BranchProfile[];
   areas: {
     current: string[];
     comingSoon: string[];
@@ -51,60 +70,83 @@ export type BusinessProfile = {
 };
 
 const directionsQuery =
-  '44 Burnley Road, Room 102, Todmorden Community College, Todmorden, West Yorkshire OL14 7BX, United Kingdom';
+  "44 Burnley Road, Room 102, Todmorden Community College, Todmorden, West Yorkshire OL14 7BX, United Kingdom";
 
 export const BUSINESS_PROFILE: BusinessProfile = {
-  name: 'Libra Support Services',
+  name: "Libra Support Services",
   phones: {
     primary: {
-      display: '01706 817 672',
-      href: 'tel:01706817672',
+      display: "01706 817 672",
+      href: "tel:01706817672",
     },
-    secondary: {
-      display: '07777 157 530',
-      href: 'tel:07777157530',
+    mobile: {
+      display: "07777 157530",
+      href: "tel:07777157530",
     },
   },
-  email: 'kelly@librasupport.co.uk',
+  emails: {
+    careEnquiries: "kelly@librasupport.co.uk",
+    admin: "admin@librasupport.co.uk",
+    jobs: "admin@librasupport.co.uk",
+  },
   whatsapp: {
-    display: 'Request a call back (WhatsApp)',
-    href: 'https://wa.me/447943157855',
+    display: "Request a call back (WhatsApp)",
+    href: "https://wa.me/447943157855",
   },
   address: {
-    line1: '44 Burnley Road',
-    line2: 'Room 102, Todmorden Community College',
-    city: 'Todmorden',
-    region: 'West Yorkshire',
-    postalCode: 'OL14 7BX',
-    country: 'United Kingdom',
+    line1: "44 Burnley Road",
+    line2: "Room 102, Todmorden Community College",
+    city: "Todmorden",
+    region: "West Yorkshire",
+    postalCode: "OL14 7BX",
+    country: "United Kingdom",
     lines: [
-      '44 Burnley Road',
-      'Room 102, Todmorden Community College',
-      'Todmorden',
-      'West Yorkshire',
-      'OL14 7BX',
-      'United Kingdom',
+      "44 Burnley Road",
+      "Room 102, Todmorden Community College",
+      "Todmorden",
+      "West Yorkshire",
+      "OL14 7BX",
+      "United Kingdom",
     ],
   },
   openingHours: {
-    days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    opens: '09:00',
-    closes: '17:00',
-    display: 'Monday to Friday, 9am - 5pm',
+    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "17:00",
+    display: "Monday to Friday, 9am - 5pm",
   },
+  branches: [
+    {
+      name: "Todmorden",
+      lead: "Kelly",
+      summary:
+        "Our Todmorden branch provides Libra's established local contact base and day-to-day Calderdale support.",
+    },
+    {
+      name: "Burnley",
+      lead: "Nic",
+      summary:
+        "Our Burnley branch gives Libra an active second base as local availability and trusted support continue to expand carefully.",
+      image: {
+        src: "/images/burnley-office-frontage.png",
+        alt: "Frontage of the Libra Support Services Burnley office",
+      },
+    },
+  ],
   areas: {
-    current: ['Todmorden', 'Hebden Bridge', 'Mytholmroyd'],
-    comingSoon: ['Cliviger', 'Worsthorne', 'Pike Hill'],
+    current: ["Todmorden", "Hebden Bridge", "Mytholmroyd"],
+    comingSoon: ["Cliviger", "Worsthorne", "Pike Hill"],
   },
   links: {
-    companiesHouse: 'https://find-and-update.company-information.service.gov.uk/company/13185381',
-    cqcProvider: 'https://www.cqc.org.uk/provider/1-10610346970',
-    cqcLocation: 'https://www.cqc.org.uk/location/1-11688271981',
-    facebook: 'https://www.facebook.com/LibraSupportCalderdale',
+    companiesHouse:
+      "https://find-and-update.company-information.service.gov.uk/company/13185381",
+    cqcProvider: "https://www.cqc.org.uk/provider/1-10610346970",
+    cqcLocation: "https://www.cqc.org.uk/location/1-11688271981",
+    facebook: "https://www.facebook.com/LibraSupportCalderdale",
   },
   map: {
     embedUrl:
-      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d951.4129929293816!2d-2.1014253!3d53.7137928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bddf5f1265d1b%3A0x56ae2222483c8d62!2sTodmorden%20Community%20College!5e0!3m2!1sen!2suk!4v1716999999999!5m2!1sen!2suk',
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d951.4129929293816!2d-2.1014253!3d53.7137928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bddf5f1265d1b%3A0x56ae2222483c8d62!2sTodmorden%20Community%20College!5e0!3m2!1sen!2suk!4v1716999999999!5m2!1sen!2suk",
     directionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
       directionsQuery
     )}`,
@@ -114,8 +156,8 @@ export const BUSINESS_PROFILE: BusinessProfile = {
 export const BUSINESS_NAME = BUSINESS_PROFILE.name;
 
 export function formatInlineList(items: readonly string[]) {
-  if (items.length === 0) return '';
+  if (items.length === 0) return "";
   if (items.length === 1) return items[0];
   if (items.length === 2) return `${items[0]} and ${items[1]}`;
-  return `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`;
+  return `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`;
 }

@@ -1,13 +1,14 @@
 import Link from "next/link";
+
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { buildPageMetadata } from '@/lib/seo';
-import { BUSINESS_PROFILE } from '@/lib/business-profile';
+import { BUSINESS_PROFILE } from "@/lib/business-profile";
+import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
-  title: 'Home Care FAQs',
+  title: "Home Care FAQs",
   description:
-    'Answers to common questions about starting care, pricing, and support for families in Todmorden, Hebden Bridge, and Mytholmroyd.',
-  path: '/faqs',
+    "Answers to common questions about starting care, pricing, and support for families in Todmorden, Hebden Bridge, and Mytholmroyd.",
+  path: "/faqs",
 });
 
 type FaqItem = {
@@ -30,7 +31,7 @@ const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "How quickly can care start?",
-        a: "We’ll aim to start as quickly as possible once we understand your needs. Start times depend on availability and the type of support required, but we'll keep you updated throughout.",
+        a: "We'll aim to start as quickly as possible once we understand your needs. Start times depend on availability and the type of support required, but we'll keep you updated throughout.",
       },
       {
         q: "Do you support hospital discharge?",
@@ -42,8 +43,8 @@ const FAQ_GROUPS: FaqGroup[] = [
     title: "Pricing & funding",
     items: [
       {
-        q: "What’s included in your hourly rate?",
-        a: "Our rates include trained, DBS-checked care staff, managed rotas and continuity of care, cover for sickness and holidays, medication support and care planning, plus management oversight with on-call support. We don’t add extra charges for administration or compliance.",
+        q: "What's included in your hourly rate?",
+        a: "Our rates include trained, DBS-checked care staff, managed rotas and continuity of care, cover for sickness and holidays, medication support and care planning, plus management oversight with on-call support. We don't add extra charges for administration or compliance.",
       },
       {
         q: "Why is there a rural rate?",
@@ -51,7 +52,7 @@ const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "Do you offer a free quote?",
-        a: "Yes. Once we’ve discussed your needs, we can provide clear pricing based on the level of support and visit schedule.",
+        a: "Yes. Once we've discussed your needs, we can provide clear pricing based on the level of support and visit schedule.",
       },
     ],
   },
@@ -104,13 +105,12 @@ const faqJsonLd = {
           "@type": "Answer",
           text: item.a,
         },
-      })),
+      }))
   ),
 };
 
 export default function FaqsPage() {
-  const { phones } = BUSINESS_PROFILE;
-  const contactEmail = 'kelly@librasupport.co.uk';
+  const { phones, emails } = BUSINESS_PROFILE;
 
   return (
     <>
@@ -121,38 +121,57 @@ export default function FaqsPage() {
 
       <Breadcrumbs />
 
-      <div className="max-w-4xl mx-auto py-16 px-4 space-y-10">
-        <header className="text-center space-y-3">
+      <div className="mx-auto max-w-4xl space-y-10 px-4 py-16">
+        <header className="space-y-3 text-center">
           <h1 className="text-4xl font-bold">FAQs</h1>
           <p className="text-lg text-gray-700">
-            Clear answers to common questions about starting care, pricing, and how we support continuity.
+            Clear answers to common questions about starting care, pricing, and how we support
+            continuity.
           </p>
           <p className="text-sm text-gray-600">
-            If you’d like to talk through your needs, call{' '}
+            If you&apos;d like to talk through your needs, call{" "}
             <a className="underline" href={phones.primary.href}>
               {phones.primary.display}
-            </a>{' '}
-            or{' '}
-            <a className="underline" href={`mailto:${contactEmail}`}>
-              email us
-            </a>.
+            </a>{" "}
+            or{" "}
+            <a className="underline" href={`mailto:${emails.careEnquiries}`}>
+              send a care enquiry
+            </a>
+            .
           </p>
           <p className="text-sm text-gray-600">
-            Looking for next steps? <Link href="/services" className="underline">Explore services</Link>,{' '}
-            <Link href="/areas" className="underline">areas we cover</Link>, or{' '}
-            <Link href="/care-fees" className="underline">care fees</Link>.
+            For job enquiries, applications, or admin matters, use{" "}
+            <a className="underline" href={`mailto:${emails.jobs}`}>
+              our jobs contact
+            </a>
+            .
+          </p>
+          <p className="text-sm text-gray-600">
+            Looking for next steps?{" "}
+            <Link href="/services" className="underline">
+              Explore services
+            </Link>
+            ,{" "}
+            <Link href="/areas" className="underline">
+              areas we cover
+            </Link>
+            , or{" "}
+            <Link href="/care-fees" className="underline">
+              care fees
+            </Link>
+            .
           </p>
 
-          <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-primary text-white font-semibold hover:opacity-90 transition"
+              className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-3 font-semibold text-white transition hover:opacity-90"
             >
               Contact Us
             </Link>
             <a
               href={phones.primary.href}
-              className="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-black/15 bg-white text-black font-semibold hover:bg-black/5 transition"
+              className="inline-flex items-center justify-center rounded-xl border border-black/15 bg-white px-5 py-3 font-semibold text-black transition hover:bg-black/5"
             >
               Call Now: {phones.primary.display}
             </a>
@@ -161,8 +180,8 @@ export default function FaqsPage() {
 
         <div className="space-y-10">
           {FAQ_GROUPS.map((group) => (
-            <section key={group.title} className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-2xl font-bold mb-4">{group.title}</h2>
+            <section key={group.title} className="rounded-lg border border-gray-200 bg-white p-6">
+              <h2 className="mb-4 text-2xl font-bold">{group.title}</h2>
 
               <div className="space-y-3">
                 {group.items.map((item) => (
@@ -170,7 +189,7 @@ export default function FaqsPage() {
                     key={item.q}
                     className="group rounded-lg border border-gray-200 bg-gray-50 px-5 py-4"
                   >
-                    <summary className="cursor-pointer list-none font-semibold text-gray-900 flex items-start justify-between gap-4">
+                    <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-semibold text-gray-900">
                       <span>{item.q}</span>
                       <span
                         aria-hidden="true"
@@ -179,7 +198,7 @@ export default function FaqsPage() {
                         ▾
                       </span>
                     </summary>
-                    <p className="mt-3 text-gray-700 leading-relaxed">{item.a}</p>
+                    <p className="mt-3 leading-relaxed text-gray-700">{item.a}</p>
                   </details>
                 ))}
               </div>
@@ -188,19 +207,17 @@ export default function FaqsPage() {
         </div>
 
         <div className="text-center">
-          <p className="text-gray-700 mb-4">
-            Still have questions? We’re happy to help.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <p className="mb-4 text-gray-700">Still have questions? We&apos;re happy to help.</p>
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <a
               href={phones.primary.href}
-              className="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded hover:bg-primary-dark"
+              className="inline-flex items-center justify-center rounded bg-primary px-6 py-3 text-white hover:bg-primary-dark"
             >
               Call: {phones.primary.display}
             </a>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-6 py-3 border border-blue-600 text-primary rounded hover:bg-accent"
+              className="inline-flex items-center justify-center rounded border border-blue-600 px-6 py-3 text-primary hover:bg-accent"
             >
               Contact us
             </Link>

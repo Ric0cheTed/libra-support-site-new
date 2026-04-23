@@ -1,7 +1,7 @@
 import { BUSINESS_PROFILE, formatInlineList } from "@/lib/business-profile";
 import type { CareCostsPageContent } from "@/types/care-costs";
 
-const urbanRate = 25.14;
+const urbanRate = 25.13;
 const ruralRate = 26.35;
 
 const currencyFormatter = new Intl.NumberFormat("en-GB", {

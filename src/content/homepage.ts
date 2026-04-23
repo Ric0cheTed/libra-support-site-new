@@ -5,7 +5,7 @@ const primaryPhone = BUSINESS_PROFILE.phones.primary;
 
 export const homepageContent: HomepageContent = {
   utilityTrustStripText:
-    "CQC-regulated home care from a trusted local team supporting Todmorden, Hebden Bridge, Mytholmroyd and surrounding Calderdale areas.",
+    "CQC-regulated home care from a trusted local team with active Libra branches in Todmorden and Burnley, supporting families across Todmorden, Hebden Bridge, Mytholmroyd and surrounding areas.",
   header: {
     navItems: [
       { title: "Home", href: "/" },
@@ -214,15 +214,21 @@ export const homepageContent: HomepageContent = {
   },
   areasCoverage: {
     eyebrow: "Areas we cover",
-    title: "Local home care across Todmorden, Hebden Bridge, Mytholmroyd and nearby areas",
+    title: "Local home care guided from our Todmorden and Burnley branches",
     description:
-      "We proudly support individuals and families across our local communities, combining professional care with the reassurance of a responsive nearby team.",
+      "Libra now has active operational bases in Todmorden and Burnley, helping families get clear local guidance while we continue growing carefully and responsibly.",
     items: [
       {
         title: "Todmorden",
         description:
-          "Trusted home care and support from a local team that understands the area.",
+          "Our Todmorden branch offers trusted home care and day-to-day support across our established local base.",
         href: "/areas/todmorden",
+      },
+      {
+        title: "Burnley",
+        description:
+          "Our Burnley branch has a visible local presence and a dedicated Burnley page for families exploring support.",
+        href: "/areas/burnley",
       },
       {
         title: "Hebden Bridge",
@@ -235,12 +241,6 @@ export const homepageContent: HomepageContent = {
         description:
           "Responsive local care for people and families needing reliable support at home.",
         href: "/areas/mytholmroyd",
-      },
-      {
-        title: "Nearby Areas",
-        description:
-          "Looking for support nearby? Speak with our team about availability in your location.",
-        href: "/areas",
       },
     ],
     cta: {

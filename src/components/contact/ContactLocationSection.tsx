@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { MapPin, Clock3 } from "lucide-react";
 
 import { Button } from "@/components/shared/Button";
@@ -47,6 +48,26 @@ export function ContactLocationSection({
                 </span>
               </div>
               <p className="mt-5 text-sm leading-7 text-slate-600 sm:text-[0.98rem]">{section.note}</p>
+              {section.branches?.length ? (
+                <div className="mt-6 border-t border-stone-200 pt-6">
+                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">
+                    {section.branchesTitle ?? "Branches"}
+                  </p>
+                  <div className="mt-4 grid gap-3">
+                    {section.branches.map((branch) => (
+                      <div
+                        key={branch.name}
+                        className="rounded-[1.4rem] border border-stone-200/80 bg-stone-50/80 p-4"
+                      >
+                        <p className="text-sm font-semibold text-slate-900">{branch.name}</p>
+                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                          {branch.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
               <div className="mt-6">
                 <Button href={section.directionsCta.href} variant="secondary">
                   {section.directionsCta.label}
@@ -55,18 +76,41 @@ export function ContactLocationSection({
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[2rem] border border-stone-200/80 bg-white shadow-[0_28px_70px_-52px_rgba(15,23,42,0.35)]">
-            <iframe
-              title={section.mapTitle}
-              src={mapEmbedUrl}
-              width="100%"
-              height="100%"
-              className="min-h-[22rem] w-full"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+          <div className="space-y-6">
+            {section.trustImage ? (
+              <div className="overflow-hidden rounded-[2rem] border border-stone-200/80 bg-white shadow-[0_28px_70px_-52px_rgba(15,23,42,0.35)]">
+                <div className="relative aspect-[4/3] w-full">
+                  <Image
+                    src={section.trustImage.src}
+                    alt={section.trustImage.alt}
+                    fill
+                    sizes="(min-width: 1024px) 42vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                {section.trustImage.caption ? (
+                  <div className="border-t border-stone-200/80 px-5 py-4">
+                    <p className="text-sm leading-6 text-slate-600">
+                      {section.trustImage.caption}
+                    </p>
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
+
+            <div className="overflow-hidden rounded-[2rem] border border-stone-200/80 bg-white shadow-[0_28px_70px_-52px_rgba(15,23,42,0.35)]">
+              <iframe
+                title={section.mapTitle}
+                src={mapEmbedUrl}
+                width="100%"
+                height="100%"
+                className="min-h-[22rem] w-full"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
           </div>
         </div>
       </Container>

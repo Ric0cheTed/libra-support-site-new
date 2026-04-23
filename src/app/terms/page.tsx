@@ -9,7 +9,7 @@ export const metadata = buildPageMetadata({
   path: "/terms",
 });
 
-const { email, phones, address } = BUSINESS_PROFILE;
+const { emails, phones, address } = BUSINESS_PROFILE;
 
 export default function TermsPage() {
   return (
@@ -39,8 +39,8 @@ export default function TermsPage() {
             ))}
             <p className="pt-2">
               Email:{" "}
-              <a href={`mailto:${email}`} className="text-primary underline">
-                {email}
+              <a href={`mailto:${emails.admin}`} className="text-primary underline">
+                {emails.admin}
               </a>
             </p>
             <p>

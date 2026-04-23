@@ -10,7 +10,7 @@ import type {
   ServiceCoverageContent,
 } from "@/types/services";
 
-export type AreaPageKey = "todmorden" | "hebdenBridge" | "calderdale";
+export type AreaPageKey = "todmorden" | "hebdenBridge" | "burnley" | "calderdale";
 
 export type AreaServicesContent = {
   eyebrow: string;

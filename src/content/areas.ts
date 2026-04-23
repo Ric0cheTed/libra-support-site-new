@@ -2,6 +2,7 @@ import { BUSINESS_PROFILE } from "@/lib/business-profile";
 import type { AreaPageContent, AreaPageKey } from "@/types/areas";
 
 const primaryPhone = BUSINESS_PROFILE.phones.primary;
+const burnleyOfficeAddress = "3-5 Red Lion Street, Burnley, BB11 2AE";
 
 const areaProcessSteps = [
   {
@@ -367,6 +368,155 @@ export const areaPageContent = {
       },
     },
   },
+
+  burnley: {
+    areaName: "Burnley",
+    metadata: {
+      title: "Home Care in Burnley",
+      description:
+        "Thoughtful home care in Burnley with personal care, companionship, respite support, and flexible day-to-day help at home from Libra Support Services.",
+      path: "/areas/burnley",
+    },
+    hero: {
+      eyebrow: "Local home care in Burnley",
+      title: "Trusted home care in Burnley, with flexible support shaped around daily life",
+      description:
+        "Libra Support Services provides practical, person-centred support in Burnley, helping people stay safe, comfortable, and as independent as possible at home. From personal care and companionship to respite support for families, care is tailored around the individual and backed by our growing Burnley branch.",
+      primaryCta: {
+        label: "Book a Free Care Consultation",
+        href: "/contact",
+      },
+      secondaryCta: {
+        label: `Call ${primaryPhone.display}`,
+        href: primaryPhone.href,
+        ariaLabel: `Call Libra Support Services on ${primaryPhone.display}`,
+      },
+      highlights: [
+        "Personal care and daily routines",
+        "Companionship and wellbeing support",
+        "Flexible visits to match routines",
+        "Local Burnley office presence",
+      ],
+      image: {
+        src: "/images/burnley-office-frontage.png",
+        alt: "Libra Support Services Burnley branch office",
+      },
+      supportCard: {
+        eyebrow: "Burnley branch",
+        title: "Local support from our Burnley team",
+        description:
+          `Our Burnley branch on ${burnleyOfficeAddress} helps families access dependable local care with clearer communication and nearby reassurance.`,
+      },
+    },
+    intro: {
+      eyebrow: "Home care in Burnley",
+      title: "Compassionate support from a local branch growing in Burnley",
+      description:
+        "For families in Burnley, care should feel dependable, practical, and personal. We focus on helping people remain comfortable at home with support that fits around routines, wellbeing, and the reassurance families need.",
+      points: [
+        `Our Burnley branch has a local office at ${burnleyOfficeAddress}.`,
+        "Support is tailored around routines, preferences, and what helps someone feel safe and respected at home.",
+        "Care can include personal support, companionship, respite cover, and practical help with day-to-day living.",
+        "Families comparing care in Burnley benefit from a real local branch presence that is easier to reach and more locally focused.",
+      ],
+    },
+    services: {
+      eyebrow: "Support available in Burnley",
+      title: "Flexible support built around the person and their routine",
+      description:
+        "Our Burnley support offering is shaped around the individual, with practical care that helps daily life feel more settled, comfortable, and manageable at home.",
+      items: createAreaServiceItems("Burnley"),
+      note:
+        "If you are comparing local care options in Burnley, we can help you understand the right support level, the services available, and what the next step could look like.",
+      cta: {
+        label: "Explore All Care Services",
+        href: "/services",
+      },
+    },
+    whyLibra: {
+      eyebrow: "Why families choose Libra",
+      title: "Local reassurance, person-centred support, and accountable care",
+      description:
+        "Families looking for care in Burnley need confidence that support will be thoughtful, well managed, and delivered by a team that understands the importance of clear communication and dependable follow-through.",
+      items: [
+        {
+          title: "A visible Burnley branch",
+          description:
+            "Our Burnley branch gives local families a clearer point of trust as services grow in the area.",
+        },
+        {
+          title: "Flexible, person-centred care",
+          description:
+            "Support is tailored around the individual, their routine, and the level of reassurance or practical help they need at home.",
+        },
+        {
+          title: "Responsive communication",
+          description:
+            "A local branch presence helps make communication clearer and support feel more accessible for Burnley families.",
+        },
+        {
+          title: "Professional and accountable",
+          description:
+            "Our care is CQC-regulated, delivered by trained, DBS-checked carers, and supported by dependable local oversight.",
+        },
+      ],
+    },
+    process: {
+      eyebrow: "How care starts",
+      title: "Starting care in Burnley should feel calm and manageable",
+      description:
+        "We guide families through the process clearly, helping you understand the options and how tailored local support can begin.",
+      steps: areaProcessSteps,
+      cta: {
+        label: "Book a Free Consultation",
+        href: "/contact",
+      },
+    },
+    coverage: {
+      eyebrow: "Nearby reassurance",
+      title: "Supporting families in Burnley and surrounding areas",
+      description:
+        "If you are exploring care in or around Burnley, we can help you understand current availability and the kind of support that may be right.",
+      areas: [
+        { label: "Burnley", href: "/areas/burnley" },
+        { label: "Calderdale", href: "/areas/calderdale" },
+        { label: "Todmorden", href: "/areas/todmorden" },
+        { label: "Hebden Bridge", href: "/areas/hebden-bridge" },
+      ],
+      cta: {
+        label: "Explore Areas We Cover",
+        href: "/areas",
+      },
+    },
+    faqs: {
+      eyebrow: "Burnley FAQs",
+      title: "A few common questions about arranging care in Burnley",
+      description:
+        "These answers can help if you are exploring support in Burnley and want a clearer understanding of what is available.",
+      items: createAreaFaqItems(
+        "Burnley",
+        "Support in Burnley can include personal care, companionship, wellbeing checks, respite support, meal preparation, and wider home care tailored to the individual."
+      ),
+      cta: {
+        label: "View All FAQs",
+        href: "/faqs",
+      },
+    },
+    finalCta: {
+      title: "Talk to us about care in Burnley",
+      description:
+        "If you are exploring support for yourself or a loved one in Burnley, we can help you understand the options and plan the right next step.",
+      primaryCta: {
+        label: "Book a Free Care Consultation",
+        href: "/contact",
+      },
+      secondaryCta: {
+        label: "See Care Fees",
+        href: "/care-fees",
+      },
+    },
+  },
+
   calderdale: {
     areaName: "Calderdale",
     metadata: {
@@ -478,6 +628,7 @@ export const areaPageContent = {
         { label: "Todmorden", href: "/areas/todmorden" },
         { label: "Hebden Bridge", href: "/areas/hebden-bridge" },
         { label: "Mytholmroyd", href: "/areas/mytholmroyd" },
+        { label: "Burnley", href: "/areas/burnley" },
       ],
       cta: {
         label: "Explore Areas We Cover",

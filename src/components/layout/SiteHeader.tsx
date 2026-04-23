@@ -64,7 +64,7 @@ export default function SiteHeader() {
             className="h-auto w-auto max-h-12 object-contain"
           />
           <span className="hidden text-xs font-medium uppercase tracking-[0.22em] text-slate-500 xl:inline">
-            Home care in Todmorden
+            Home care in Todmorden and Burnley
           </span>
         </Link>
 

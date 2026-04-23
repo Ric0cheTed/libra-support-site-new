@@ -25,6 +25,18 @@ export type ContactMethodItem = {
   ctaVariant?: "primary" | "secondary";
 };
 
+export type ContactLocationBranch = {
+  name: string;
+  lead: string;
+  description: string;
+};
+
+export type ContactLocationImage = {
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
 export type ContactContent = {
   metadata: ServicePageMetadata;
   hero: ServiceHeroContent;
@@ -59,6 +71,9 @@ export type ContactContent = {
     areasLabel: string;
     areas: string[];
     note: string;
+    branchesTitle?: string;
+    branches?: ContactLocationBranch[];
+    trustImage?: ContactLocationImage;
     mapTitle: string;
   };
   faqs: {
