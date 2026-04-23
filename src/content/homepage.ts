@@ -227,8 +227,8 @@ export const homepageContent: HomepageContent = {
       {
         title: "Burnley",
         description:
-          "Burnley branch led by Nic, giving Libra an active local presence and a nearby point of contact as support expands carefully.",
-        href: "/contact",
+          "Burnley branch led by Nic, with a visible local presence and a dedicated Burnley page for families exploring support.",
+        href: "/areas/burnley",
       },
       {
         title: "Hebden Bridge",

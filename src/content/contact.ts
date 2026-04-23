@@ -12,6 +12,7 @@ const fallbackBurnleyBranch: (typeof branches)[number] = {
   lead: "Nic",
   summary: "Burnley branch led by Nic.",
 };
+const burnleyOfficeAddress = "3-5 Red Lion Street, Burnley, BB11 2AE";
 const todmordenBranch =
   branches.find((branch) => branch.name === "Todmorden") ?? fallbackTodmordenBranch;
 const burnleyBranch =
@@ -170,6 +171,10 @@ export const contactContent: ContactContent = {
         href: "/services",
       },
       {
+        label: "Explore Burnley Care",
+        href: "/areas/burnley",
+      },
+      {
         label: "See Open Roles",
         href: "/careers/open-roles",
       },
@@ -190,7 +195,7 @@ export const contactContent: ContactContent = {
     areasLabel: "Current Calderdale coverage",
     areas: areas.current,
     note:
-      "Todmorden branch led by Kelly. Burnley branch led by Nic. If you are in or around Burnley and unsure about availability, get in touch and we will guide you clearly without overpromising.",
+      `Todmorden branch led by Kelly. Burnley branch led by Nic from ${burnleyOfficeAddress}. If you are in or around Burnley and unsure about availability, get in touch and we will guide you clearly without overpromising.`,
     branchesTitle: "Active Libra branches",
     branches: [
       {
@@ -203,7 +208,7 @@ export const contactContent: ContactContent = {
         name: `${burnleyBranch.name} branch`,
         lead: burnleyBranch.lead,
         description:
-          "Our active Burnley base gives Libra a second trusted local presence as we continue expanding carefully and responsibly.",
+          `Our active Burnley base at ${burnleyOfficeAddress} gives Libra a second trusted local presence as we continue expanding carefully and responsibly.`,
       },
     ],
     trustImage: burnleyBranch.image
