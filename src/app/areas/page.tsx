@@ -45,8 +45,8 @@ export default function AreasPage() {
           >
             <h2 className="text-xl font-semibold">Burnley</h2>
             <p className="text-gray-700 mt-1">
-              Local home care in Burnley with practical day-to-day support, a visible branch on Red Lion Street, and
-              Burnley leadership from Nic.
+              Local home care in Burnley with practical day-to-day support, a visible office on Red Lion Street, and
+              a growing local presence for families exploring support.
             </p>
           </Link>
 

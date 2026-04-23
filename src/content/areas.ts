@@ -395,7 +395,7 @@ export const areaPageContent = {
         "Personal care and daily routines",
         "Companionship and wellbeing support",
         "Flexible visits to match routines",
-        "Burnley branch led by Nic",
+        "Local Burnley office presence",
       ],
       image: {
         src: "/images/burnley-office-frontage.png",
@@ -405,7 +405,7 @@ export const areaPageContent = {
         eyebrow: "Burnley branch",
         title: "Local support from our Burnley team",
         description:
-          `Our Burnley branch is led by Nic from ${burnleyOfficeAddress}, helping families access dependable local care with clearer communication and nearby reassurance.`,
+          `Our Burnley branch on ${burnleyOfficeAddress} helps families access dependable local care with clearer communication and nearby reassurance.`,
       },
     },
     intro: {
@@ -414,7 +414,7 @@ export const areaPageContent = {
       description:
         "For families in Burnley, care should feel dependable, practical, and personal. We focus on helping people remain comfortable at home with support that fits around routines, wellbeing, and the reassurance families need.",
       points: [
-        `Burnley branch led by Nic, with a local office at ${burnleyOfficeAddress}.`,
+        `Our Burnley branch has a local office at ${burnleyOfficeAddress}.`,
         "Support is tailored around routines, preferences, and what helps someone feel safe and respected at home.",
         "Care can include personal support, companionship, respite cover, and practical help with day-to-day living.",
         "Families comparing care in Burnley benefit from a real local branch presence that is easier to reach and more locally focused.",
@@ -440,9 +440,9 @@ export const areaPageContent = {
         "Families looking for care in Burnley need confidence that support will be thoughtful, well managed, and delivered by a team that understands the importance of clear communication and dependable follow-through.",
       items: [
         {
-          title: "Burnley branch leadership",
+          title: "A visible Burnley branch",
           description:
-            "Our Burnley branch is led by Nic, giving local families a clearer point of trust as services grow in the area.",
+            "Our Burnley branch gives local families a clearer point of trust as services grow in the area.",
         },
         {
           title: "Flexible, person-centred care",

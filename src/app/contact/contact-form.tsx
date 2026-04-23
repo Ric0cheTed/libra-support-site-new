@@ -106,18 +106,6 @@ export function ContactForm() {
         <input type="hidden" name="destination_email" value={activeRoute.email} />
         <input type="hidden" name="destination_label" value={activeRoute.label} />
 
-        <div className="rounded-[1.5rem] border border-stone-200 bg-stone-50/80 px-4 py-4 text-sm leading-6 text-slate-700">
-          Care enquiries route to{" "}
-          <span className="font-semibold text-slate-900">
-            {BUSINESS_PROFILE.emails.careEnquiries}
-          </span>
-          . Job enquiries route to{" "}
-          <span className="font-semibold text-slate-900">
-            {BUSINESS_PROFILE.emails.jobs}
-          </span>
-          .
-        </div>
-
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label htmlFor="name" className="mb-2 block text-sm font-semibold text-slate-900">

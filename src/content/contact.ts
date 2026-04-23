@@ -5,12 +5,12 @@ const { phones, whatsapp, address, openingHours, areas, map, emails, branches } 
 const fallbackTodmordenBranch: (typeof branches)[number] = {
   name: "Todmorden",
   lead: "Kelly",
-  summary: "Todmorden branch led by Kelly.",
+  summary: "Our Todmorden branch.",
 };
 const fallbackBurnleyBranch: (typeof branches)[number] = {
   name: "Burnley",
   lead: "Nic",
-  summary: "Burnley branch led by Nic.",
+  summary: "Our Burnley branch.",
 };
 const burnleyOfficeAddress = "3-5 Red Lion Street, Burnley, BB11 2AE";
 const todmordenBranch =
@@ -195,7 +195,7 @@ export const contactContent: ContactContent = {
     areasLabel: "Current Calderdale coverage",
     areas: areas.current,
     note:
-      `Todmorden branch led by Kelly. Burnley branch led by Nic from ${burnleyOfficeAddress}. If you are in or around Burnley and unsure about availability, get in touch and we will guide you clearly without overpromising.`,
+      `Our Todmorden branch and our Burnley branch at ${burnleyOfficeAddress} give families clear local points of contact. If you are in or around Burnley and unsure about availability, get in touch and we will guide you clearly without overpromising.`,
     branchesTitle: "Active Libra branches",
     branches: [
       {
@@ -215,7 +215,7 @@ export const contactContent: ContactContent = {
       ? {
           ...burnleyBranch.image,
           caption:
-            "Burnley branch led by Nic, adding a visible Libra office presence alongside our Todmorden base.",
+            "Our Burnley branch adds a visible Libra office presence alongside our Todmorden base.",
         }
       : undefined,
     mapTitle: "Libra Support Services contact location",

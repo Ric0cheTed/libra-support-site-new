@@ -34,9 +34,7 @@ export function Footer() {
               <h5 className="font-semibold text-primary-900">Active Branches</h5>
               <ul className="mt-1 space-y-1 text-neutral-700">
                 {branches.map((branch) => (
-                  <li key={branch.name}>
-                    {branch.name} branch led by {branch.lead}
-                  </li>
+                  <li key={branch.name}>Our {branch.name} branch</li>
                 ))}
               </ul>
             </div>

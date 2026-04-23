@@ -56,12 +56,10 @@ export function ContactLocationSection({
                   <div className="mt-4 grid gap-3">
                     {section.branches.map((branch) => (
                       <div
-                        key={`${branch.name}-${branch.lead}`}
+                        key={branch.name}
                         className="rounded-[1.4rem] border border-stone-200/80 bg-stone-50/80 p-4"
                       >
-                        <p className="text-sm font-semibold text-slate-900">
-                          {branch.name} led by {branch.lead}
-                        </p>
+                        <p className="text-sm font-semibold text-slate-900">{branch.name}</p>
                         <p className="mt-2 text-sm leading-6 text-slate-600">
                           {branch.description}
                         </p>

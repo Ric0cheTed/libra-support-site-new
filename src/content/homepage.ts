@@ -216,18 +216,18 @@ export const homepageContent: HomepageContent = {
     eyebrow: "Areas we cover",
     title: "Local home care guided from our Todmorden and Burnley branches",
     description:
-      "Libra now has active operational bases in Todmorden and Burnley. Todmorden is led by Kelly and Burnley is led by Nic, helping families get clear local guidance while we continue growing carefully and responsibly.",
+      "Libra now has active operational bases in Todmorden and Burnley, helping families get clear local guidance while we continue growing carefully and responsibly.",
     items: [
       {
         title: "Todmorden",
         description:
-          "Todmorden branch led by Kelly, with trusted home care and day-to-day support across our established local base.",
+          "Our Todmorden branch offers trusted home care and day-to-day support across our established local base.",
         href: "/areas/todmorden",
       },
       {
         title: "Burnley",
         description:
-          "Burnley branch led by Nic, with a visible local presence and a dedicated Burnley page for families exploring support.",
+          "Our Burnley branch has a visible local presence and a dedicated Burnley page for families exploring support.",
         href: "/areas/burnley",
       },
       {
