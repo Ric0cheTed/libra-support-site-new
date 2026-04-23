@@ -1,14 +1,40 @@
 'use client';
 
 import { useState } from "react";
-import emailjs from 'emailjs-com';
+import emailjs from "emailjs-com";
+import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
 
-import { trackEvent } from '@/lib/ga';
+import { buttonVariants } from "@/components/shared/Button";
+import { BUSINESS_PROFILE } from "@/lib/business-profile";
+import { trackEvent } from "@/lib/ga";
+import { cn } from "@/lib/utils";
+
+const enquiryRoutes = {
+  care: {
+    label: "Care enquiry",
+    email: BUSINESS_PROFILE.emails.careEnquiries,
+  },
+  general: {
+    label: "General or admin enquiry",
+    email: BUSINESS_PROFILE.emails.admin,
+  },
+  jobs: {
+    label: "Job enquiry",
+    email: BUSINESS_PROFILE.emails.jobs,
+  },
+} as const;
+
+type EnquiryType = keyof typeof enquiryRoutes;
+
+const DEFAULT_ENQUIRY_TYPE: EnquiryType = "care";
 
 export function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [enquiryType, setEnquiryType] = useState<EnquiryType>(DEFAULT_ENQUIRY_TYPE);
+
+  const activeRoute = enquiryRoutes[enquiryType];
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,95 +43,170 @@ export function ContactForm() {
     setSuccess(false);
     setError(false);
 
-    trackEvent('contact_form_submit_attempt');
-
-    emailjs.sendForm(
-      'service_j012een',      // Replace
-      'template_70ybm0f',     // Replace
-      e.currentTarget,
-      'gtGWJApm-pHIxB18l'       // Replace
-      ).then(() => {
-      setSuccess(true);
-      setLoading(false);
-
-      trackEvent('generate_lead', {
-        form_name: 'contact',
-      });
-
-      // Auto-hide success toast after a short delay
-      setTimeout(() => setSuccess(false), 6000);
-
-      // Safe form reset after successful send
-      setTimeout(() => {
-        form.reset();
-      }, 100);
-    
-    }).catch((error) => {
-      console.error('FAILED:', error);
-      setError(true);
-      setLoading(false);
-
-      trackEvent('contact_form_submit_error');
-
-      // Auto-hide error toast after a short delay
-      setTimeout(() => setError(false), 6000);
+    trackEvent("contact_form_submit_attempt", {
+      enquiry_type: enquiryType,
+      destination_label: activeRoute.label,
     });
+
+    emailjs
+      .sendForm(
+        "service_j012een",
+        "template_70ybm0f",
+        e.currentTarget,
+        "gtGWJApm-pHIxB18l"
+      )
+      .then(() => {
+        setSuccess(true);
+        setLoading(false);
+        setEnquiryType(DEFAULT_ENQUIRY_TYPE);
+
+        trackEvent("generate_lead", {
+          form_name: "contact",
+          enquiry_type: enquiryType,
+          destination_email: activeRoute.email,
+        });
+
+        setTimeout(() => setSuccess(false), 6000);
+        setTimeout(() => {
+          form.reset();
+        }, 100);
+      })
+      .catch((submissionError) => {
+        console.error("FAILED:", submissionError);
+        setError(true);
+        setLoading(false);
+
+        trackEvent("contact_form_submit_error");
+
+        setTimeout(() => setError(false), 6000);
+      });
   };
 
   return (
-    <div className="max-w-2xl mx-auto py-16 px-4">
-      <h2 className="text-3xl font-bold mb-8">Send us a message</h2>
+    <div className="rounded-[2rem] border border-stone-200/80 bg-white p-6 shadow-[0_28px_70px_-52px_rgba(15,23,42,0.35)] sm:p-8">
+      <div aria-live="polite" className="mb-5 space-y-3">
+        {success ? (
+          <div className="flex items-start gap-3 rounded-[1.3rem] border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-900">
+            <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-600" aria-hidden="true" />
+            <p>Your message has been sent successfully. We will get back to you as soon as we can.</p>
+          </div>
+        ) : null}
 
-      {/* Toast Notifications */}
-      <div className="fixed top-6 right-6 z-50">
-        {success && (
-          <div className="bg-green-500 text-white px-4 py-3 rounded shadow">
-            ✅ Message sent successfully!
+        {error ? (
+          <div className="flex items-start gap-3 rounded-[1.3rem] border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900">
+            <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600" aria-hidden="true" />
+            <p>We could not send your message just now. Please try again or call our team instead.</p>
           </div>
-        )}
-        {error && (
-          <div className="bg-red-500 text-white px-4 py-3 rounded shadow">
-            ❌ Failed to send message. Please try again.
-          </div>
-        )}
+        ) : null}
       </div>
 
-      <form onSubmit={sendEmail} className="space-y-6">
-        <div>
-          <label htmlFor="name" className="block mb-1 font-medium">Name</label>
-          <input type="text" id="name" name="name" required className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <form onSubmit={sendEmail} className="space-y-5">
+        <input type="hidden" name="enquiry_type" value={enquiryType} />
+        <input type="hidden" name="to_email" value={activeRoute.email} />
+        <input type="hidden" name="destination_email" value={activeRoute.email} />
+        <input type="hidden" name="destination_label" value={activeRoute.label} />
+
+        <div className="rounded-[1.5rem] border border-stone-200 bg-stone-50/80 px-4 py-4 text-sm leading-6 text-slate-700">
+          Care enquiries route to{" "}
+          <span className="font-semibold text-slate-900">
+            {BUSINESS_PROFILE.emails.careEnquiries}
+          </span>
+          . Job enquiries route to{" "}
+          <span className="font-semibold text-slate-900">
+            {BUSINESS_PROFILE.emails.jobs}
+          </span>
+          .
+        </div>
+
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label htmlFor="name" className="mb-2 block text-sm font-semibold text-slate-900">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              autoComplete="name"
+              className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="email" className="mb-2 block text-sm font-semibold text-slate-900">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              autoComplete="email"
+              className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
+            />
+          </div>
         </div>
 
         <div>
-          <label htmlFor="email" className="block mb-1 font-medium">Email</label>
-          <input type="email" id="email" name="email" required className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <label htmlFor="enquiryType" className="mb-2 block text-sm font-semibold text-slate-900">
+            Enquiry type
+          </label>
+          <select
+            id="enquiryType"
+            name="enquiry_type_label"
+            value={enquiryType}
+            onChange={(event) => setEnquiryType(event.target.value as EnquiryType)}
+            className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
+          >
+            <option value="care">Care enquiry</option>
+            <option value="general">General or admin enquiry</option>
+            <option value="jobs">Job enquiry</option>
+          </select>
+          <p className="mt-2 text-sm text-slate-600">
+            This helps us send your message to the right inbox straight away.
+          </p>
         </div>
 
         <div>
-          <label htmlFor="phone" className="block mb-1 font-medium">Phone</label>
-          <input type="tel" id="phone" name="phone" className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-slate-900">
+            Phone
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            autoComplete="tel"
+            className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
+          />
         </div>
 
         <div>
-          <label htmlFor="message" className="block mb-1 font-medium">Message</label>
-          <textarea id="message" name="message" required rows={4} className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <label htmlFor="message" className="mb-2 block text-sm font-semibold text-slate-900">
+            Message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            rows={6}
+            placeholder="Tell us a little about the support you are exploring, your area, or the best way for us to get back to you."
+            className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
+          />
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full flex items-center justify-center gap-2 bg-primary text-white font-semibold py-3 rounded hover:bg-primary-dark transition"
+          className={cn(buttonVariants({ variant: "primary" }), "w-full")}
         >
           {loading ? (
             <>
-              <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-              </svg>
-              Sending...
+              <Loader2 className="mr-2 h-5 w-5 animate-spin" aria-hidden="true" />
+              Sending enquiry...
             </>
           ) : (
-            "Send Message"
+            "Send enquiry"
           )}
         </button>
       </form>

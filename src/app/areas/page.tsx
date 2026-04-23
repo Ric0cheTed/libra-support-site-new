@@ -6,7 +6,7 @@ import { MobileStickyCallBar } from '@/components/ui/mobile-sticky-call-bar';
 import { buildPageMetadata } from '@/lib/seo';
 
 export const metadata = buildPageMetadata({
-  title: 'Areas We Cover | Libra Support Services',
+  title: 'Areas We Cover',
   description:
     'Explore home care availability in Todmorden, Hebden Bridge, and Mytholmroyd, with local support tailored to each area.',
   path: '/areas',
