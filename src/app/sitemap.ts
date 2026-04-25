@@ -17,6 +17,7 @@ const routes = [
   '/services/personal-care',
   '/care-fees',
   '/areas',
+  '/areas/burnley',
   '/areas/calderdale',
   '/areas/todmorden',
   '/areas/hebden-bridge',
