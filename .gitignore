@@ -1,14 +1,32 @@
 # .gitignore
-.next/
+
+# dependencies
 node_modules/
+
+# build output
+.next/
 out/
 dist/
-*.log
-.DS_Store
+tsconfig.tsbuildinfo
+
+# environment files
 .env
+.env.local
+.env.*
+!.env.example
+!.env.sample
+
+# logs and local reports
+*.log
+*.report.html
+analyze/
 
 # local artifacts
 *.patch
 *.zip
-tsconfig.tsbuildinfo
+*.tmp
+*.temp
 New Text Document.txt
+
+# system files
+.DS_Store
