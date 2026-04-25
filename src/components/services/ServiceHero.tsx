@@ -3,6 +3,7 @@ import { CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/shared/Button";
 import { Container } from "@/components/shared/Container";
+import { HeroMediaSupportCard } from "@/components/shared/HeroMediaSupportCard";
 import type { ServiceHeroContent } from "@/types/services";
 
 type ServiceHeroProps = {
@@ -57,26 +58,20 @@ export function ServiceHero({ hero }: ServiceHeroProps) {
                   priority
                 />
                 <div
-                  className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.02),rgba(15,23,42,0.32))]"
+                  className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08),rgba(15,23,42,0.46))]"
                   aria-hidden="true"
                 />
               </div>
-              <div className="absolute left-5 top-5 rounded-full border border-white/70 bg-white/92 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-700 shadow-[0_20px_40px_-30px_rgba(15,23,42,0.45)] sm:left-6 sm:top-6">
+              <div className="absolute left-5 top-5 rounded-full border border-white/80 bg-white/96 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-800 shadow-[0_24px_45px_-30px_rgba(15,23,42,0.5)] backdrop-blur-md sm:left-6 sm:top-6">
                 Local, CQC-regulated support
               </div>
               {hero.supportCard ? (
-                <div className="absolute bottom-5 left-5 right-5 rounded-[1.6rem] border border-white/80 bg-white/94 p-5 shadow-[0_26px_60px_-38px_rgba(15,23,42,0.5)] backdrop-blur sm:bottom-6 sm:left-6 sm:right-6 sm:p-6">
-                  {hero.supportCard.eyebrow ? (
-                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-slate-500">
-                      {hero.supportCard.eyebrow}
-                    </p>
-                  ) : null}
-                  <h2 className="mt-2 text-lg font-semibold text-slate-950 sm:text-xl">
-                    {hero.supportCard.title}
-                  </h2>
-                  <p className="mt-2 text-sm leading-7 text-slate-600 sm:text-[0.98rem]">
-                    {hero.supportCard.description}
-                  </p>
+                <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6 sm:right-6">
+                  <HeroMediaSupportCard
+                    eyebrow={hero.supportCard.eyebrow}
+                    title={hero.supportCard.title}
+                    description={hero.supportCard.description}
+                  />
                 </div>
               ) : null}
             </div>
