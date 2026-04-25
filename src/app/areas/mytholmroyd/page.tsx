@@ -6,9 +6,9 @@ import { MobileStickyCallBar } from '@/components/ui/mobile-sticky-call-bar';
 import { absoluteUrl, buildPageMetadata, seo } from '@/lib/seo';
 
 export const metadata = buildPageMetadata({
-  title: 'Home Care in Mytholmroyd | Libra Support Services',
+  title: 'Home Care in Mytholmroyd',
   description:
-    'Home care in Mytholmroyd from Libra Support Services, with person-centred support, companionship, and flexible visits at home.',
+    'Home care in Mytholmroyd with person-centred support, companionship, and flexible visits at home.',
   path: '/areas/mytholmroyd',
 });
 

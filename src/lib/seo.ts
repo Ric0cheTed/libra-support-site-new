@@ -5,12 +5,20 @@ import { BUSINESS_PROFILE } from './business-profile';
 const SITE_URL = 'https://libra-support.co.uk';
 const SITE_NAME = BUSINESS_PROFILE.name;
 const DEFAULT_DESCRIPTION =
-  'CQC-regulated home care in Todmorden, Hebden Bridge, Mytholmroyd and nearby areas. Compassionate support for home care, live-in care and respite care.';
+  'CQC-regulated home care from Libra Support Services, with active branches in Todmorden and Burnley and flexible support across Todmorden, Hebden Bridge, Mytholmroyd, and nearby areas.';
+const GENERAL_CONTACT_EMAIL = BUSINESS_PROFILE.emails.admin;
+
+const activeAreaServed = Array.from(
+  new Set([
+    ...BUSINESS_PROFILE.areas.current,
+    ...BUSINESS_PROFILE.branches.map((branch) => branch.name),
+  ])
+);
 
 export const seo = {
   siteUrl: SITE_URL,
   siteName: SITE_NAME,
-  defaultTitle: `${SITE_NAME} | Home Care in Todmorden, UK`,
+  defaultTitle: `${SITE_NAME} | Home Care in Todmorden, Burnley & Calderdale`,
   defaultDescription: DEFAULT_DESCRIPTION,
   defaultImage: '/images/default.webp',
   locale: 'en_GB',
@@ -21,6 +29,12 @@ export function absoluteUrl(path = '/') {
   return new URL(normalizedPath, seo.siteUrl).toString();
 }
 
+export function canonicalUrl(path = '/') {
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  const withTrailingSlash = normalizedPath === '/' ? '/' : `${normalizedPath.replace(/\/$/, '')}/`;
+  return new URL(withTrailingSlash, seo.siteUrl).toString();
+}
+
 type BuildPageMetadataInput = {
   title: string;
   description: string;
@@ -28,7 +42,7 @@ type BuildPageMetadataInput = {
 };
 
 export function buildPageMetadata({ title, description, path }: BuildPageMetadataInput): Metadata {
-  const canonical = absoluteUrl(path);
+  const canonical = canonicalUrl(path);
 
   return {
     title,
@@ -69,6 +83,11 @@ export function getOrganizationStructuredData() {
     BUSINESS_PROFILE.links.cqcLocation,
   ].filter((link): link is string => Boolean(link));
 
+  const streetAddress =
+    Array.isArray(BUSINESS_PROFILE.address.lines) && BUSINESS_PROFILE.address.lines.length > 0
+      ? BUSINESS_PROFILE.address.lines.slice(0, 2).join(', ')
+      : BUSINESS_PROFILE.address.line1;
+
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -81,11 +100,36 @@ export function getOrganizationStructuredData() {
         image: absoluteUrl(seo.defaultImage),
         description: seo.defaultDescription,
         telephone: BUSINESS_PROFILE.phones.primary.display,
-        email: BUSINESS_PROFILE.email,
-        areaServed: BUSINESS_PROFILE.areas.current,
+        email: GENERAL_CONTACT_EMAIL,
+        areaServed: activeAreaServed,
+        contactPoint: [
+          {
+            '@type': 'ContactPoint',
+            contactType: 'care enquiries',
+            telephone: BUSINESS_PROFILE.phones.primary.display,
+            email: BUSINESS_PROFILE.emails.careEnquiries,
+          },
+          {
+            '@type': 'ContactPoint',
+            contactType: 'administration',
+            telephone: BUSINESS_PROFILE.phones.primary.display,
+            email: BUSINESS_PROFILE.emails.admin,
+          },
+          {
+            '@type': 'ContactPoint',
+            contactType: 'recruitment',
+            telephone: BUSINESS_PROFILE.phones.primary.display,
+            email: BUSINESS_PROFILE.emails.jobs,
+          },
+        ],
+        department: BUSINESS_PROFILE.branches.map((branch) => ({
+          '@type': 'Organization',
+          name: `${seo.siteName} ${branch.name} Branch`,
+          description: branch.summary,
+        })),
         address: {
           '@type': 'PostalAddress',
-          streetAddress: BUSINESS_PROFILE.address.line1,
+          streetAddress,
           addressLocality: BUSINESS_PROFILE.address.city,
           addressRegion: BUSINESS_PROFILE.address.region,
           postalCode: BUSINESS_PROFILE.address.postalCode,
@@ -108,7 +152,7 @@ export function getOrganizationStructuredData() {
         provider: {
           '@id': `${seo.siteUrl}/#localbusiness`,
         },
-        areaServed: 'Todmorden, West Yorkshire, UK',
+        areaServed: activeAreaServed,
         url: absoluteUrl('/services/home-care'),
       },
       {
@@ -118,7 +162,7 @@ export function getOrganizationStructuredData() {
         provider: {
           '@id': `${seo.siteUrl}/#localbusiness`,
         },
-        areaServed: 'Todmorden, West Yorkshire, UK',
+        areaServed: activeAreaServed,
         url: absoluteUrl('/services/live-in-care'),
       },
       {
@@ -128,8 +172,38 @@ export function getOrganizationStructuredData() {
         provider: {
           '@id': `${seo.siteUrl}/#localbusiness`,
         },
-        areaServed: 'Todmorden, West Yorkshire, UK',
+        areaServed: activeAreaServed,
         url: absoluteUrl('/services/respite-care'),
+      },
+      {
+        '@type': 'Service',
+        name: 'Dementia Support',
+        serviceType: 'Dementia support at home',
+        provider: {
+          '@id': `${seo.siteUrl}/#localbusiness`,
+        },
+        areaServed: activeAreaServed,
+        url: absoluteUrl('/services/dementia-support'),
+      },
+      {
+        '@type': 'Service',
+        name: 'Companionship',
+        serviceType: 'Companionship at home',
+        provider: {
+          '@id': `${seo.siteUrl}/#localbusiness`,
+        },
+        areaServed: activeAreaServed,
+        url: absoluteUrl('/services/companionship'),
+      },
+      {
+        '@type': 'Service',
+        name: 'Personal Care',
+        serviceType: 'Personal care at home',
+        provider: {
+          '@id': `${seo.siteUrl}/#localbusiness`,
+        },
+        areaServed: activeAreaServed,
+        url: absoluteUrl('/services/personal-care'),
       },
     ],
   };
