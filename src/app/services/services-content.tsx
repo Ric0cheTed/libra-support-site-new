@@ -1,95 +1,57 @@
-'use client';
+import { ServiceCoverage } from "@/components/services/ServiceCoverage";
+import { ServiceFaqs } from "@/components/services/ServiceFaqs";
+import { ServiceFinalCta } from "@/components/services/ServiceFinalCta";
+import { ServiceHero } from "@/components/services/ServiceHero";
+import { ServiceProcess } from "@/components/services/ServiceProcess";
+import { ServiceWhyLibra } from "@/components/services/ServiceWhyLibra";
+import { Button } from "@/components/shared/Button";
+import { Container } from "@/components/shared/Container";
+import { SectionHeading } from "@/components/shared/SectionHeading";
+import { ServiceCard } from "@/components/shared/ServiceCard";
+import { getServicesHubContent } from "@/content/services";
 
-import Image from 'next/image';
-import Link from 'next/link';
+export default function ServicesContent() {
+  const content = getServicesHubContent();
 
-import { CallRequestCallbackCta } from '@/components/ui/call-request-callback-cta';
-
-export default function ServicesPage() {
   return (
-    <>
-      {/* Services Overview Section */}
-      <section className="py-20 bg-gray-50 animate-fade-slide-up">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-6 text-primary">Home Care Services in Todmorden & West Yorkshire</h1>
-          <p className="text-lg text-gray-700 mb-4">
-            Choose flexible, CQC-regulated support that keeps people safe, comfortable and independent at home.
-          </p>
-          <ul className="text-gray-700 max-w-3xl mx-auto text-left sm:text-center space-y-1 mb-6">
-            <li>• Home care visits, live-in care and respite cover</li>
-            <li>• Trained, DBS-checked carers with safeguarding focus</li>
-            <li>• Support across Todmorden, Calderdale and nearby West Yorkshire areas</li>
-          </ul>
-          <div className="mb-12 flex justify-center">
-            <CallRequestCallbackCta />
+    <div className="-mx-4 -mb-8 sm:-mx-6 lg:-mx-8">
+      <ServiceHero hero={content.hero} />
+
+      <section className="bg-white py-16 sm:py-20">
+        <Container>
+          <SectionHeading
+            eyebrow={content.servicesSection.eyebrow}
+            title={content.servicesSection.title}
+            description={content.servicesSection.description}
+            align="center"
+          />
+
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {content.servicesSection.items.map((service) => (
+              <ServiceCard key={`${service.title}-${service.href}`} {...service} />
+            ))}
           </div>
 
-          <p className="text-sm text-gray-600 mb-10">
-            Looking for local availability?{' '}
-            <Link href="/areas" className="underline">
-              See areas we cover
-            </Link>
-            . Want pricing details?{' '}
-            <Link href="/care-fees" className="underline">
-              View care fees
-            </Link>
-            .
-          </p>
-
-          <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-            <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
-              <Image
-                width={600}
-                height={160}
-                src="/images/home-care.webp"
-                alt="Home Care"
-                className="rounded mb-4 h-40 object-cover w-full"
-              />
-              <h3 className="text-xl font-semibold mb-2">Home Care</h3>
-              <p className="text-gray-600 mb-4">
-                Flexible, daily support to help you or your loved one live safely and comfortably at home.
+          <div className="mx-auto mt-10 max-w-3xl rounded-[1.8rem] border border-stone-200/80 bg-stone-50/85 px-6 py-7 text-center shadow-[0_24px_60px_-44px_rgba(15,23,42,0.28)] sm:px-8">
+            {content.servicesSection.supportingNote ? (
+              <p className="text-sm leading-7 text-slate-600 sm:text-base">
+                {content.servicesSection.supportingNote}
               </p>
-              <a href="/services/home-care" className="mt-auto inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark">
-                Learn More
-              </a>
-            </div>
-
-            <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
-              <Image
-                width={600}
-                height={160}
-                src="/images/live-in-care.webp"
-                alt="Live-in Care"
-                className="rounded mb-4 h-40 object-cover w-full"
-              />
-              <h3 className="text-xl font-semibold mb-2">Live-in Care</h3>
-              <p className="text-gray-600 mb-4">
-                24/7 live-in carers offering companionship, personal care, and complete support.
-              </p>
-              <a href="/services/live-in-care" className="mt-auto inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark">
-                Learn More
-              </a>
-            </div>
-
-            <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
-              <Image
-                width={600}
-                height={160}
-                src="/images/respite-care.webp"
-                alt="Respite Care"
-                className="rounded mb-4 h-40 object-cover w-full"
-              />
-              <h3 className="text-xl font-semibold mb-2">Respite Care</h3>
-              <p className="text-gray-600 mb-4">
-                Short-term and emergency care to give family caregivers a break and peace of mind.
-              </p>
-              <a href="/services/respite-care" className="mt-auto inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark">
-                Learn More
-              </a>
+            ) : null}
+            <div className="mt-6 flex justify-center">
+              <Button href={content.servicesSection.cta.href} variant="secondary">
+                {content.servicesSection.cta.label}
+              </Button>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
-    </>
+
+      <ServiceWhyLibra section={content.whyLibra} />
+      <ServiceProcess section={content.process} />
+      <ServiceCoverage section={content.coverage} />
+      <ServiceFaqs section={content.faqs} />
+      <ServiceFinalCta section={content.finalCta} />
+    </div>
   );
 }

@@ -1,1 +1,1 @@
-// Button component
+export { Button, buttonVariants } from "@/components/shared/Button";

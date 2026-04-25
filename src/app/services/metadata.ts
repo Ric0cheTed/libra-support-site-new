@@ -1,8 +1,8 @@
 import { buildPageMetadata } from '@/lib/seo';
 
 export const metadata = buildPageMetadata({
-  title: 'Care Services in Todmorden',
+  title: 'Home Care Services in Todmorden & West Yorkshire',
   description:
-    'Explore home care, live-in care and respite care services delivered by Libra Support Services across Todmorden and surrounding areas.',
+    'Explore home care, live-in care, respite care, and dementia support delivered across Todmorden, Hebden Bridge, and Mytholmroyd.',
   path: '/services',
 });
