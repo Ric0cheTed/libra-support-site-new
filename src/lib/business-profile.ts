@@ -168,6 +168,8 @@ export const BUSINESS_PROFILE: BusinessProfile = {
       coverageNote: "Rural support is available from the Todmorden branch where local availability allows.",
       address: todmordenOfficeAddress,
       directionsUrl: createGoogleDirectionsUrl(todmordenOfficeAddress.lines),
+      visitingNote:
+        "Please contact us before visiting so we can make sure the right person is available to help.",
     },
     {
       name: "Burnley",
