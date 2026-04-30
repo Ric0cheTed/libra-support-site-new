@@ -35,6 +35,11 @@ export type BranchProfile = {
   name: string;
   lead: string;
   summary: string;
+  coverageAreas?: string[];
+  coverageNote?: string;
+  address?: Address;
+  directionsUrl?: string;
+  visitingNote?: string;
   image?: BranchImage;
 };
 
@@ -69,8 +74,61 @@ export type BusinessProfile = {
   };
 };
 
-const directionsQuery =
-  "44 Burnley Road, Room 102, Todmorden Community College, Todmorden, West Yorkshire OL14 7BX, United Kingdom";
+const todmordenOfficeAddress: Address = {
+  line1: "44 Burnley Road",
+  line2: "Room 102, Todmorden Community College",
+  city: "Todmorden",
+  region: "West Yorkshire",
+  postalCode: "OL14 7BX",
+  country: "United Kingdom",
+  lines: [
+    "44 Burnley Road",
+    "Room 102, Todmorden Community College",
+    "Todmorden",
+    "West Yorkshire",
+    "OL14 7BX",
+    "United Kingdom",
+  ],
+};
+
+const burnleyOfficeAddress: Address = {
+  line1: "3-5 Red Lion Street",
+  city: "Burnley",
+  region: "Lancashire",
+  postalCode: "BB11 2AE",
+  country: "United Kingdom",
+  lines: [
+    "3-5 Red Lion Street",
+    "Burnley",
+    "BB11 2AE",
+    "United Kingdom",
+  ],
+};
+
+const todmordenBranchCoverage = [
+  "Cornholme",
+  "Todmorden",
+  "Walsden",
+  "Hebden Bridge",
+  "Mytholmroyd",
+] as const;
+
+const burnleyBranchCoverage = [
+  "Burnley",
+  "Cliviger",
+  "Worsthorne",
+  "Brunshaw",
+] as const;
+
+export function formatAddressInline(lines: readonly string[]) {
+  return lines.join(", ");
+}
+
+export function createGoogleDirectionsUrl(lines: readonly string[]) {
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+    formatAddressInline(lines)
+  )}`;
+}
 
 export const BUSINESS_PROFILE: BusinessProfile = {
   name: "Libra Support Services",
@@ -93,22 +151,7 @@ export const BUSINESS_PROFILE: BusinessProfile = {
     display: "Request a call back (WhatsApp)",
     href: "https://wa.me/447943157855",
   },
-  address: {
-    line1: "44 Burnley Road",
-    line2: "Room 102, Todmorden Community College",
-    city: "Todmorden",
-    region: "West Yorkshire",
-    postalCode: "OL14 7BX",
-    country: "United Kingdom",
-    lines: [
-      "44 Burnley Road",
-      "Room 102, Todmorden Community College",
-      "Todmorden",
-      "West Yorkshire",
-      "OL14 7BX",
-      "United Kingdom",
-    ],
-  },
+  address: todmordenOfficeAddress,
   openingHours: {
     days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
     opens: "09:00",
@@ -121,12 +164,21 @@ export const BUSINESS_PROFILE: BusinessProfile = {
       lead: "Kelly",
       summary:
         "Our Todmorden branch provides Libra's established local contact base and day-to-day Calderdale support.",
+      coverageAreas: [...todmordenBranchCoverage],
+      coverageNote: "Rural support is available from the Todmorden branch where local availability allows.",
+      address: todmordenOfficeAddress,
+      directionsUrl: createGoogleDirectionsUrl(todmordenOfficeAddress.lines),
     },
     {
       name: "Burnley",
       lead: "Nic",
       summary:
         "Our Burnley branch gives Libra an active second base as local availability and trusted support continue to expand carefully.",
+      coverageAreas: [...burnleyBranchCoverage],
+      address: burnleyOfficeAddress,
+      directionsUrl: createGoogleDirectionsUrl(burnleyOfficeAddress.lines),
+      visitingNote:
+        "Please contact us before visiting so we can make sure the right person is available to help.",
       image: {
         src: "/images/burnley-office-frontage.png",
         alt: "Frontage of the Libra Support Services Burnley office",
@@ -134,8 +186,11 @@ export const BUSINESS_PROFILE: BusinessProfile = {
     },
   ],
   areas: {
-    current: ["Todmorden", "Hebden Bridge", "Mytholmroyd"],
-    comingSoon: ["Cliviger", "Worsthorne", "Pike Hill"],
+    current: [
+      ...todmordenBranchCoverage,
+      ...burnleyBranchCoverage,
+    ],
+    comingSoon: [],
   },
   links: {
     companiesHouse:
@@ -147,9 +202,7 @@ export const BUSINESS_PROFILE: BusinessProfile = {
   map: {
     embedUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d951.4129929293816!2d-2.1014253!3d53.7137928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bddf5f1265d1b%3A0x56ae2222483c8d62!2sTodmorden%20Community%20College!5e0!3m2!1sen!2suk!4v1716999999999!5m2!1sen!2suk",
-    directionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-      directionsQuery
-    )}`,
+    directionsUrl: createGoogleDirectionsUrl(todmordenOfficeAddress.lines),
   },
 };
 

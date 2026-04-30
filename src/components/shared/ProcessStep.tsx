@@ -19,7 +19,7 @@ export function ProcessStep({
         className
       )}
     >
-      <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-slate-950 text-base font-semibold text-white shadow-sm">
+      <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary-900 text-base font-semibold text-white shadow-sm ring-4 ring-primary-100">
         <span className="sr-only">Step </span>
         {stepNumber}
       </div>

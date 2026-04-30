@@ -11,9 +11,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-primary text-white shadow-[0_20px_46px_-24px_rgba(34,127,70,0.9)] hover:bg-primary-dark",
+          "bg-primary text-white shadow-[0_20px_46px_-24px_rgba(34,127,70,0.9)] hover:bg-primary-dark hover:shadow-[0_22px_50px_-24px_rgba(34,127,70,0.95)]",
         secondary:
-          "border border-stone-300 bg-white/95 text-slate-900 shadow-[0_14px_30px_-24px_rgba(15,23,42,0.28)] hover:border-stone-400 hover:bg-stone-50",
+          "border border-primary/20 bg-white/95 text-primary-900 shadow-[0_14px_30px_-24px_rgba(15,23,42,0.28)] hover:border-primary/40 hover:bg-primary-50",
+        inverse:
+          "border border-white bg-white text-primary-900 shadow-[0_18px_42px_-28px_rgba(15,23,42,0.45)] hover:bg-primary-50",
+        inverseSecondary:
+          "border border-white/70 bg-transparent text-white shadow-[0_14px_30px_-24px_rgba(15,23,42,0.35)] hover:border-white hover:bg-white/10",
       },
       size: {
         default: "min-h-[3.25rem] px-6 py-3 text-sm sm:text-base",

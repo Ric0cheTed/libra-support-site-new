@@ -86,8 +86,8 @@ export function ContactForm() {
     <div className="rounded-[2rem] border border-stone-200/80 bg-white p-6 shadow-[0_28px_70px_-52px_rgba(15,23,42,0.35)] sm:p-8">
       <div aria-live="polite" className="mb-5 space-y-3">
         {success ? (
-          <div className="flex items-start gap-3 rounded-[1.3rem] border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-900">
-            <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-600" aria-hidden="true" />
+          <div className="flex items-start gap-3 rounded-[1.3rem] border border-primary-200 bg-primary-50 px-4 py-3 text-sm text-primary-900">
+            <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary-700" aria-hidden="true" />
             <p>Your message has been sent successfully. We will get back to you as soon as we can.</p>
           </div>
         ) : null}

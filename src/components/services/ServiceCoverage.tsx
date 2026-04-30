@@ -27,9 +27,9 @@ export function ServiceCoverage({ section }: ServiceCoverageProps) {
                 <Link
                   key={area.label}
                   href={area.href}
-                  className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-stone-50 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-stone-400 hover:bg-stone-100"
+                  className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-stone-50 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-accent/60 hover:bg-accent-50"
                 >
-                  <MapPin className="h-4 w-4 text-primary" aria-hidden="true" />
+                  <MapPin className="h-4 w-4 text-accent-700" aria-hidden="true" />
                   {area.label}
                 </Link>
               ))}

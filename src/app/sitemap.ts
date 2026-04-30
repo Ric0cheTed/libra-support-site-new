@@ -10,7 +10,6 @@ const routes = [
   '/about/team',
   '/services',
   '/services/home-care',
-  '/services/live-in-care',
   '/services/respite-care',
   '/services/dementia-support',
   '/services/companionship',

@@ -3,9 +3,11 @@ import { AreaFaqs } from "@/components/areas/AreaFaqs";
 import { AreaFinalCta } from "@/components/areas/AreaFinalCta";
 import { AreaHero } from "@/components/areas/AreaHero";
 import { AreaIntro } from "@/components/areas/AreaIntro";
+import { AreaOfficeFinder } from "@/components/areas/AreaOfficeFinder";
 import { AreaProcess } from "@/components/areas/AreaProcess";
 import { AreaServices } from "@/components/areas/AreaServices";
 import { AreaWhyLibra } from "@/components/areas/AreaWhyLibra";
+import { StructuredDataScript } from "@/components/seo/StructuredDataScript";
 import { absoluteUrl, seo } from "@/lib/seo";
 import type { AreaPageContent } from "@/types/areas";
 
@@ -32,13 +34,11 @@ export function AreaPageTemplate({ page }: AreaPageTemplateProps) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData, null, 2) }}
-      />
+      <StructuredDataScript data={structuredData} />
       <div className="-mx-4 -mb-8 sm:-mx-6 lg:-mx-8">
         <AreaHero hero={page.hero} />
         <AreaIntro section={page.intro} />
+        {page.officeFinder ? <AreaOfficeFinder section={page.officeFinder} /> : null}
         <AreaServices section={page.services} />
         <AreaWhyLibra section={page.whyLibra} />
         <AreaProcess section={page.process} />

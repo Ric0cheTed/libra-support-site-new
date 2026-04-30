@@ -10,7 +10,7 @@ export function TrustItem({ title, description, className }: TrustItemProps) {
   return (
     <article
       className={cn(
-        "rounded-[1.75rem] border border-stone-200/80 bg-stone-50/80 p-6 shadow-[0_22px_50px_-40px_rgba(15,23,42,0.28)] sm:p-7",
+        "rounded-[1.75rem] border border-primary/10 bg-primary-50/50 p-6 shadow-[0_22px_50px_-40px_rgba(15,23,42,0.28)] sm:p-7",
         className
       )}
     >

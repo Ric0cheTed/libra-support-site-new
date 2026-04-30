@@ -28,7 +28,7 @@ export function AboutTeamPreview({ section }: AboutTeamPreviewProps) {
                 aria-hidden="true"
               />
             </div>
-            <div className="absolute left-5 top-5 rounded-full border border-white/70 bg-white/92 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-700 shadow-[0_20px_40px_-30px_rgba(15,23,42,0.45)] sm:left-6 sm:top-6">
+            <div className="absolute left-5 top-5 rounded-full border border-white/70 bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-700 shadow-[0_20px_40px_-30px_rgba(15,23,42,0.45)] sm:left-6 sm:top-6">
               People behind the service
             </div>
           </div>

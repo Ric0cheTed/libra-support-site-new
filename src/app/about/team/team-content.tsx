@@ -11,8 +11,9 @@ export default function TeamPage() {
             Meet the Libra Support Team
           </h1>
           <p className="text-lg text-gray-700 mb-12">
-            Our carers and support staff are passionate professionals committed to dignity,
-            independence, and personal wellbeing.
+            Our carers, support staff, coordinators, and managers are Libra&apos;s Home Care
+            Heroes: passionate professionals committed to dignity, independence, personal
+            wellbeing, and making a Positive Impact each day.
           </p>
 
             <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">

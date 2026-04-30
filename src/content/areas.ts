@@ -1,8 +1,28 @@
-import { BUSINESS_PROFILE } from "@/lib/business-profile";
+import {
+  BUSINESS_PROFILE,
+  formatAddressInline,
+  formatInlineList,
+} from "@/lib/business-profile";
 import type { AreaPageContent, AreaPageKey } from "@/types/areas";
 
 const primaryPhone = BUSINESS_PROFILE.phones.primary;
-const burnleyOfficeAddress = "3-5 Red Lion Street, Burnley, BB11 2AE";
+const todmordenBranch = BUSINESS_PROFILE.branches.find((branch) => branch.name === "Todmorden");
+const burnleyBranch = BUSINESS_PROFILE.branches.find((branch) => branch.name === "Burnley");
+
+if (!todmordenBranch?.coverageAreas?.length) {
+  throw new Error("Todmorden branch coverage is missing from BUSINESS_PROFILE.");
+}
+
+if (!burnleyBranch?.address || !burnleyBranch.directionsUrl || !burnleyBranch.coverageAreas?.length) {
+  throw new Error("Burnley branch location or coverage is missing from BUSINESS_PROFILE.");
+}
+
+const todmordenCoverage = todmordenBranch.coverageAreas;
+const burnleyCoverage = burnleyBranch.coverageAreas;
+const burnleyOfficeAddress = formatAddressInline(burnleyBranch.address.lines);
+const burnleyVisitNote =
+  burnleyBranch.visitingNote ??
+  "Please contact us before visiting so we can make sure the right person is available to help.";
 
 const areaProcessSteps = [
   {
@@ -27,8 +47,12 @@ const areaProcessSteps = [
   },
 ];
 
-function createAreaServiceItems(areaLabel: string) {
-  return [
+function createAreaServiceItems(
+  areaLabel: string,
+  options: { includePersonalCare?: boolean } = {}
+) {
+  const { includePersonalCare = true } = options;
+  const items = [
     {
       title: "Home Care",
       description: `Flexible day-to-day home care in ${areaLabel} for routines, wellbeing, and independent living at home.`,
@@ -40,16 +64,21 @@ function createAreaServiceItems(areaLabel: string) {
       href: "/services/companionship",
     },
     {
-      title: "Personal Care",
-      description: `Respectful personal care in ${areaLabel}, delivered with dignity and shaped around daily routines.`,
-      href: "/services/personal-care",
-    },
-    {
       title: "Respite Care",
       description: `Short-term respite support in ${areaLabel} that helps families create breathing space while care continues.`,
       href: "/services/respite-care",
     },
   ];
+
+  if (includePersonalCare) {
+    items.push({
+      title: "Personal Care",
+      description: `Respectful personal care in ${areaLabel}, delivered with dignity and shaped around daily routines.`,
+      href: "/services/personal-care",
+    });
+  }
+
+  return items;
 }
 
 function createAreaFaqItems(areaLabel: string, supportSummary: string) {
@@ -180,14 +209,20 @@ export const areaPageContent = {
     },
     coverage: {
       eyebrow: "Nearby reassurance",
-      title: "Supporting families in Todmorden and across nearby Calderdale communities",
+      title: "Supporting families through our Todmorden branch area",
       description:
-        "Families in Todmorden often also ask about nearby areas. We can guide you clearly on support across neighbouring communities too.",
-      areas: [
-        { label: "Hebden Bridge", href: "/areas/hebden-bridge" },
-        { label: "Mytholmroyd", href: "/areas/mytholmroyd" },
-        { label: "Calderdale", href: "/areas/calderdale" },
-      ],
+        `Our Todmorden branch covers ${formatInlineList(
+          todmordenCoverage
+        )}, with rural support available where local availability allows.`,
+      areas: todmordenCoverage.map((area) => ({
+        label: area,
+        href:
+          area === "Hebden Bridge"
+            ? "/areas/hebden-bridge"
+            : area === "Mytholmroyd"
+              ? "/areas/mytholmroyd"
+              : "/areas/todmorden",
+      })),
       cta: {
         label: "Explore Areas We Cover",
         href: "/areas",
@@ -374,14 +409,14 @@ export const areaPageContent = {
     metadata: {
       title: "Home Care in Burnley",
       description:
-        "Thoughtful home care in Burnley with personal care, companionship, respite support, and flexible day-to-day help at home from Libra Support Services.",
+        "Thoughtful home care in Burnley with companionship, respite support, wellbeing checks, and flexible day-to-day help at home from Libra Support Services.",
       path: "/areas/burnley",
     },
     hero: {
       eyebrow: "Local home care in Burnley",
       title: "Trusted home care in Burnley, with flexible support shaped around daily life",
       description:
-        "Libra Support Services provides practical, person-centred support in Burnley, helping people stay safe, comfortable, and as independent as possible at home. From personal care and companionship to respite support for families, care is tailored around the individual and backed by our growing Burnley branch.",
+        "Libra Support Services provides practical, person-centred support in Burnley, helping people stay safe, comfortable, and as independent as possible at home. From companionship and wellbeing support to respite help for families, care is tailored around the individual and backed by our growing Burnley branch.",
       primaryCta: {
         label: "Book a Free Care Consultation",
         href: "/contact",
@@ -392,7 +427,7 @@ export const areaPageContent = {
         ariaLabel: `Call Libra Support Services on ${primaryPhone.display}`,
       },
       highlights: [
-        "Personal care and daily routines",
+        "Home care and daily reassurance",
         "Companionship and wellbeing support",
         "Flexible visits to match routines",
         "Local Burnley office presence",
@@ -415,9 +450,34 @@ export const areaPageContent = {
         "For families in Burnley, care should feel dependable, practical, and personal. We focus on helping people remain comfortable at home with support that fits around routines, wellbeing, and the reassurance families need.",
       points: [
         `Our Burnley branch has a local office at ${burnleyOfficeAddress}.`,
+        `The Burnley branch covers ${formatInlineList(burnleyCoverage)}.`,
         "Support is tailored around routines, preferences, and what helps someone feel safe and respected at home.",
-        "Care can include personal support, companionship, respite cover, and practical help with day-to-day living.",
+        "Care can include companionship, respite cover, wellbeing checks, and practical help with day-to-day living.",
         "Families comparing care in Burnley benefit from a real local branch presence that is easier to reach and more locally focused.",
+      ],
+    },
+    officeFinder: {
+      eyebrow: "Find our Burnley office",
+      title: "Get directions to our Burnley office",
+      description:
+        "Our Burnley office gives families a visible local point of contact when exploring home care, domiciliary care, companionship, or respite support with Libra Support Services in Burnley.",
+      officeLabel: "Libra Support Services Burnley office",
+      addressLines: burnleyBranch.address.lines,
+      directionsCta: {
+        label: "Open in Google Maps",
+        href: burnleyBranch.directionsUrl,
+      },
+      callCta: {
+        label: `Call ${primaryPhone.display}`,
+        href: primaryPhone.href,
+        ariaLabel: `Call Libra Support Services on ${primaryPhone.display}`,
+      },
+      visitNote: burnleyVisitNote,
+      localTrustTitle: "Visiting the office?",
+      localTrustPoints: [
+        "Please contact us before visiting so we can make sure the right person is available to help.",
+        "Families looking for home care in Burnley can use the office as a clear local reference point while we talk through availability and the right next step.",
+        "The Burnley branch supports Libra's growing local presence for care company and domiciliary care searches in the area.",
       ],
     },
     services: {
@@ -425,7 +485,7 @@ export const areaPageContent = {
       title: "Flexible support built around the person and their routine",
       description:
         "Our Burnley support offering is shaped around the individual, with practical care that helps daily life feel more settled, comfortable, and manageable at home.",
-      items: createAreaServiceItems("Burnley"),
+      items: createAreaServiceItems("Burnley", { includePersonalCare: false }),
       note:
         "If you are comparing local care options in Burnley, we can help you understand the right support level, the services available, and what the next step could look like.",
       cta: {
@@ -474,15 +534,12 @@ export const areaPageContent = {
     },
     coverage: {
       eyebrow: "Nearby reassurance",
-      title: "Supporting families in Burnley and surrounding areas",
+      title: "Supporting families through our Burnley branch area",
       description:
-        "If you are exploring care in or around Burnley, we can help you understand current availability and the kind of support that may be right.",
-      areas: [
-        { label: "Burnley", href: "/areas/burnley" },
-        { label: "Calderdale", href: "/areas/calderdale" },
-        { label: "Todmorden", href: "/areas/todmorden" },
-        { label: "Hebden Bridge", href: "/areas/hebden-bridge" },
-      ],
+        `Our Burnley branch currently covers ${formatInlineList(
+          burnleyCoverage
+        )}. If you are nearby and unsure about availability, we will guide you clearly.`,
+      areas: burnleyCoverage.map((area) => ({ label: area, href: "/areas/burnley" })),
       cta: {
         label: "Explore Areas We Cover",
         href: "/areas",
@@ -495,7 +552,7 @@ export const areaPageContent = {
         "These answers can help if you are exploring support in Burnley and want a clearer understanding of what is available.",
       items: createAreaFaqItems(
         "Burnley",
-        "Support in Burnley can include personal care, companionship, wellbeing checks, respite support, meal preparation, and wider home care tailored to the individual."
+        "Support in Burnley can include companionship, wellbeing checks, respite support, meal preparation, and wider home care tailored to the individual."
       ),
       cta: {
         label: "View All FAQs",
@@ -623,13 +680,18 @@ export const areaPageContent = {
       eyebrow: "Nearby reassurance",
       title: "Supporting families across Calderdale and nearby communities",
       description:
-        "If you are comparing support in different nearby places, we can help you understand current availability across the local area.",
-      areas: [
-        { label: "Todmorden", href: "/areas/todmorden" },
-        { label: "Hebden Bridge", href: "/areas/hebden-bridge" },
-        { label: "Mytholmroyd", href: "/areas/mytholmroyd" },
-        { label: "Burnley", href: "/areas/burnley" },
-      ],
+        `Our Todmorden branch covers ${formatInlineList(
+          todmordenCoverage
+        )}, with rural support available where local availability allows.`,
+      areas: todmordenCoverage.map((area) => ({
+        label: area,
+        href:
+          area === "Hebden Bridge"
+            ? "/areas/hebden-bridge"
+            : area === "Mytholmroyd"
+              ? "/areas/mytholmroyd"
+              : "/areas/todmorden",
+      })),
       cta: {
         label: "Explore Areas We Cover",
         href: "/areas",

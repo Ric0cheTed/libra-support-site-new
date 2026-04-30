@@ -27,8 +27,8 @@ export function ContactMethodCard({ item }: ContactMethodCardProps) {
   const Icon = iconMap[item.kind];
 
   return (
-    <article className="flex h-full flex-col rounded-[1.85rem] border border-stone-200/80 bg-white p-6 shadow-[0_22px_55px_-42px_rgba(15,23,42,0.3)] sm:p-7">
-      <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+    <article className="flex h-full flex-col rounded-[1.85rem] border border-primary/10 bg-white p-6 shadow-[0_22px_55px_-42px_rgba(15,23,42,0.3)] sm:p-7">
+      <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/10 bg-primary-50 text-primary-700">
         <Icon className="h-5 w-5" aria-hidden="true" />
       </div>
       <h3 className="mt-5 text-xl font-semibold text-slate-950">{item.title}</h3>

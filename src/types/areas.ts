@@ -21,11 +21,25 @@ export type AreaServicesContent = {
   cta: CtaLink;
 };
 
+export type AreaOfficeFinderContent = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  officeLabel: string;
+  addressLines: string[];
+  directionsCta: CtaLink;
+  callCta: CtaLink;
+  visitNote: string;
+  localTrustTitle: string;
+  localTrustPoints: string[];
+};
+
 export type AreaPageContent = {
   areaName: string;
   metadata: ServicePageMetadata;
   hero: ServiceHeroContent;
   intro: ServiceSplitSection;
+  officeFinder?: AreaOfficeFinderContent;
   services: AreaServicesContent;
   whyLibra: ServiceWhyLibraContent;
   process: ServiceProcessContent;
