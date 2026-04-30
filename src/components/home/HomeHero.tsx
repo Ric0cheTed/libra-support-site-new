@@ -5,6 +5,7 @@ import { homepageContent } from "@/content/homepage";
 import { Button } from "@/components/shared/Button";
 import { Container } from "@/components/shared/Container";
 import { HeroMediaSupportCard } from "@/components/shared/HeroMediaSupportCard";
+import { BUSINESS_PROFILE } from "@/lib/business-profile";
 
 export function HomeHero() {
   const { hero } = homepageContent;
@@ -114,6 +115,32 @@ export function HomeHero() {
                   </div>
                 ) : null}
               </div>
+            </div>
+
+            <div className="relative mt-5 flex justify-center lg:justify-start">
+              <a
+                href={BUSINESS_PROFILE.links.cqcLocation}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Libra Support Services CQC profile, rated Good by the Care Quality Commission"
+                className="inline-flex w-full max-w-[26rem] flex-col gap-3 rounded-[1.35rem] border border-stone-200/80 bg-white/90 p-3 shadow-[0_18px_42px_-34px_rgba(15,23,42,0.32)] transition hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-[0_24px_48px_-34px_rgba(34,127,70,0.28)] sm:flex-row sm:items-center"
+              >
+                <Image
+                  src="/images/cqc-inspected-rated-good.png"
+                  alt="Care Quality Commission inspected and rated Good"
+                  width={1184}
+                  height={821}
+                  className="h-auto w-[11rem] shrink-0 rounded-[0.55rem]"
+                />
+                <span className="text-sm leading-6 text-slate-700">
+                  <span className="block font-semibold text-slate-950">
+                    Rated Good by the Care Quality Commission
+                  </span>
+                  <span className="mt-0.5 block font-semibold text-accent-700">
+                    View our CQC profile
+                  </span>
+                </span>
+              </a>
             </div>
           </div>
         </div>
