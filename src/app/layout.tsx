@@ -7,6 +7,7 @@ import { Lexend } from 'next/font/google';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
 import { UtilityTrustStrip } from '@/components/layout/UtilityTrustStrip';
+import { StructuredDataScript } from '@/components/seo/StructuredDataScript';
 import SocialsButton from '@/components/ui/SocialsButton';
 import AnalyticsEvents from '@/components/analytics/AnalyticsEvents';
 import { canonicalUrl, getOrganizationStructuredData, seo } from '@/lib/seo';
@@ -56,11 +57,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en" className={`${lexend.variable} font-sans`}>
-      <body className="min-h-screen flex flex-col text-gray-900 bg-gray-50 text-[1.05rem] leading-relaxed">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
+      <body className="min-h-screen flex flex-col bg-background text-gray-900 text-[1.05rem] leading-relaxed">
+        <StructuredDataScript data={structuredData} />
 
         <UtilityTrustStrip />
         <SiteHeader />

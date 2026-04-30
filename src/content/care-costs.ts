@@ -149,12 +149,6 @@ export const careCostsContent: CareCostsPageContent = {
         href: "/services/home-care",
       },
       {
-        title: "Live-in Care",
-        description:
-          "A more continuous level of one-to-one support at home usually involves a different care structure and a different pricing conversation.",
-        href: "/services/live-in-care",
-      },
-      {
         title: "Respite Care",
         description:
           "Short-term support can be shaped around a planned break, changing circumstances, or temporary cover for a family carer.",

@@ -7,7 +7,7 @@ export const aboutContent: AboutPageContent = {
   metadata: {
     title: "About Libra Support Services",
     description:
-      "Learn more about Libra Support Services, our personalised approach to care, professional standards, and why families trust our local team.",
+      "Learn more about Libra Support Services, our Positive Impact mission, professional standards, and why families trust our local team.",
     path: "/about",
   },
   hero: {
@@ -44,7 +44,7 @@ export const aboutContent: AboutPageContent = {
     eyebrow: "Who we are",
     title: "A local service built to provide calm, accountable care at home",
     description:
-      "Libra Support Services exists to provide compassionate, professional care in the comfort of home. We support people and families who want personalised care delivered with warmth, consistency, and a genuine understanding of what daily life at home should feel like.",
+      "Libra Support Services exists to provide compassionate, professional care in the comfort of home. Everything we do is centred around making a Positive Impact on the lives of the people we support, their families, and the wider community.",
     points: [
       "We believe every person deserves care that protects dignity, comfort, and independence wherever possible.",
       "Our service is rooted in local community support, with a team that understands how important nearby communication and accountability are for families.",
@@ -53,41 +53,42 @@ export const aboutContent: AboutPageContent = {
   },
   approach: {
     eyebrow: "Our approach to care",
-    title: "We start with the person, their routine, and what helps home still feel like home",
+    title: "Positive Impact sits at the heart of our mission",
     description:
-      "Good care should fit around the individual rather than asking the individual to fit around the service. That means understanding routines, preferences, wellbeing, and the small details that help someone feel settled, respected, and supported.",
+      "Good care should fit around the individual rather than asking the individual to fit around the service. That means understanding routines, preferences, wellbeing, and the positive connections that help someone feel settled, respected, and supported.",
     points: [
       "Personalised support begins with listening properly and understanding what matters to the person and their family.",
+      "Whether we are helping someone regain confidence at home, enjoy meaningful activities in the community, or simply feel valued and cared for each day, our Home Care Heroes are there making a difference.",
+      "We are proud that our support helps people work towards positive outcomes and live life in a way that feels right for them.",
       "Dignity matters in every interaction, from the way care is delivered to the way people are spoken to and supported.",
-      "Reliability matters because families need confidence that care will be delivered properly, consistently, and with the right level of attention.",
-      "Our focus is to help people stay as comfortable, independent, and well supported as possible in the place they know best.",
+      "Trust grows through reliability, clear communication, and meaningful relationships that help support feel familiar rather than transactional.",
     ],
   },
   whyLibra: {
     eyebrow: "Why families choose Libra",
     title: "Families need more than a provider. They need people they can trust.",
     description:
-      "Choosing care is deeply personal. Families are looking for professionalism, compassion, clear communication, and a service that feels accountable from the very start.",
+      "Choosing care is deeply personal. Families are looking for professionalism, compassion, clear communication, and a service that builds trust through dignity, positive relationships, and person-centred support.",
     items: [
       {
-        title: "Care that feels personal",
+        title: "Person-centred support",
         description:
           "We take time to understand the individual, their preferences, and the routines that help them feel comfortable, safe, and respected.",
       },
       {
-        title: "Continuity where possible",
+        title: "Positive connections",
         description:
-          "Familiar carers and dependable planning help support feel more settled, reassuring, and easier to trust over time.",
+          "Familiar, respectful relationships help care feel more reassuring and make everyday support feel less clinical and more human.",
       },
       {
-        title: "Local and responsive support",
+        title: "Trust and dignity",
         description:
-          "As a nearby team, we are easier to reach, quicker to respond, and more personally accountable to the families we support.",
+          "Families can expect care that is delivered properly, managed thoughtfully, and grounded in privacy, respect, and clear standards.",
       },
       {
-        title: "Professionalism and respect",
+        title: "Positive Impact",
         description:
-          "Families can expect care that is delivered properly, managed thoughtfully, and grounded in clear standards and respectful communication.",
+          "The aim is for support to help people work towards positive outcomes, feel more connected, and live life in a way that feels right for them.",
       },
       {
         title: "Calm guidance for families",
@@ -156,7 +157,7 @@ export const aboutContent: AboutPageContent = {
     eyebrow: "Meet the people behind the service",
     title: "Leadership and support that families can know, reach, and trust",
     description:
-      "Behind every care plan is a team responsible for making sure support is thoughtful, well managed, and genuinely dependable. Families should feel confident in the people guiding the service, not distanced from them.",
+      "Behind every care plan are Home Care Heroes responsible for making sure support is thoughtful, well managed, and genuinely dependable. Families should feel confident in the people guiding the service, not distanced from them.",
     image: {
       src: "/images/about-team.webp",
       alt: "Libra Support Services team members together in a friendly professional setting",

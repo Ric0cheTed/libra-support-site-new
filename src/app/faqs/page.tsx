@@ -7,7 +7,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata = buildPageMetadata({
   title: "Home Care FAQs",
   description:
-    "Answers to common questions about starting care, pricing, and support for families in Todmorden, Hebden Bridge, and Mytholmroyd.",
+    "Answers to common questions about starting care, pricing, and support across the Libra Support Services branch areas.",
   path: "/faqs",
 });
 
@@ -165,13 +165,13 @@ export default function FaqsPage() {
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-3 font-semibold text-white transition hover:opacity-90"
+              className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 font-semibold text-white shadow-[0_18px_42px_-26px_rgba(34,127,70,0.9)] transition hover:bg-primary-dark"
             >
               Contact Us
             </Link>
             <a
               href={phones.primary.href}
-              className="inline-flex items-center justify-center rounded-xl border border-black/15 bg-white px-5 py-3 font-semibold text-black transition hover:bg-black/5"
+              className="inline-flex items-center justify-center rounded-full border border-primary/25 bg-white px-5 py-3 font-semibold text-primary-900 transition hover:border-primary/40 hover:bg-primary-50"
             >
               Call Now: {phones.primary.display}
             </a>
@@ -211,13 +211,13 @@ export default function FaqsPage() {
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <a
               href={phones.primary.href}
-              className="inline-flex items-center justify-center rounded bg-primary px-6 py-3 text-white hover:bg-primary-dark"
+              className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 font-semibold text-white transition hover:bg-primary-dark"
             >
               Call: {phones.primary.display}
             </a>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded border border-blue-600 px-6 py-3 text-primary hover:bg-accent"
+              className="inline-flex items-center justify-center rounded-full border border-primary/25 bg-white px-6 py-3 font-semibold text-primary-900 transition hover:border-primary/40 hover:bg-primary-50"
             >
               Contact us
             </Link>

@@ -5,7 +5,8 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
   title: "Open Care Roles",
-  description: "View current care job opportunities at Libra Support Services.",
+  description:
+    "View current Home Care Heroes opportunities with Libra Support Services.",
   path: "/careers/open-roles",
 });
 
@@ -17,11 +18,17 @@ export default function OpenRolesPage() {
       <Breadcrumbs />
 
       <div className="space-y-6">
-        <h1 className="mb-4 text-3xl font-bold">Join Our Team</h1>
+        <h1 className="mb-4 text-3xl font-bold">Join Our Home Care Heroes</h1>
         <p className="text-gray-600">
-          We&apos;re looking for compassionate carers. Check out our available positions and apply
-          today to make a difference for families across Todmorden, Burnley, and nearby
-          communities.
+          We&apos;re looking for compassionate, reliable people who want to support adults at home
+          with patience, dignity, and practical day-to-day care. Home care is relationship-led work:
+          listening well, noticing the small things, and helping each person feel respected and
+          more secure in their routine.
+        </p>
+        <p className="text-gray-600">
+          The role is about making a Positive Impact in ordinary, important moments: helping
+          someone feel valued, supporting confidence at home, and working towards positive
+          outcomes at a pace that feels right for the person.
         </p>
         <p className="text-gray-600">
           For job enquiries, CVs, or application follow-up, use{" "}

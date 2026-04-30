@@ -36,7 +36,7 @@ export default function SocialsButton() {
       <div className="relative w-full h-full">
         <button
           onClick={() => setExpanded(!isExpanded)}
-          className="w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300 z-10 relative"
+          className="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-200 z-10 relative transition hover:bg-primary-dark"
           aria-label="Open socials"
         >
           <Share2 className="w-5 h-5" />

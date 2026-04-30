@@ -44,7 +44,7 @@ export default function SiteHeader() {
   const currentPath = useMemo(() => normalizeHref(pathname), [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-stone-200/80 bg-white/92 shadow-[0_18px_35px_-28px_rgba(15,23,42,0.4)] backdrop-blur-xl supports-[backdrop-filter]:bg-white/82">
+    <header className="sticky top-0 z-50 border-b border-primary/10 bg-white/95 shadow-[0_18px_35px_-28px_rgba(15,23,42,0.4)] backdrop-blur-xl supports-[backdrop-filter]:bg-white/90">
       <Container
         size="wide"
         className="flex min-h-[4.875rem] items-center justify-between gap-4 py-3"
@@ -83,8 +83,10 @@ export default function SiteHeader() {
                 href={item.href}
                 aria-current={isActive ? 'page' : undefined}
                 className={cn(
-                  'rounded-full px-3.5 py-2 transition-colors hover:bg-stone-100/80 hover:text-primary',
-                  isActive ? 'bg-stone-100 text-slate-950' : 'text-slate-700'
+                  'rounded-full px-3.5 py-2 transition-colors hover:bg-primary-50 hover:text-primary-800',
+                  isActive
+                    ? 'bg-primary-50 text-primary-900 ring-1 ring-primary/20'
+                    : 'text-slate-700'
                 )}
               >
                 {item.title}
@@ -110,7 +112,7 @@ export default function SiteHeader() {
         <button
           type="button"
           onClick={() => setMenuOpen((open) => !open)}
-          className="inline-flex items-center justify-center rounded-full border border-stone-200 p-2.5 text-slate-700 transition hover:border-stone-300 hover:bg-stone-50 lg:hidden"
+          className="inline-flex items-center justify-center rounded-full border border-primary/20 p-2.5 text-slate-700 transition hover:border-primary/30 hover:bg-primary-50 lg:hidden"
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           aria-controls="mobile-site-menu"
@@ -126,7 +128,7 @@ export default function SiteHeader() {
       <div
         id="mobile-site-menu"
         className={cn(
-          'overflow-hidden border-t border-stone-200/80 bg-white/98 shadow-[0_24px_40px_-34px_rgba(15,23,42,0.4)] transition-[max-height,opacity] duration-200 lg:hidden',
+          'overflow-hidden border-t border-stone-200/80 bg-white/95 shadow-[0_24px_40px_-34px_rgba(15,23,42,0.4)] transition-[max-height,opacity] duration-200 lg:hidden',
           menuOpen ? 'max-h-[32rem] opacity-100' : 'max-h-0 opacity-0'
         )}
       >
@@ -148,8 +150,8 @@ export default function SiteHeader() {
                   className={cn(
                     'block rounded-2xl px-4 py-3 text-base font-medium transition-colors',
                     isActive
-                      ? 'bg-stone-100 text-slate-950'
-                      : 'text-slate-700 hover:bg-stone-50 hover:text-primary'
+                      ? 'bg-primary-50 text-primary-900 ring-1 ring-primary/20'
+                      : 'text-slate-700 hover:bg-primary-50 hover:text-primary-800'
                   )}
                   onClick={() => setMenuOpen(false)}
                 >

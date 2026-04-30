@@ -1,11 +1,28 @@
-import { BUSINESS_PROFILE } from "@/lib/business-profile";
+import { BUSINESS_PROFILE, formatInlineList } from "@/lib/business-profile";
 import type { HomepageContent } from "@/types/homepage";
 
 const primaryPhone = BUSINESS_PROFILE.phones.primary;
+const todmordenBranch = BUSINESS_PROFILE.branches.find((branch) => branch.name === "Todmorden");
+const burnleyBranch = BUSINESS_PROFILE.branches.find((branch) => branch.name === "Burnley");
+const todmordenCoverage = todmordenBranch?.coverageAreas ?? [
+  "Cornholme",
+  "Todmorden",
+  "Walsden",
+  "Hebden Bridge",
+  "Mytholmroyd",
+];
+const burnleyCoverage = burnleyBranch?.coverageAreas ?? [
+  "Burnley",
+  "Cliviger",
+  "Worsthorne",
+  "Brunshaw",
+];
 
 export const homepageContent: HomepageContent = {
   utilityTrustStripText:
-    "CQC-regulated home care from a trusted local team with active Libra branches in Todmorden and Burnley, supporting families across Todmorden, Hebden Bridge, Mytholmroyd and surrounding areas.",
+    `CQC-regulated home care from active Libra branches. Todmorden covers ${formatInlineList(
+      todmordenCoverage
+    )}; Burnley covers ${formatInlineList(burnleyCoverage)}.`,
   header: {
     navItems: [
       { title: "Home", href: "/" },
@@ -14,8 +31,9 @@ export const homepageContent: HomepageContent = {
         href: "/services",
         subItems: [
           { title: "Home Care", href: "/services/home-care" },
-          { title: "Live-in Care", href: "/services/live-in-care" },
           { title: "Respite Care", href: "/services/respite-care" },
+          { title: "Dementia Support", href: "/services/dementia-support" },
+          { title: "Companionship", href: "/services/companionship" },
         ],
       },
       { title: "Why Libra", href: "/#why-libra" },
@@ -24,6 +42,7 @@ export const homepageContent: HomepageContent = {
         href: "/areas",
         subItems: [
           { title: "Todmorden", href: "/areas/todmorden" },
+          { title: "Burnley", href: "/areas/burnley" },
           { title: "Hebden Bridge", href: "/areas/hebden-bridge" },
           { title: "Mytholmroyd", href: "/areas/mytholmroyd" },
         ],
@@ -52,9 +71,9 @@ export const homepageContent: HomepageContent = {
   },
   hero: {
     eyebrow: "CQC-regulated local home care",
-    title: "Home care in Todmorden and Calderdale, delivered with warmth, dignity, and reliability",
+    title: "Home care through our Todmorden and Burnley branches, delivered with warmth and dignity",
     description:
-      "Libra Support Services provides dependable home care, live-in care, and respite support for adults and families across Todmorden, Hebden Bridge, Mytholmroyd, and surrounding Calderdale areas. We help people stay safe, supported, and as independent as possible in the place they know best.",
+      "Libra Support Services provides dependable home care, respite support, companionship, and practical day-to-day help for adults and families across our Todmorden and Burnley branch areas. We help people stay safe, supported, and as independent as possible in the place they know best.",
     primaryCta: {
       label: "Book a Free Care Consultation",
       href: "/contact",
@@ -102,21 +121,15 @@ export const homepageContent: HomepageContent = {
   ],
   servicesPreview: {
     eyebrow: "How we help",
-    title: "Home care, live-in care, and flexible support built around the individual",
+    title: "Home care and flexible support built around the individual",
     description:
-      "Whether support is needed for a few visits a week or more involved ongoing care, we provide flexible services designed around the person, their routine, and their wellbeing.",
+      "Whether support is needed for a few visits a week or more regular day-to-day help, we provide flexible services designed around the person, their routine, and their wellbeing.",
     items: [
       {
         title: "Home Care",
         description:
           "Flexible support at home for day-to-day living, routines, wellbeing, and independence.",
         href: "/services/home-care",
-      },
-      {
-        title: "Live-in Care",
-        description:
-          "Dedicated one-to-one support at home for people who need more consistent, around-the-clock reassurance.",
-        href: "/services/live-in-care",
       },
       {
         title: "Respite Care",
@@ -150,29 +163,29 @@ export const homepageContent: HomepageContent = {
   },
   whyLibra: {
     eyebrow: "Why Libra",
-    title: "Why families choose Libra for care at home",
+    title: "Positive Impact through care that feels human and dependable",
     description:
-      "Choosing care is a big decision. Families want reassurance, reliability, and people they can trust with something deeply important. Our approach combines professionalism, compassion, and local accountability.",
+      "At Libra Support Services, everything we do is centred around making a Positive Impact on the lives of the people we support, their families, and the wider community. Our Home Care Heroes focus on positive connections, person-centred support, and the everyday difference that helps people feel safe, respected, and valued at home.",
     items: [
       {
-        title: "Care that feels personal",
+        title: "Positive connections",
         description:
-          "We take time to understand the individual, their preferences, and what helps them feel comfortable, safe, and respected.",
+          "We take time to build warm, respectful relationships so support feels familiar, reassuring, and genuinely centred on the person.",
       },
       {
-        title: "Reliability you can count on",
+        title: "Positive Impact",
         description:
-          "Families need confidence that care will be delivered properly, consistently, and with the right level of attention.",
+          "Care should help people work towards positive outcomes and live life in a way that feels right for them.",
       },
       {
-        title: "Local leadership and support",
+        title: "Trust and dignity",
         description:
-          "Our team is rooted in the local area, giving families a more responsive and personal experience from the very start.",
+          "Families need confidence that care will be delivered properly, privately, and with dignity in every interaction.",
       },
       {
-        title: "Dignity in every interaction",
+        title: "Meaningful relationships",
         description:
-          "Good care is not just about tasks. It is about how someone is spoken to, supported, and treated every single day.",
+          "The small everyday moments matter, from listening well to supporting routines in a way that helps people feel known and respected.",
       },
     ],
     cta: {
@@ -216,18 +229,22 @@ export const homepageContent: HomepageContent = {
     eyebrow: "Areas we cover",
     title: "Local home care guided from our Todmorden and Burnley branches",
     description:
-      "Libra now has active operational bases in Todmorden and Burnley, helping families get clear local guidance while we continue growing carefully and responsibly.",
+      "Libra has active operational bases in Todmorden and Burnley, with clear branch coverage so families know which local team is best placed to help.",
     items: [
       {
         title: "Todmorden",
         description:
-          "Our Todmorden branch offers trusted home care and day-to-day support across our established local base.",
+          `Our Todmorden branch covers ${formatInlineList(
+            todmordenCoverage
+          )}, with rural support available where local availability allows.`,
         href: "/areas/todmorden",
       },
       {
         title: "Burnley",
         description:
-          "Our Burnley branch has a visible local presence and a dedicated Burnley page for families exploring support.",
+          `Our Burnley branch covers ${formatInlineList(
+            burnleyCoverage
+          )}, with a visible office on Red Lion Street for local reassurance.`,
         href: "/areas/burnley",
       },
       {
@@ -269,9 +286,9 @@ export const homepageContent: HomepageContent = {
   },
   teamSpotlight: {
     eyebrow: "Meet the team",
-    title: "Local leadership, personal accountability, and care delivered with heart",
+    title: "Meet the Home Care Heroes behind Libra",
     description:
-      "Behind every care plan is a team responsible for making sure support is thoughtful, well-managed, and genuinely reliable. We believe families should know who is behind the service and feel confident in the people guiding it.",
+      "Behind every care plan is a team responsible for making sure support is thoughtful, well-managed, and genuinely reliable. Our Home Care Heroes are united by the same purpose: making a Positive Impact through kind, person-centred care.",
     cta: {
       label: "Meet the Libra Team",
       href: "/about/team",
@@ -319,7 +336,7 @@ export const homepageContent: HomepageContent = {
       {
         question: "What types of care do you provide?",
         answer:
-          "We provide a range of support including home care, live-in care, respite care, companionship, personal care, and more tailored support depending on individual needs.",
+          "We provide a range of support including home care, respite care, companionship, personal care, dementia support, and more tailored support depending on individual needs.",
       },
       {
         question: "How do I know what level of care is right?",
