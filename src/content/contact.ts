@@ -25,7 +25,14 @@ if (!burnleyBranch.address || !burnleyBranch.directionsUrl) {
   throw new Error("Burnley branch location is missing from BUSINESS_PROFILE.");
 }
 
+if (!todmordenBranch.address || !todmordenBranch.directionsUrl) {
+  throw new Error("Todmorden branch location is missing from BUSINESS_PROFILE.");
+}
+
 const burnleyOfficeAddress = formatAddressInline(burnleyBranch.address.lines);
+const todmordenVisitNote =
+  todmordenBranch.visitingNote ??
+  "Please contact us before visiting so we can make sure the right person is available to help.";
 const burnleyVisitNote =
   burnleyBranch.visitingNote ??
   "Please contact us before visiting so we can make sure the right person is available to help.";
@@ -218,6 +225,17 @@ export const contactContent: ContactContent = {
           `Our established Todmorden base covers ${formatInlineList(
             todmordenBranch.coverageAreas ?? []
           )}, with rural support available where local availability allows.`,
+        addressLines: todmordenBranch.address.lines,
+        directionsCta: {
+          label: "Open in Google Maps",
+          href: todmordenBranch.directionsUrl,
+        },
+        callCta: {
+          label: `Call ${phones.primary.display}`,
+          href: phones.primary.href,
+          ariaLabel: `Call Libra Support Services on ${phones.primary.display}`,
+        },
+        visitNote: todmordenVisitNote,
       },
       {
         name: `${burnleyBranch.name} branch`,

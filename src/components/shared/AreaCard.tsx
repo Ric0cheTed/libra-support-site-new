@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 type AreaCardProps = AreaCardItem & {
   className?: string;
+  iconTone?: "accent" | "primary";
 };
 
 export function AreaCard({
@@ -13,7 +14,13 @@ export function AreaCard({
   description,
   href,
   className,
+  iconTone = "accent",
 }: AreaCardProps) {
+  const iconClassName =
+    iconTone === "primary"
+      ? "border-primary/20 bg-primary-50 text-primary-700"
+      : "border-accent/20 bg-accent-50 text-accent-700";
+
   return (
     <article
       className={cn(
@@ -21,7 +28,12 @@ export function AreaCard({
         className
       )}
     >
-      <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-accent/20 bg-accent-50 text-accent-700 shadow-sm">
+      <div
+        className={cn(
+          "inline-flex h-12 w-12 items-center justify-center rounded-full border shadow-sm",
+          iconClassName
+        )}
+      >
         <MapPin className="h-5 w-5" aria-hidden="true" />
       </div>
       <h3 className="mt-5 text-xl font-semibold text-slate-950">{title}</h3>

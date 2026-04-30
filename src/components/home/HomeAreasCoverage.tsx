@@ -18,13 +18,14 @@ export function HomeAreasCoverage() {
           align="center"
         />
 
-        <div className="grid gap-5 md:grid-cols-2 lg:gap-6 xl:grid-cols-4">
+        <div className="mx-auto grid max-w-4xl gap-5 md:grid-cols-2 lg:gap-6">
           {areasCoverage.items.map((item) => (
             <AreaCard
               key={item.title}
               title={item.title}
               description={item.description}
               href={item.href}
+              iconTone="primary"
             />
           ))}
         </div>

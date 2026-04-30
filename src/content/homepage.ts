@@ -247,18 +247,6 @@ export const homepageContent: HomepageContent = {
           )}, with a visible office on Red Lion Street for local reassurance.`,
         href: "/areas/burnley",
       },
-      {
-        title: "Hebden Bridge",
-        description:
-          "Flexible home care tailored to individuals and families across Hebden Bridge.",
-        href: "/areas/hebden-bridge",
-      },
-      {
-        title: "Mytholmroyd",
-        description:
-          "Responsive local care for people and families needing reliable support at home.",
-        href: "/areas/mytholmroyd",
-      },
     ],
     cta: {
       label: "Explore All Areas We Cover",
