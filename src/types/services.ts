@@ -29,6 +29,7 @@ export type ServiceHeroContent = {
   secondaryCta: CtaLink;
   highlights: string[];
   image: HeroVisual;
+  showMedia?: boolean;
   supportCard?: {
     eyebrow?: string;
     title: string;

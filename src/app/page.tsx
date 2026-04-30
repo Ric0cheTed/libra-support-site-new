@@ -9,29 +9,35 @@ import { HomeTeamSpotlight } from "@/components/home/HomeTeamSpotlight";
 import { HomeTestimonials } from "@/components/home/HomeTestimonials";
 import { HomeTrustBar } from "@/components/home/HomeTrustBar";
 import { HomeWhyLibra } from "@/components/home/HomeWhyLibra";
-import { buildPageMetadata } from "@/lib/seo";
+import { StructuredDataScript } from "@/components/seo/StructuredDataScript";
+import { buildPageMetadata, getHomePageStructuredData } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
   title: "Home Care in Todmorden & West Yorkshire",
   description:
-    "Local, CQC-regulated home care in Todmorden, Hebden Bridge, and Mytholmroyd, with flexible home care, live-in care, and respite support.",
+    "Local, CQC-regulated home care across the Todmorden and Burnley branch areas, with flexible home care, respite support, companionship, and person-centred help at home.",
   path: "/",
 });
 
 export default function HomePage() {
+  const structuredData = getHomePageStructuredData();
+
   return (
-    <div className="-mx-4 -mt-8 sm:-mx-6 lg:-mx-8">
-      <HomeHero />
-      <HomeTrustBar />
-      <HomeServicesPreview />
-      <HomeWhyLibra />
-      <HomeCareProcess />
-      <HomeAreasCoverage />
-      <HomeCareCosts />
-      <HomeTeamSpotlight />
-      <HomeTestimonials />
-      <HomeFaqTeaser />
-      <HomeFinalCta />
-    </div>
+    <>
+      <StructuredDataScript data={structuredData} />
+      <div className="-mx-4 -mt-8 sm:-mx-6 lg:-mx-8">
+        <HomeHero />
+        <HomeTrustBar />
+        <HomeServicesPreview />
+        <HomeWhyLibra />
+        <HomeCareProcess />
+        <HomeAreasCoverage />
+        <HomeCareCosts />
+        <HomeTeamSpotlight />
+        <HomeTestimonials />
+        <HomeFaqTeaser />
+        <HomeFinalCta />
+      </div>
+    </>
   );
 }

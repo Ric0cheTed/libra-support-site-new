@@ -17,11 +17,11 @@ export function AreaCard({
   return (
     <article
       className={cn(
-        "group flex h-full flex-col rounded-[1.85rem] border border-stone-200/80 bg-white p-6 shadow-[0_22px_55px_-42px_rgba(15,23,42,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_30px_60px_-40px_rgba(15,23,42,0.32)] sm:p-7",
+        "group flex h-full flex-col rounded-[1.85rem] border border-stone-200/80 bg-white p-6 shadow-[0_22px_55px_-42px_rgba(15,23,42,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-[0_30px_60px_-40px_rgba(34,127,70,0.34)] sm:p-7",
         className
       )}
     >
-      <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary shadow-sm">
+      <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-accent/20 bg-accent-50 text-accent-700 shadow-sm">
         <MapPin className="h-5 w-5" aria-hidden="true" />
       </div>
       <h3 className="mt-5 text-xl font-semibold text-slate-950">{title}</h3>
@@ -30,7 +30,7 @@ export function AreaCard({
       </p>
       <Link
         href={href}
-        className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary-dark"
+        className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent-700 transition-colors hover:text-accent-900"
       >
         Explore area
         <ArrowUpRight

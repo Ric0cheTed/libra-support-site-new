@@ -1,4 +1,4 @@
-import { BUSINESS_PROFILE } from "@/lib/business-profile";
+import { BUSINESS_PROFILE, formatInlineList } from "@/lib/business-profile";
 import type {
   ServicePageContent,
   ServicePageKey,
@@ -6,12 +6,24 @@ import type {
 } from "@/types/services";
 
 const primaryPhone = BUSINESS_PROFILE.phones.primary;
+const todmordenBranch = BUSINESS_PROFILE.branches.find((branch) => branch.name === "Todmorden");
+const todmordenCoverage = todmordenBranch?.coverageAreas ?? [
+  "Cornholme",
+  "Todmorden",
+  "Walsden",
+  "Hebden Bridge",
+  "Mytholmroyd",
+];
 
-const sharedCoverageAreas = [
-  { label: "Todmorden", href: "/areas/todmorden" },
-  { label: "Hebden Bridge", href: "/areas/hebden-bridge" },
-  { label: "Mytholmroyd", href: "/areas/mytholmroyd" },
-] as const;
+const sharedCoverageAreas = todmordenCoverage.map((area) => ({
+  label: area,
+  href:
+    area === "Hebden Bridge"
+      ? "/areas/hebden-bridge"
+      : area === "Mytholmroyd"
+        ? "/areas/mytholmroyd"
+        : "/areas/todmorden",
+}));
 
 const sharedProcessSteps = [
   {
@@ -39,9 +51,9 @@ const sharedProcessSteps = [
 export const servicePageContent = {
   homeCare: {
     metadata: {
-      title: "Home Care in Todmorden & West Yorkshire",
+      title: "Home Care in the Todmorden Branch Area",
       description:
-        "Flexible home care in Todmorden, Hebden Bridge, and Mytholmroyd, with personalised support for routines, wellbeing, and independent living at home.",
+        "Flexible home care across the Todmorden branch area, with personalised support for routines, wellbeing, and independent living at home.",
       path: "/services/home-care",
     },
     hero: {
@@ -152,7 +164,7 @@ export const servicePageContent = {
     },
     coverage: {
       eyebrow: "Local coverage reassurance",
-      title: "Home care across Todmorden, Calderdale, and nearby communities",
+      title: "Home care across the Todmorden branch area",
       description:
         "We support families across the local area with a responsive team that understands the value of nearby, dependable care.",
       areas: [...sharedCoverageAreas],
@@ -381,9 +393,9 @@ export const servicePageContent = {
   },
   respiteCare: {
     metadata: {
-      title: "Respite Care in Todmorden, Hebden Bridge & Mytholmroyd",
+      title: "Respite Care in the Todmorden Branch Area",
       description:
-        "Flexible respite care in Todmorden, Hebden Bridge, and Mytholmroyd, giving families short-term support and dependable cover while making sure care continues safely at home.",
+        "Flexible respite care across the Todmorden branch area, giving families short-term support and dependable cover while making sure care continues safely at home.",
       path: "/services/respite-care",
     },
     hero: {
@@ -494,7 +506,7 @@ export const servicePageContent = {
     },
     coverage: {
       eyebrow: "Local coverage reassurance",
-      title: "Respite care across Todmorden, Hebden Bridge, Mytholmroyd, and nearby areas",
+      title: "Respite care across the Todmorden branch area",
       description:
         "Our local team supports families across the area with short-term care that brings reassurance, flexibility, and dependable support when it is needed most.",
       areas: [...sharedCoverageAreas],
@@ -552,9 +564,9 @@ export const servicePageContent = {
   },
   dementiaSupport: {
     metadata: {
-      title: "Dementia Support at Home in Todmorden & West Yorkshire",
+      title: "Dementia Support at Home in the Todmorden Branch Area",
       description:
-        "Thoughtful dementia support at home in Todmorden, Hebden Bridge, and Mytholmroyd, shaped around routine, familiarity, reassurance, and individual needs.",
+        "Thoughtful dementia support at home across the Todmorden branch area, shaped around routine, familiarity, reassurance, and individual needs.",
       path: "/services/dementia-support",
     },
     hero: {
@@ -665,7 +677,7 @@ export const servicePageContent = {
     },
     coverage: {
       eyebrow: "Local coverage reassurance",
-      title: "Dementia support across Todmorden, Calderdale, and nearby communities",
+      title: "Dementia support across the Todmorden branch area",
       description:
         "Our local team supports families across the area with thoughtful home care that combines nearby responsiveness with dependable professional standards.",
       areas: [...sharedCoverageAreas],
@@ -723,9 +735,9 @@ export const servicePageContent = {
   },
   companionship: {
     metadata: {
-      title: "Companionship at Home in Todmorden & West Yorkshire",
+      title: "Companionship at Home in the Todmorden Branch Area",
       description:
-        "Meaningful companionship at home in Todmorden, Hebden Bridge, and Mytholmroyd, helping reduce loneliness and bring comfort, routine, and connection.",
+        "Meaningful companionship at home across the Todmorden branch area, helping reduce loneliness and bring comfort, routine, and connection.",
       path: "/services/companionship",
     },
     hero: {
@@ -836,7 +848,7 @@ export const servicePageContent = {
     },
     coverage: {
       eyebrow: "Local coverage reassurance",
-      title: "Companionship support across Todmorden, Calderdale, and nearby communities",
+      title: "Companionship support across the Todmorden branch area",
       description:
         "Our local team provides companionship across the area, helping families access thoughtful support and reassuring contact close to home.",
       areas: [...sharedCoverageAreas],
@@ -894,9 +906,9 @@ export const servicePageContent = {
   },
   personalCare: {
     metadata: {
-      title: "Personal Care at Home in Todmorden & West Yorkshire",
+      title: "Personal Care at Home in the Todmorden Branch Area",
       description:
-        "Respectful personal care at home in Todmorden, Hebden Bridge, and Mytholmroyd, with tailored support for daily personal routines delivered with dignity.",
+        "Respectful personal care at home across the Todmorden branch area, with tailored support for daily personal routines delivered with dignity.",
       path: "/services/personal-care",
     },
     hero: {
@@ -1007,7 +1019,7 @@ export const servicePageContent = {
     },
     coverage: {
       eyebrow: "Local coverage reassurance",
-      title: "Personal care across Todmorden, Calderdale, and nearby communities",
+      title: "Personal care across the Todmorden branch area",
       description:
         "Our local team supports families across the area with personal care that combines nearby responsiveness with dependable professional standards.",
       areas: [...sharedCoverageAreas],
@@ -1085,7 +1097,7 @@ export const servicesHubContent: ServicesHubContent = {
       ariaLabel: `Call Libra Support Services on ${primaryPhone.display}`,
     },
     highlights: [
-      "Home care, live-in care, respite care, dementia support, companionship, and personal care",
+      "Home care, respite care, dementia support, companionship, and personal care",
       "Flexible support shaped around routines and individual needs",
       "CQC-regulated care from trained, DBS-checked carers",
       "A local team families can reach for clear guidance and reassurance",
@@ -1112,12 +1124,6 @@ export const servicesHubContent: ServicesHubContent = {
         description:
           "Flexible support at home for day-to-day living, routines, wellbeing, and independence.",
         href: "/services/home-care",
-      },
-      {
-        title: "Live-in Care",
-        description:
-          "Dedicated one-to-one support at home for people who need more consistent, around-the-clock reassurance.",
-        href: "/services/live-in-care",
       },
       {
         title: "Respite Care",
@@ -1153,29 +1159,29 @@ export const servicesHubContent: ServicesHubContent = {
   },
   whyLibra: {
     eyebrow: "Why families choose Libra",
-    title: "A thoughtful, dependable approach across every level of support",
+    title: "A thoughtful approach built around people, trust, and Positive Impact",
     description:
-      "Families are not only choosing a service category. They are choosing the people and standards behind it. Our care combines professionalism, warmth, and local accountability.",
+      "Families are not only choosing a service category. They are choosing Home Care Heroes they can trust. Our approach centres on person-centred support, dignity, positive connections, and positive outcomes that help daily life feel better supported.",
     items: [
       {
-        title: "Person-centred care",
+        title: "Person-centred support",
         description:
-          "Support is shaped around the individual, their routine, and what helps them feel comfortable, respected, and safe at home.",
+          "Support is shaped around the individual, their routine, and what helps them feel comfortable, respected, and understood.",
       },
       {
-        title: "Continuity and reliability",
+        title: "Positive connections",
         description:
-          "Where possible, we plan care to support familiarity and dependable cover so support feels settled and consistent.",
+          "We value warm, consistent relationships that help care feel familiar and reassuring rather than rushed or impersonal.",
       },
       {
-        title: "Professional standards",
+        title: "Trust and dignity",
         description:
-          "Our care is CQC-regulated and delivered by trained, DBS-checked carers with management oversight families can trust.",
+          "Our care is CQC-regulated and delivered by trained, DBS-checked carers with respectful communication and thoughtful oversight.",
       },
       {
-        title: "Local reassurance",
+        title: "Positive Impact",
         description:
-          "As a nearby team, we are easier to reach, quicker to respond, and more personally accountable to the families we support.",
+          "Good support should help people feel safer, more connected, and more able to live life in a way that feels right for them.",
       },
     ],
   },
@@ -1192,9 +1198,11 @@ export const servicesHubContent: ServicesHubContent = {
   },
   coverage: {
     eyebrow: "Local coverage reassurance",
-    title: "Home care services across Todmorden, Calderdale, and nearby communities",
+    title: "Home care services across the Todmorden branch area",
     description:
-      "We proudly support local families with a nearby team that combines professional standards with responsive, personal communication.",
+      `Our Todmorden branch covers ${formatInlineList(
+        todmordenCoverage
+      )}, with rural support available where local availability allows. Burnley branch coverage is explained on our areas page.`,
     areas: [...sharedCoverageAreas],
     cta: {
       label: "Explore All Areas We Cover",

@@ -10,14 +10,14 @@ export function HomeHero() {
   const { hero } = homepageContent;
 
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(63,168,102,0.16),_transparent_35%),linear-gradient(180deg,_#f7f4ec_0%,_#ffffff_55%,_#f8fafc_100%)]">
+    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(63,168,102,0.16),_transparent_35%),linear-gradient(180deg,_#fff4ed_0%,_#ffffff_55%,_#fbfaf7_100%)]">
       <Container
         size="wide"
         className="relative pb-20 pt-14 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-20"
       >
         <div className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center xl:gap-14">
           <div className="max-w-[35rem]">
-            <p className="inline-flex items-center rounded-full border border-stone-300 bg-white/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-slate-700 shadow-sm">
+            <p className="inline-flex items-center rounded-full border border-primary/20 bg-white/90 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-primary-800 shadow-sm">
               {hero.eyebrow}
             </p>
 
@@ -61,8 +61,8 @@ export function HomeHero() {
           </div>
 
           <div className="relative">
-            <div className="absolute -left-4 top-12 hidden h-32 w-32 rounded-full bg-primary/15 blur-3xl lg:block" />
-            <div className="absolute -right-6 bottom-8 h-40 w-40 rounded-full bg-amber-100 blur-3xl" />
+            <div className="absolute -left-4 top-12 hidden h-32 w-32 rounded-full bg-primary/20 blur-3xl lg:block" />
+            <div className="absolute -right-6 bottom-8 h-40 w-40 rounded-full bg-accent-100 blur-3xl" />
 
             <div className="relative overflow-hidden rounded-[2.25rem] border border-white/70 bg-slate-900 shadow-[0_30px_80px_-36px_rgba(15,23,42,0.5)]">
               <div className="relative h-[380px] sm:h-[500px] lg:h-[560px]">
@@ -81,7 +81,7 @@ export function HomeHero() {
                 <div className="absolute inset-x-0 top-0 flex items-center justify-between p-5 sm:p-6">
                   <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/80 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-sm backdrop-blur-sm">
                     <ShieldCheck
-                      className="h-4 w-4 text-emerald-300"
+                      className="h-4 w-4 text-primary-100"
                       aria-hidden="true"
                     />
                     CQC-regulated
@@ -99,7 +99,7 @@ export function HomeHero() {
                       description={hero.supportCard.description}
                       footer={
                         hero.supportCard.meta ? (
-                          <p className="inline-flex items-center gap-2 rounded-full border border-emerald-100 bg-emerald-50/95 px-3.5 py-2 text-sm font-semibold text-slate-900 shadow-sm">
+                          <p className="inline-flex items-center gap-2 rounded-full border border-primary-100 bg-primary-50/95 px-3.5 py-2 text-sm font-semibold text-slate-900 shadow-sm">
                             <PhoneCall
                               className="h-4 w-4 text-primary-dark"
                               aria-hidden="true"

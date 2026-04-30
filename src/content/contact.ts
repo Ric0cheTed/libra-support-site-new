@@ -1,4 +1,8 @@
-import { BUSINESS_PROFILE, formatInlineList } from "@/lib/business-profile";
+import {
+  BUSINESS_PROFILE,
+  formatAddressInline,
+  formatInlineList,
+} from "@/lib/business-profile";
 import type { ContactContent } from "@/types/contact";
 
 const { phones, whatsapp, address, openingHours, areas, map, emails, branches } = BUSINESS_PROFILE;
@@ -12,11 +16,19 @@ const fallbackBurnleyBranch: (typeof branches)[number] = {
   lead: "Nic",
   summary: "Our Burnley branch.",
 };
-const burnleyOfficeAddress = "3-5 Red Lion Street, Burnley, BB11 2AE";
 const todmordenBranch =
   branches.find((branch) => branch.name === "Todmorden") ?? fallbackTodmordenBranch;
 const burnleyBranch =
   branches.find((branch) => branch.name === "Burnley") ?? fallbackBurnleyBranch;
+
+if (!burnleyBranch.address || !burnleyBranch.directionsUrl) {
+  throw new Error("Burnley branch location is missing from BUSINESS_PROFILE.");
+}
+
+const burnleyOfficeAddress = formatAddressInline(burnleyBranch.address.lines);
+const burnleyVisitNote =
+  burnleyBranch.visitingNote ??
+  "Please contact us before visiting so we can make sure the right person is available to help.";
 
 const contactMethods: ContactContent["methods"]["items"] = [
   {
@@ -121,6 +133,7 @@ export const contactContent: ContactContent = {
       src: "/images/hero-2.webp",
       alt: "A calm conversation between a carer and an older adult at home",
     },
+    showMedia: false,
   },
   methods: {
     eyebrow: "Contact options",
@@ -192,32 +205,40 @@ export const contactContent: ContactContent = {
       label: "Get directions",
       href: map.directionsUrl,
     },
-    areasLabel: "Current Calderdale coverage",
+    areasLabel: "Current branch coverage",
     areas: areas.current,
     note:
-      `Our Todmorden branch and our Burnley branch at ${burnleyOfficeAddress} give families clear local points of contact. If you are in or around Burnley and unsure about availability, get in touch and we will guide you clearly without overpromising.`,
+      `Our Todmorden branch and our Burnley branch at ${burnleyOfficeAddress} give families clear local points of contact. If you are unsure which branch area applies, get in touch and we will guide you clearly without overpromising.`,
     branchesTitle: "Active Libra branches",
     branches: [
       {
         name: `${todmordenBranch.name} branch`,
         lead: todmordenBranch.lead,
         description:
-          "Our established Todmorden base remains the main day-to-day contact point for families across our current Calderdale coverage.",
+          `Our established Todmorden base covers ${formatInlineList(
+            todmordenBranch.coverageAreas ?? []
+          )}, with rural support available where local availability allows.`,
       },
       {
         name: `${burnleyBranch.name} branch`,
         lead: burnleyBranch.lead,
         description:
-          `Our active Burnley base at ${burnleyOfficeAddress} gives Libra a second trusted local presence as we continue expanding carefully and responsibly.`,
+          `Our active Burnley base covers ${formatInlineList(
+            burnleyBranch.coverageAreas ?? []
+          )} and gives families a trusted local point of contact.`,
+        addressLines: burnleyBranch.address.lines,
+        directionsCta: {
+          label: "Open in Google Maps",
+          href: burnleyBranch.directionsUrl,
+        },
+        callCta: {
+          label: `Call ${phones.primary.display}`,
+          href: phones.primary.href,
+          ariaLabel: `Call Libra Support Services on ${phones.primary.display}`,
+        },
+        visitNote: burnleyVisitNote,
       },
     ],
-    trustImage: burnleyBranch.image
-      ? {
-          ...burnleyBranch.image,
-          caption:
-            "Our Burnley branch adds a visible Libra office presence alongside our Todmorden base.",
-        }
-      : undefined,
     mapTitle: "Libra Support Services contact location",
   },
   faqs: {

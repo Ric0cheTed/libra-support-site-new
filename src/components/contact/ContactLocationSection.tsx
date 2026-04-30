@@ -26,8 +26,8 @@ export function ContactLocationSection({
               description={section.description}
               className="max-w-xl"
             />
-            <div className="rounded-[2rem] border border-stone-200/80 bg-white p-6 shadow-[0_28px_70px_-52px_rgba(15,23,42,0.35)] sm:p-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">
+            <div className="rounded-[2rem] border border-primary/10 bg-white p-6 shadow-[0_28px_70px_-52px_rgba(15,23,42,0.35)] sm:p-8">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary-700">
                 {section.officeLabel}
               </p>
               <address className="mt-4 not-italic text-sm leading-7 text-slate-700 sm:text-[0.98rem]">
@@ -42,27 +42,63 @@ export function ContactLocationSection({
                 <span>{section.openingHours}</span>
               </div>
               <div className="mt-5 flex items-start gap-3 text-sm text-slate-700 sm:text-[0.98rem]">
-                <MapPin className="mt-1 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                <MapPin className="mt-1 h-5 w-5 shrink-0 text-accent-700" aria-hidden="true" />
                 <span>
                   {section.areasLabel}: {section.areas.join(", ")}
                 </span>
               </div>
               <p className="mt-5 text-sm leading-7 text-slate-600 sm:text-[0.98rem]">{section.note}</p>
               {section.branches?.length ? (
-                <div className="mt-6 border-t border-stone-200 pt-6">
-                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">
+                <div className="mt-6 border-t border-primary/10 pt-6">
+                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary-700">
                     {section.branchesTitle ?? "Branches"}
                   </p>
                   <div className="mt-4 grid gap-3">
                     {section.branches.map((branch) => (
                       <div
                         key={branch.name}
-                        className="rounded-[1.4rem] border border-stone-200/80 bg-stone-50/80 p-4"
+                        className="rounded-[1.4rem] border border-primary/10 bg-primary-50/50 p-4"
                       >
                         <p className="text-sm font-semibold text-slate-900">{branch.name}</p>
                         <p className="mt-2 text-sm leading-6 text-slate-600">
                           {branch.description}
                         </p>
+                        {branch.addressLines?.length ? (
+                          <address className="mt-3 not-italic text-sm leading-6 text-slate-700">
+                            {branch.addressLines.map((line, index) => (
+                              <span key={`${branch.name}-${line}-${index}`} className="block">
+                                {line}
+                              </span>
+                            ))}
+                          </address>
+                        ) : null}
+                        {branch.visitNote ? (
+                          <p className="mt-3 border-l-4 border-accent pl-3 text-sm leading-6 text-slate-600">
+                            {branch.visitNote}
+                          </p>
+                        ) : null}
+                        {branch.directionsCta || branch.callCta ? (
+                          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                            {branch.directionsCta ? (
+                              <Button
+                                href={branch.directionsCta.href}
+                                variant="secondary"
+                                size="compact"
+                              >
+                                {branch.directionsCta.label}
+                              </Button>
+                            ) : null}
+                            {branch.callCta ? (
+                              <Button
+                                href={branch.callCta.href}
+                                aria-label={branch.callCta.ariaLabel}
+                                size="compact"
+                              >
+                                {branch.callCta.label}
+                              </Button>
+                            ) : null}
+                          </div>
+                        ) : null}
                       </div>
                     ))}
                   </div>
@@ -98,7 +134,7 @@ export function ContactLocationSection({
               </div>
             ) : null}
 
-            <div className="overflow-hidden rounded-[2rem] border border-stone-200/80 bg-white shadow-[0_28px_70px_-52px_rgba(15,23,42,0.35)]">
+            <div className="overflow-hidden rounded-[2rem] border border-primary/10 bg-white shadow-[0_28px_70px_-52px_rgba(15,23,42,0.35)]">
               <iframe
                 title={section.mapTitle}
                 src={mapEmbedUrl}

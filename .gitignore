@@ -3,12 +3,23 @@
 node_modules/
 out/
 dist/
+.vercel/
+coverage/
+.cache/
+analyze/
 *.log
+*.tmp
+*.temp
 .DS_Store
 .env
+.env*.local
 
 # local artifacts
 *.patch
 *.zip
+*.tsbuildinfo
+*.report.html
+chromewebdata_*.html
+lighthouse*.html
 tsconfig.tsbuildinfo
 New Text Document.txt

@@ -13,17 +13,30 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
+          50: "#eef8f2",
+          100: "#d8efdf",
+          200: "#b4dfc3",
+          600: "#298f4f",
+          700: "#227f46",
+          800: "#1c663a",
+          900: "#164d2e",
           DEFAULT: "#298f4f",
           dark: "#227f46",
           light: "#3fa866",
         },
         accent: {
+          50: "#fff4ed",
+          100: "#ffe4d2",
+          200: "#ffc49e",
+          600: "#db7f4c",
+          700: "#bd6435",
+          900: "#7c3f22",
           DEFAULT: "#f39159",
           dark: "#db7f4c",
           light: "#f7a97a",
         },
         background: {
-          DEFAULT: "#f9fafb",
+          DEFAULT: "#fbfaf7",
         },
       },
       fontFamily: {

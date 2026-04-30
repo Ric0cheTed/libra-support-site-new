@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { BUSINESS_PROFILE, formatInlineList } from '@/lib/business-profile';
 
 export function Footer() {
-  const { address, areas, phones, links, emails, branches } = BUSINESS_PROFILE;
+  const { address, phones, links, emails, branches } = BUSINESS_PROFILE;
 
   return (
     <footer className="bg-white mt-8 border-t border-gray-200">
@@ -24,17 +24,19 @@ export function Footer() {
 
           <div className="pt-3">
             <h5 className="font-semibold text-primary-900">Areas We Cover</h5>
-            <p className="text-neutral-700">{formatInlineList(areas.current)}</p>
-            {areas.comingSoon.length > 0 ? (
-              <p className="text-neutral-600 mt-2">
-                Coming soon: {formatInlineList(areas.comingSoon)}
-              </p>
-            ) : null}
             <div className="mt-3">
               <h5 className="font-semibold text-primary-900">Active Branches</h5>
               <ul className="mt-1 space-y-1 text-neutral-700">
                 {branches.map((branch) => (
-                  <li key={branch.name}>Our {branch.name} branch</li>
+                  <li key={branch.name}>
+                    <span className="font-medium">Our {branch.name} branch</span>
+                    {branch.coverageAreas?.length ? (
+                      <span className="block">{formatInlineList(branch.coverageAreas)}</span>
+                    ) : null}
+                    {branch.coverageNote ? (
+                      <span className="block text-neutral-600">{branch.coverageNote}</span>
+                    ) : null}
+                  </li>
                 ))}
               </ul>
             </div>

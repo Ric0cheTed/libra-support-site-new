@@ -29,6 +29,10 @@ export type ContactLocationBranch = {
   name: string;
   lead: string;
   description: string;
+  addressLines?: string[];
+  directionsCta?: CtaLink;
+  callCta?: CtaLink;
+  visitNote?: string;
 };
 
 export type ContactLocationImage = {

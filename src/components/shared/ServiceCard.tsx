@@ -17,18 +17,18 @@ export function ServiceCard({
   return (
     <article
       className={cn(
-        "group flex h-full flex-col rounded-[1.85rem] border border-stone-200/80 bg-white p-6 shadow-[0_22px_55px_-42px_rgba(15,23,42,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_30px_60px_-40px_rgba(15,23,42,0.32)] sm:p-7",
+        "group flex h-full flex-col rounded-[1.85rem] border border-stone-200/80 bg-white p-6 shadow-[0_22px_55px_-42px_rgba(15,23,42,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-[0_30px_60px_-40px_rgba(34,127,70,0.34)] sm:p-7",
         className
       )}
     >
-      <div className="mb-5 h-1.5 w-12 rounded-full bg-primary/70" aria-hidden="true" />
+      <div className="mb-5 h-1.5 w-12 rounded-full bg-primary" aria-hidden="true" />
       <h3 className="text-xl font-semibold text-slate-950">{title}</h3>
       <p className="mt-3 flex-1 text-sm leading-7 text-slate-600 sm:text-[0.98rem] sm:leading-7">
         {description}
       </p>
       <Link
         href={href}
-        className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary-dark"
+        className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent-700 transition-colors hover:text-accent-900"
       >
         Learn more
         <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
