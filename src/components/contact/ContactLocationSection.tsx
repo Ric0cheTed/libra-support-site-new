@@ -5,6 +5,7 @@ import { Button } from "@/components/shared/Button";
 import { Container } from "@/components/shared/Container";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import type { ContactContent } from "@/types/contact";
+import { OPTIONAL_INTEGRATIONS } from "@/lib/optional-integrations";
 
 type ContactLocationSectionProps = {
   section: ContactContent["location"];
@@ -91,7 +92,7 @@ export function ContactLocationSection({
                             {branch.callCta ? (
                               <Button
                                 href={branch.callCta.href}
-                                aria-label={branch.callCta.ariaLabel}
+
                                 size="compact"
                               >
                                 {branch.callCta.label}
@@ -135,7 +136,7 @@ export function ContactLocationSection({
             ) : null}
 
             <div className="overflow-hidden rounded-[2rem] border border-primary/10 bg-white shadow-[0_28px_70px_-52px_rgba(15,23,42,0.35)]">
-              <iframe
+              {OPTIONAL_INTEGRATIONS.embeddedMaps ? <iframe
                 title={section.mapTitle}
                 src={mapEmbedUrl}
                 width="100%"
@@ -145,7 +146,13 @@ export function ContactLocationSection({
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-              />
+              /> : (
+                <div className="p-6 text-sm leading-7 text-slate-700 sm:p-8">
+                  <p className="font-semibold text-slate-900">{section.mapTitle}</p>
+                  <p className="mt-3">The optional interactive map is currently switched off. The address and directions links remain available.</p>
+                  <div className="mt-5"><Button href={section.directionsCta.href} variant="secondary">{section.directionsCta.label}</Button></div>
+                </div>
+              )}
             </div>
           </div>
         </div>

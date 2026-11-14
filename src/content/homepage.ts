@@ -19,13 +19,10 @@ const burnleyCoverage = burnleyBranch?.coverageAreas ?? [
 ];
 
 export const homepageContent: HomepageContent = {
-  utilityTrustStripText:
-    `CQC-regulated home care from active Libra branches. Todmorden covers ${formatInlineList(
-      todmordenCoverage
-    )}; Burnley covers ${formatInlineList(burnleyCoverage)}.`,
+  utilityTrustStripText: "Local home care · Todmorden, Calderdale & Burnley",
   header: {
     navItems: [
-      { title: "Home", href: "/" },
+
       {
         title: "Care Services",
         href: "/services",
@@ -34,11 +31,13 @@ export const homepageContent: HomepageContent = {
           { title: "Respite Care", href: "/services/respite-care" },
           { title: "Dementia Support", href: "/services/dementia-support" },
           { title: "Companionship", href: "/services/companionship" },
+          { title: "Personal Care", href: "/services/personal-care" },
         ],
       },
-      { title: "Why Libra", href: "/#why-libra" },
+      { title: "About", href: "/about" },
+      { title: "Our People", href: "/about/team" },
       {
-        title: "Areas We Cover",
+        title: "Areas",
         href: "/areas",
         subItems: [
           { title: "Todmorden", href: "/areas/todmorden" },
@@ -47,8 +46,7 @@ export const homepageContent: HomepageContent = {
           { title: "Mytholmroyd", href: "/areas/mytholmroyd" },
         ],
       },
-      { title: "Care Costs", href: "/care-fees" },
-      { title: "FAQs", href: "/faqs" },
+
       {
         title: "Careers",
         href: "/careers",
@@ -57,6 +55,7 @@ export const homepageContent: HomepageContent = {
           { title: "Open Roles", href: "/careers/open-roles" },
         ],
       },
+      { title: "Resources & Advice", href: "/resources" },
       { title: "Contact", href: "/contact" },
     ],
     primaryCta: {
@@ -70,10 +69,10 @@ export const homepageContent: HomepageContent = {
     },
   },
   hero: {
-    eyebrow: "CQC-regulated local home care",
-    title: "Home care through our Todmorden and Burnley branches, delivered with warmth and dignity",
+    eyebrow: "Your home. Your community. Your care.",
+    title: "A little support. A world of difference.",
     description:
-      "Libra Support Services provides dependable home care, respite support, companionship, and practical day-to-day help for adults and families across our Todmorden and Burnley branch areas. We help people stay safe, supported, and as independent as possible in the place they know best.",
+      "Warm, person-centred home care from our Todmorden and Burnley teams. Support for everyday life, in the place you know best.",
     primaryCta: {
       label: "Book a Free Care Consultation",
       href: "/contact",
@@ -81,13 +80,11 @@ export const homepageContent: HomepageContent = {
     secondaryCta: {
       label: `Call ${primaryPhone.display}`,
       href: primaryPhone.href,
-      ariaLabel: `Call the Libra Support Services team on ${primaryPhone.display}`,
+      ariaLabel: `Call ${primaryPhone.display}`,
     },
     trustBullets: [
-      "CQC-regulated care",
-      "DBS-checked, trained carers",
-      "Local management team",
-      "Flexible support tailored to individual needs",
+      "Local teams, familiar communities",
+      "Support shaped around you",
     ],
     supportCard: {
       eyebrow: "Personalised support",
@@ -98,7 +95,7 @@ export const homepageContent: HomepageContent = {
     },
     image: {
       src: "/images/hero.jpg",
-      alt: "Libra Support Services delivering warm home care support in a comfortable home setting",
+      alt: "A carer and an older adult enjoying a book together — illustrative care image",
     },
   },
   trustBarItems: [
@@ -107,21 +104,21 @@ export const homepageContent: HomepageContent = {
       description: "Professional standards with accountable care delivery",
     },
     {
-      title: "Local and responsive",
-      description: "A nearby team families can reach quickly",
+      title: "Rooted locally",
+      description: "Todmorden, Calderdale and Burnley communities",
     },
     {
       title: "Personalised support",
       description: "Care shaped around real needs, routines, and preferences",
     },
     {
-      title: "Reliable continuity",
-      description: "Familiar carers where possible and dependable cover",
+      title: "Start a conversation",
+      description: "Talk through your needs and local availability",
     },
   ],
   servicesPreview: {
     eyebrow: "How we help",
-    title: "Home care and flexible support built around the individual",
+    title: "The right help, in your own home",
     description:
       "Whether support is needed for a few visits a week or more regular day-to-day help, we provide flexible services designed around the person, their routine, and their wellbeing.",
     items: [
@@ -273,8 +270,8 @@ export const homepageContent: HomepageContent = {
     },
   },
   teamSpotlight: {
-    eyebrow: "Meet the team",
-    title: "Meet the Home Care Heroes behind Libra",
+    eyebrow: "Our people, your community",
+    title: "A local team with people at its heart",
     description:
       "Behind every care plan is a team responsible for making sure support is thoughtful, well-managed, and genuinely reliable. Our Home Care Heroes are united by the same purpose: making a Positive Impact through kind, person-centred care.",
     cta: {
@@ -283,7 +280,7 @@ export const homepageContent: HomepageContent = {
     },
     image: {
       src: "/images/about-team.webp",
-      alt: "Libra Support Services team members together in a welcoming setting",
+      alt: "Libra Support Services office frontage, with green doors and orange signage",
     },
   },
   testimonials: {

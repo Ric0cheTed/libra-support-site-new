@@ -14,7 +14,7 @@ export function HomeTeamSpotlight() {
         size="wide"
         className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:gap-12"
       >
-        <div className="relative order-2 lg:order-1">
+        <figure className="relative order-2 lg:order-1">
           <div className="absolute -left-6 top-10 hidden h-24 w-24 rounded-full bg-primary/10 blur-2xl lg:block" />
           <div className="relative overflow-hidden rounded-[2.2rem] border border-stone-200/80 bg-stone-100 shadow-[0_28px_70px_-45px_rgba(15,23,42,0.3)]">
             <div className="relative aspect-[4/3]">
@@ -28,7 +28,8 @@ export function HomeTeamSpotlight() {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent" />
             </div>
           </div>
-        </div>
+          <figcaption className="mt-3 text-sm text-slate-600">Our local connection: Libra office frontage. This image is not a team portrait.</figcaption>
+        </figure>
 
         <div className="order-1 lg:order-2">
           <SectionHeading

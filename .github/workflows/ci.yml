@@ -1,5 +1,8 @@
 name: CI
 
+permissions:
+  contents: read
+
 on:
   pull_request:
   push:
@@ -21,21 +24,25 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
-      - name: Lint
-        run: npm run lint --if-present
+      - name: Audit all locked dependency classes
+        run: npm audit --audit-level=low
 
-      - name: Typecheck (if script exists)
-        run: |
-          if npm run | grep -qE '^  typecheck'; then
-            npm run typecheck
-          else
-            echo "No typecheck script found, skipping."
-          fi
+      - name: Required TypeScript check
+        run: npm run typecheck
+
+      - name: Complete local contract regressions and native Sharp
+        run: node --test scripts/v2-build1.test.cjs scripts/v2-build2.test.cjs scripts/v2-staff-publication.test.cjs scripts/v2-build3a.test.cjs
 
       - name: Font guardrail
         run: npm run check:font
 
       - name: Build
         run: npm run build
+
+      - name: Exported staff privacy guard
+        run: node scripts/v2-staff-publication.test.cjs --export
+
+      - name: Generate candidate security headers without deploying
+        run: node scripts/v2-build3a-security.cjs "$RUNNER_TEMP/libra-build3a-headers.json"

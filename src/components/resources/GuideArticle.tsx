@@ -1,0 +1,24 @@
+import Link from "next/link";
+import { Button } from "@/components/shared/Button";
+import { Container } from "@/components/shared/Container";
+import { GuidanceFaqs } from "@/components/resources/GuidanceFaqs";
+import { SourceRefs, GuideLink } from "@/components/resources/SourceRefs";
+import { findGuide, getGuideSources, type CareGuide } from "@/content/guides";
+import { BUSINESS_PROFILE } from "@/lib/business-profile";
+
+export function GuideArticle({ guide }: { guide: CareGuide }) {
+  const sources = getGuideSources(guide);
+  return <Container size="default" className="py-5 sm:py-10">
+    <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-3 text-sm"><Link href="/" className="libra-link">Home</Link><span aria-hidden="true">/</span><Link href="/resources" className="libra-link">Resources & Advice</Link><span aria-hidden="true">/</span><span aria-current="page">{guide.title}</span></nav>
+    <article className="mx-auto max-w-4xl">
+      <header className="mb-8"><p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary-800">{guide.category} · Guidance for England</p><h1 className="mt-4 text-4xl font-semibold leading-tight tracking-tight text-primary-900 sm:text-5xl">{guide.title}</h1><p className="mt-5 text-lg leading-8 text-slate-700">{guide.summary}</p><p className="mt-4 text-sm text-slate-600">Sources checked: <time dateTime={guide.sourcesCheckedOn}>{guide.sourcesCheckedOn}</time>. Please check the linked sources for updates.</p></header>
+      <div className="rounded-2xl border border-primary/20 bg-primary-50 p-5 sm:p-7"><h2 className="text-xl font-semibold text-primary-900">The short answer</h2><p className="mt-3 leading-8 text-slate-700">{guide.quickAnswer}</p><SourceRefs sourceKeys={guide.quickSourceKeys} /></div>
+      <p className="my-6 border-l-4 border-accent px-4 text-sm leading-7 text-slate-600">This is general information, not personalised medical, legal or financial advice. A source-check date is not a clinical review. Ask the relevant council, healthcare professional or appropriate adviser about your own circumstances; confirm Libra's current service suitability, fees and availability directly.</p>
+      <nav aria-label="On this page" className="libra-card mb-8"><h2 className="font-semibold text-primary-900">In this guide</h2><ul className="mt-3 grid gap-x-6 sm:grid-cols-2">{guide.sections.map(section => <li key={section.id}><a href={`#${section.id}`} className="libra-link text-sm">{section.heading}</a></li>)}<li><a href="#guide-questions" className="libra-link text-sm">Questions families ask</a></li><li><a href="#sources" className="libra-link text-sm">Sources and further reading</a></li></ul></nav>
+      <div className="space-y-10">{guide.sections.map(section => <section key={section.id} id={section.id} className="scroll-mt-52"><h2 className="text-2xl font-semibold leading-snug text-primary-900 sm:text-3xl">{section.heading}</h2>{section.paragraphs.map(paragraph => <p key={paragraph} className="mt-4 leading-8 text-slate-700">{paragraph}</p>)}{section.bullets && <ul className="mt-4 list-disc space-y-3 pl-6 leading-7 text-slate-700">{section.bullets.map(item => <li key={item}>{item}</li>)}</ul>}<SourceRefs sourceKeys={section.sourceKeys} /></section>)}<GuidanceFaqs items={guide.faqs} /></div>
+      <section id="sources" className="mt-10 scroll-mt-52 rounded-2xl bg-white p-5 ring-1 ring-primary/15 sm:p-7"><h2 className="text-2xl font-semibold text-primary-900">Sources and further reading</h2><p className="mt-3 text-sm leading-7 text-slate-600">National guidance and local council arrangements are not interchangeable. These are the primary pages checked for this guide; follow them for current details.</p><ul className="mt-4 space-y-3">{sources.map(source => <li id={`source-${source.id}`} key={source.id} className="scroll-mt-52"><a href={source.url} className="libra-link text-sm">[{source.id}] {source.title}</a><span className="block text-xs text-slate-600">Checked {source.checkedOn}</span></li>)}</ul></section>
+      <section className="mt-10 rounded-2xl bg-primary-50 p-5 sm:p-7"><h2 className="text-2xl font-semibold text-primary-900">Explore the next step</h2><ul className="mt-4">{guide.relatedServices.map(link => <li key={link.href}><Link href={link.href} className="libra-link">{link.label}</Link></li>)}</ul><div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap"><Button href="/contact">Enquire about care</Button><Button href={BUSINESS_PROFILE.phones.primary.href} variant="secondary">Call {BUSINESS_PROFILE.phones.primary.display}</Button></div></section>
+      <aside className="mt-8"><h2 className="text-xl font-semibold text-primary-900">Related guides</h2><ul className="mt-3">{guide.relatedSlugs.map(slug => { const related=findGuide(slug); return related ? <li key={slug}><GuideLink slug={slug} title={related.title} /></li> : null; })}</ul></aside>
+    </article>
+  </Container>;
+}

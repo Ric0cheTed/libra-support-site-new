@@ -8,6 +8,8 @@ import { HomeServicesPreview } from "@/components/home/HomeServicesPreview";
 import { HomeTeamSpotlight } from "@/components/home/HomeTeamSpotlight";
 import { HomeTestimonials } from "@/components/home/HomeTestimonials";
 import { HomeTrustBar } from "@/components/home/HomeTrustBar";
+import { HomeRegulation } from "@/components/home/HomeRegulation";
+import { HomeResourcesPreview } from "@/components/home/HomeResourcesPreview";
 import { HomeWhyLibra } from "@/components/home/HomeWhyLibra";
 import { StructuredDataScript } from "@/components/seo/StructuredDataScript";
 import { buildPageMetadata, getHomePageStructuredData } from "@/lib/seo";
@@ -29,11 +31,13 @@ export default function HomePage() {
         <HomeHero />
         <HomeTrustBar />
         <HomeServicesPreview />
+        <HomeRegulation />
         <HomeWhyLibra />
         <HomeCareProcess />
         <HomeAreasCoverage />
         <HomeCareCosts />
         <HomeTeamSpotlight />
+        <HomeResourcesPreview />
         <HomeTestimonials />
         <HomeFaqTeaser />
         <HomeFinalCta />

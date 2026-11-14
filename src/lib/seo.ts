@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { REVIEW_ONLY } from './preview';
 
 import {
   BUSINESS_PROFILE,
@@ -202,6 +203,7 @@ export function buildPageMetadata({ title, description, path }: BuildPageMetadat
   return {
     title,
     description,
+    robots: REVIEW_ONLY ? { index: false, follow: false } : undefined,
     alternates: {
       canonical,
     },

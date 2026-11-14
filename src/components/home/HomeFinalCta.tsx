@@ -26,7 +26,7 @@ export function HomeFinalCta() {
               </Button>
               <Button
                 href={finalCta.secondaryCta.href}
-                aria-label={finalCta.secondaryCta.ariaLabel}
+
                 variant="inverseSecondary"
                 className="w-full sm:w-auto"
               >

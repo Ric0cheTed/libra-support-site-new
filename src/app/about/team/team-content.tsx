@@ -1,43 +1,15 @@
-"use client";
-
+import Link from "next/link";
 import TeamCard from "@/components/ui/team-card";
+import { Container } from "@/components/shared/Container";
+import { Button } from "@/components/shared/Button";
+import { getPublicStaff } from "@/content/people";
+
 
 export default function TeamPage() {
-  return (
-    <>
-      <section className="py-20 bg-white animate-fade-in-up">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-6 text-primary">
-            Meet the Libra Support Team
-          </h1>
-          <p className="text-lg text-gray-700 mb-12">
-            Our carers, support staff, coordinators, and managers are Libra&apos;s Home Care
-            Heroes: passionate professionals committed to dignity, independence, personal
-            wellbeing, and making a Positive Impact each day.
-          </p>
-
-            <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-            <TeamCard
-              name="Kelly Carpenter"
-              role="Registered Manager"
-              image="/images/team/staff-2.webp"
-              bio="Kelly is an experienced care leader who supports the team in delivering safe, person-centred care across our local community. She is passionate about maintaining high standards, supporting staff development, and helping families feel confident in the care their loved ones receive."
-            />			
-            <TeamCard
-              name="Nicola Szymik-Walters"
-              role="Registered Manager/Director"
-              image="/images/team/staff-1.webp"
-              bio="Nicola is dedicated to making Calderdale a better place for everyone and spends much of her spare time supporting community projects. Outside of work, she enjoys spending time with her family and visiting local music venues in Todmorden and Hebden Bridge."
-            />
-            <TeamCard
-              name="Jason Walters"
-              role="Director"
-              image="/images/team/staff-3.webp"
-              bio="Jason is one of the directors at Libra Support Services. He is committed to supporting the organisation’s growth and helping the team provide dependable, high-quality care. Outside of work, he enjoys music, playing video games, cooking, spending time with friends and family, and walking in the countryside."
-            />
-          </div>
-        </div>
-      </section>
-    </>
-  );
+  const people = getPublicStaff();
+  return <Container size="default" className="py-6 sm:py-10"><header className="max-w-3xl"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary-800">Our People</p><h1 className="mt-4 text-4xl font-semibold leading-tight text-primary-900 sm:text-5xl">People at the heart of local care</h1><p className="mt-5 text-lg leading-8 text-slate-700">Choosing care is also choosing who to talk to. Get to know the registered managers behind our two local services and explore the people-centred approach that guides Libra.</p></header>
+    <section className="my-10" aria-labelledby="registered-managers"><h2 id="registered-managers" className="mb-5 text-3xl font-semibold text-primary-900">Our registered managers</h2><div className="grid gap-5 md:grid-cols-2">{people.filter(person => person.group === "leadership").map(person => <TeamCard key={person.id} staffId={person.id} />)}</div>{people.length === 0 && <p className="leading-8 text-slate-700">For information about the people involved in your care, please speak to your local team.</p>}</section>
+    <section className="libra-card bg-primary-50" aria-labelledby="care-team"><h2 id="care-team" className="text-2xl font-semibold text-primary-900">Our wider care team</h2><p className="mt-4 max-w-3xl leading-8 text-slate-700">Care at home involves listening, planning and practical day-to-day support. To find out who would be involved in your care and how arrangements would work, speak with the local team about your individual needs.</p><div className="mt-5 flex flex-wrap gap-4"><Button href="/contact">Talk to the local team</Button><Button href="/about" variant="secondary">Our approach to care</Button></div></section>
+    <section className="my-10 rounded-2xl border border-accent-200 bg-accent-50 p-6 sm:p-8"><h2 className="text-2xl font-semibold text-primary-900">Thinking about joining Libra?</h2><p className="mt-3 max-w-3xl leading-8 text-slate-700">Explore our careers information and the existing route for employment enquiries. Care enquiries and recruitment have separate destinations.</p><Link href="/careers" className="libra-link mt-3">Explore careers</Link><Link href="/careers/open-roles" className="libra-link ml-0 mt-3 sm:ml-6">Employment enquiries</Link></section>
+  </Container>;
 }

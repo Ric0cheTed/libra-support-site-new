@@ -6,10 +6,12 @@ import { Lexend } from 'next/font/google';
 
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
-import { UtilityTrustStrip } from '@/components/layout/UtilityTrustStrip';
+
 import { StructuredDataScript } from '@/components/seo/StructuredDataScript';
-import SocialsButton from '@/components/ui/SocialsButton';
+
 import AnalyticsEvents from '@/components/analytics/AnalyticsEvents';
+import { OPTIONAL_INTEGRATIONS } from '@/lib/optional-integrations';
+import { REVIEW_ONLY } from '@/lib/preview';
 import { canonicalUrl, getOrganizationStructuredData, seo } from '@/lib/seo';
 
 const lexend = Lexend({
@@ -19,6 +21,7 @@ const lexend = Lexend({
 });
 
 export const metadata: Metadata = {
+  robots: REVIEW_ONLY ? { index: false, follow: false } : undefined,
   metadataBase: new URL(seo.siteUrl),
   title: {
     default: seo.defaultTitle,
@@ -60,15 +63,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen flex flex-col bg-background text-gray-900 text-[1.05rem] leading-relaxed">
         <StructuredDataScript data={structuredData} />
 
-        <UtilityTrustStrip />
+        <a className="skip-link" href="#main-content">Skip to content</a>
         <SiteHeader />
-        <AnalyticsEvents />
+        {REVIEW_ONLY ? <aside aria-label="Website review notice" className="border-b border-primary-200 bg-primary-50 px-4 py-3 text-center text-sm text-primary-900">Website review preview — online enquiries are disabled. No enquiry will be sent.</aside> : null}
+        {OPTIONAL_INTEGRATIONS.analytics ? <AnalyticsEvents /> : null}
 
-        <main className="flex-1 px-4 sm:px-6 lg:px-8 py-8">{children}</main>
+        <main id="main-content" tabIndex={-1} className="flex-1 px-4 sm:px-6 lg:px-8 py-8">{children}</main>
 
-        <SocialsButton />
+
         <SiteFooter />
-        <GoogleAnalytics gaId="G-2VETK5Z1DT" />
+        {OPTIONAL_INTEGRATIONS.analytics ? <GoogleAnalytics gaId="G-2VETK5Z1DT" /> : null}
       </body>
     </html>
   );

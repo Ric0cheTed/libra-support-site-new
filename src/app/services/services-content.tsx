@@ -9,6 +9,7 @@ import { Container } from "@/components/shared/Container";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ServiceCard } from "@/components/shared/ServiceCard";
 import { getServicesHubContent } from "@/content/services";
+import { RelatedGuides } from "@/components/resources/RelatedGuides";
 
 export default function ServicesContent() {
   const content = getServicesHubContent();
@@ -51,6 +52,7 @@ export default function ServicesContent() {
       <ServiceProcess section={content.process} />
       <ServiceCoverage section={content.coverage} />
       <ServiceFaqs section={content.faqs} />
+      <RelatedGuides contextPath="/services" />
       <ServiceFinalCta section={content.finalCta} />
     </div>
   );

@@ -8,7 +8,7 @@ export function HomeServicesPreview() {
   const { servicesPreview } = homepageContent;
 
   return (
-    <section className="bg-[linear-gradient(180deg,_#ffffff_0%,_#f7f4ec_100%)] py-20 sm:py-24">
+    <section id="care-services" className="libra-section bg-background">
       <Container size="wide" className="space-y-10 sm:space-y-12">
         <SectionHeading
           eyebrow={servicesPreview.eyebrow}
@@ -28,6 +28,7 @@ export function HomeServicesPreview() {
           ))}
         </div>
 
+        <p className="text-center text-sm leading-6 text-slate-600">Services and visit arrangements depend on individual needs, your local branch and current availability. Please ask our team what is available in your area.</p>
         <div className="flex justify-center">
           <Button href={servicesPreview.cta.href} className="w-full sm:w-auto">
             {servicesPreview.cta.label}

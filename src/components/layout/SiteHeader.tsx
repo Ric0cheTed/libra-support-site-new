@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Menu, PhoneCall, X } from 'lucide-react';
@@ -9,175 +9,120 @@ import { usePathname } from 'next/navigation';
 import { homepageContent } from '@/content/homepage';
 import { Button } from '@/components/shared/Button';
 import { Container } from '@/components/shared/Container';
+import { UtilityTrustStrip } from '@/components/layout/UtilityTrustStrip';
 import { cn } from '@/lib/utils';
-
-function normalizeHref(href: string) {
-  if (href === '/') {
-    return href;
-  }
-
-  const [path] = href.split('#');
-  return path.replace(/\/$/, '');
-}
 
 export default function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeHash, setActiveHash] = useState('');
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const topBarRef = useRef<HTMLDivElement>(null);
   const { header } = homepageContent;
 
-  useEffect(() => {
+  function closeMenu(restoreFocus = false) {
     setMenuOpen(false);
-  }, [pathname]);
+    if (restoreFocus) toggleRef.current?.focus();
+  }
+
+  useEffect(() => { setMenuOpen(false); }, [pathname]);
 
   useEffect(() => {
-    const syncHash = () => setActiveHash(window.location.hash);
+    const topBar = topBarRef.current;
+    if (!topBar) return;
+    const updateMenuHeight = () => headerRef.current?.style.setProperty('--libra-header-height', `${topBar.getBoundingClientRect().height}px`);
+    updateMenuHeight();
+    const observer = new ResizeObserver(updateMenuHeight);
+    observer.observe(topBar);
+    return () => observer.disconnect();
+  }, []);
 
-    syncHash();
-    window.addEventListener('hashchange', syncHash);
-
-    return () => {
-      window.removeEventListener('hashchange', syncHash);
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      const openDetails = headerRef.current?.querySelector<HTMLDetailsElement>('details[open]');
+      if (openDetails) {
+        openDetails.open = false;
+        openDetails.querySelector('summary')?.focus();
+      } else if (menuOpen) {
+        setMenuOpen(false);
+        toggleRef.current?.focus();
+      }
     };
-  }, [pathname]);
+    const closeOutside = (event: PointerEvent) => {
+      if (headerRef.current?.contains(event.target as Node)) return;
+      setMenuOpen(false);
+      headerRef.current?.querySelectorAll<HTMLDetailsElement>('details[open]').forEach((details) => { details.open = false; });
+    };
+    const desktop = window.matchMedia('(min-width: 1280px)');
+    const resetAtBreakpoint = () => {
+      setMenuOpen(false);
+      headerRef.current?.querySelectorAll<HTMLDetailsElement>('details[open]').forEach((details) => { details.open = false; });
+    };
+    document.addEventListener('keydown', closeOnEscape);
+    document.addEventListener('pointerdown', closeOutside);
+    desktop.addEventListener('change', resetAtBreakpoint);
+    return () => {
+      document.removeEventListener('keydown', closeOnEscape);
+      document.removeEventListener('pointerdown', closeOutside);
+      desktop.removeEventListener('change', resetAtBreakpoint);
+    };
+  }, [menuOpen]);
 
-  const currentPath = useMemo(() => normalizeHref(pathname), [pathname]);
+  function isActive(href: string) {
+    return pathname.replace(/\/$/, '') === href.replace(/\/$/, '');
+  }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-primary/10 bg-white/95 shadow-[0_18px_35px_-28px_rgba(15,23,42,0.4)] backdrop-blur-xl supports-[backdrop-filter]:bg-white/90">
-      <Container
-        size="wide"
-        className="flex min-h-[4.875rem] items-center justify-between gap-4 py-3"
-      >
-        <Link
-          href="/"
-          className="flex items-center gap-3"
-          aria-label="Libra Support Services home"
-          onClick={() => setMenuOpen(false)}
-        >
-          <Image
-            src="/images/libra-full-logo.webp"
-            alt="Libra Support Services"
-            width={176}
-            height={56}
-            priority
-            className="h-auto w-auto max-h-12 object-contain"
-          />
-          <span className="hidden text-xs font-medium uppercase tracking-[0.22em] text-slate-500 xl:inline">
-            Home care in Todmorden and Burnley
-          </span>
+    <header ref={headerRef} onBlur={(event) => { if (menuOpen && event.relatedTarget && !event.currentTarget.contains(event.relatedTarget as Node)) closeMenu(); }} className="sticky top-0 z-50 border-b border-primary/15 bg-white shadow-sm">
+      <div className="hidden xl:block"><UtilityTrustStrip /></div>
+      <div ref={topBarRef}>
+      <Container size="wide" className="flex min-h-[5.25rem] flex-wrap items-center justify-between gap-2 py-3 sm:gap-5">
+        <Link href="/" className="shrink-0 rounded-md" onClick={() => closeMenu()}>
+          <Image src="/images/libra-full-logo.webp" alt="Libra Support Services" width={517} height={131} priority className="h-auto w-[144px] sm:w-[200px]" />
         </Link>
-
-        <nav className="hidden items-center gap-1.5 text-sm font-medium text-slate-700 lg:flex" aria-label="Primary navigation">
-          {header.navItems.map((item) => {
-            const itemPath = normalizeHref(item.href);
-            const itemHash = item.href.includes('#') ? `#${item.href.split('#')[1]}` : '';
-            const isHomeRoute = currentPath === '/';
-            const isActive = itemHash
-              ? isHomeRoute && activeHash === itemHash
-              : itemPath === currentPath && (itemPath !== '/' || !activeHash);
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={isActive ? 'page' : undefined}
-                className={cn(
-                  'rounded-full px-3.5 py-2 transition-colors hover:bg-primary-50 hover:text-primary-800',
-                  isActive
-                    ? 'bg-primary-50 text-primary-900 ring-1 ring-primary/20'
-                    : 'text-slate-700'
-                )}
-              >
-                {item.title}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="hidden items-center gap-3 lg:flex">
-          <a
-            href={header.secondaryCta.href}
-            aria-label={header.secondaryCta.ariaLabel}
-            className="inline-flex items-center gap-2 rounded-full px-2 py-2 text-sm font-semibold text-slate-700 transition-colors hover:text-primary"
-          >
-            <PhoneCall className="h-4 w-4 text-primary" aria-hidden="true" />
-            {header.secondaryCta.label}
+        <p className="hidden max-w-[19rem] text-sm text-slate-600 md:block">Care that feels close to home.<br /><span className="text-primary-900">Todmorden · Calderdale · Burnley</span></p>
+        <div className="ml-auto flex items-center gap-2 sm:gap-4">
+          <a href={header.secondaryCta.href} className="inline-flex min-h-11 items-center gap-2 rounded-full px-2 text-sm font-semibold text-primary-900">
+            <PhoneCall className="h-4 w-4" aria-hidden="true" />
+            <span className="sm:hidden">Call</span><span className="hidden sm:inline">{header.secondaryCta.label}</span>
           </a>
-          <Button href={header.primaryCta.href} size="compact">
-            {header.primaryCta.label}
-          </Button>
+          <Button href={header.primaryCta.href} size="compact" className="hidden sm:inline-flex">Enquire about care</Button>
+          <button ref={toggleRef} type="button" onClick={() => { if (menuOpen) closeMenu(true); else setMenuOpen(true); }} className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-primary/25 text-primary-900 xl:hidden" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} aria-controls="mobile-site-menu">
+            {menuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
+          </button>
         </div>
-
-        <button
-          type="button"
-          onClick={() => setMenuOpen((open) => !open)}
-          className="inline-flex items-center justify-center rounded-full border border-primary/20 p-2.5 text-slate-700 transition hover:border-primary/30 hover:bg-primary-50 lg:hidden"
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-site-menu"
-        >
-          {menuOpen ? (
-            <X className="h-5 w-5" aria-hidden="true" />
-          ) : (
-            <Menu className="h-5 w-5" aria-hidden="true" />
-          )}
-        </button>
       </Container>
+      </div>
 
-      <div
-        id="mobile-site-menu"
-        className={cn(
-          'overflow-hidden border-t border-stone-200/80 bg-white/95 shadow-[0_24px_40px_-34px_rgba(15,23,42,0.4)] transition-[max-height,opacity] duration-200 lg:hidden',
-          menuOpen ? 'max-h-[32rem] opacity-100' : 'max-h-0 opacity-0'
-        )}
-      >
-        <Container size="wide" className="py-5">
-          <nav className="space-y-2" aria-label="Mobile navigation">
-            {header.navItems.map((item) => {
-              const itemPath = normalizeHref(item.href);
-              const itemHash = item.href.includes('#') ? `#${item.href.split('#')[1]}` : '';
-              const isHomeRoute = currentPath === '/';
-              const isActive = itemHash
-                ? isHomeRoute && activeHash === itemHash
-                : itemPath === currentPath && (itemPath !== '/' || !activeHash);
+      <nav className="hidden border-t border-primary/10 xl:block" aria-label="Primary navigation">
+        <Container size="wide" className="flex flex-wrap items-center justify-between gap-2 py-1">
+          {header.navItems.map((item) => item.subItems ? (
+            <details key={item.href} className="group relative" onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) event.currentTarget.open = false; }}>
+              <summary className="cursor-pointer rounded-lg px-3 py-3 text-sm font-medium text-slate-700 hover:bg-primary-50">{item.title}</summary>
+              <div className="absolute left-0 top-full w-64 rounded-xl border border-primary/15 bg-white p-2 shadow-lg">
+                <Link href={item.href} className="block rounded-lg px-3 py-3 text-sm font-semibold text-primary-900" aria-current={isActive(item.href) ? 'page' : undefined} onClick={(event) => { event.currentTarget.closest('details')?.removeAttribute('open'); }}>Explore {item.title.toLowerCase()}</Link>
+                {item.subItems.map((sub) => <Link key={sub.href} href={sub.href} className="block rounded-lg px-3 py-3 text-sm text-slate-700 hover:bg-primary-50" aria-current={isActive(sub.href) ? 'page' : undefined} onClick={(event) => { event.currentTarget.closest('details')?.removeAttribute('open'); }}>{sub.title}</Link>)}
+              </div>
+            </details>
+          ) : <Link key={item.href} href={item.href} aria-current={isActive(item.href) ? 'page' : undefined} className={cn('rounded-lg px-3 py-3 text-sm font-medium hover:bg-primary-50', isActive(item.href) ? 'bg-primary-50 text-primary-900' : 'text-slate-700')}>{item.title}</Link>)}
+        </Container>
+      </nav>
 
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={cn(
-                    'block rounded-2xl px-4 py-3 text-base font-medium transition-colors',
-                    isActive
-                      ? 'bg-primary-50 text-primary-900 ring-1 ring-primary/20'
-                      : 'text-slate-700 hover:bg-primary-50 hover:text-primary-800'
-                  )}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {item.title}
-                </Link>
-              );
-            })}
+      <div id="mobile-site-menu" hidden={!menuOpen} className="libra-menu border-t border-primary/15 bg-white xl:hidden">
+        <Container size="wide" className="py-4">
+          <nav aria-label="Mobile navigation">
+            <ul className="space-y-1">
+              {header.navItems.map((item) => <li key={item.href}>
+                <Link href={item.href} onClick={() => closeMenu()} aria-current={isActive(item.href) ? 'page' : undefined} className="block rounded-lg px-3 py-3 font-medium text-primary-900 hover:bg-primary-50">{item.title}</Link>
+                {item.subItems && <ul className="ml-3 border-l-2 border-accent-100 pl-2">{item.subItems.map((sub) => <li key={sub.href}><Link href={sub.href} onClick={() => closeMenu()} className="block rounded-lg px-3 py-2.5 text-sm text-slate-700 hover:bg-primary-50" aria-current={isActive(sub.href) ? 'page' : undefined}>{sub.title}</Link></li>)}</ul>}
+              </li>)}
+            </ul>
           </nav>
-
-          <div className="mt-5 space-y-3 border-t border-stone-200 pt-5">
-            <Button
-              href={header.primaryCta.href}
-              className="w-full"
-              onClick={() => setMenuOpen(false)}
-            >
-              {header.primaryCta.label}
-            </Button>
-            <Button
-              href={header.secondaryCta.href}
-              aria-label={header.secondaryCta.ariaLabel}
-              variant="secondary"
-              className="w-full"
-              onClick={() => setMenuOpen(false)}
-            >
-              {header.secondaryCta.label}
-            </Button>
+          <div className="mt-4 grid gap-3 border-t border-primary/15 pt-4">
+            <Button href={header.primaryCta.href} onClick={() => closeMenu()}>Enquire about care</Button>
+            <Button href={header.secondaryCta.href} variant="secondary" onClick={() => closeMenu()}>{header.secondaryCta.label}</Button>
+            <div className="flex flex-wrap gap-x-5 text-sm"><Link href="/care-fees" className="libra-link" onClick={() => closeMenu()}>Care costs</Link><Link href="/faqs" className="libra-link" onClick={() => closeMenu()}>FAQs</Link><Link href="/#why-libra" className="libra-link" onClick={() => closeMenu()}>Why Libra</Link></div>
           </div>
         </Container>
       </div>

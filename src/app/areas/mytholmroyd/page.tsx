@@ -4,6 +4,7 @@ import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 import { CallRequestCallbackCta } from '@/components/ui/call-request-callback-cta';
 import { MobileStickyCallBar } from '@/components/ui/mobile-sticky-call-bar';
 import { absoluteUrl, buildPageMetadata, seo } from '@/lib/seo';
+import { RelatedGuides } from '@/components/resources/RelatedGuides';
 
 export const metadata = buildPageMetadata({
   title: 'Home Care in Mytholmroyd',
@@ -38,7 +39,8 @@ export default function MytholmroydAreaPage() {
       />
 
       <div className="max-w-4xl mx-auto pb-24 sm:pb-0">
-        <h1 className="text-4xl font-extrabold tracking-tight mb-4">Home care in Mytholmroyd</h1>
+        <h1 className="text-4xl font-semibold tracking-tight text-primary-900 mb-4">Home care in Mytholmroyd</h1>
+        <p className="mb-5 rounded-xl border border-primary/15 bg-primary-50 p-4 text-sm leading-7 text-slate-700">Mytholmroyd enquiries are guided through the existing Todmorden branch. Please confirm suitability, visit arrangements and current availability with the team.</p>
         <p className="text-lg text-gray-700 mb-6">
           Libra Support Services supports families in Mytholmroyd with kind, consistent care that helps people stay
           comfortable and independent at home.
@@ -103,6 +105,7 @@ export default function MytholmroydAreaPage() {
         </p>
       </div>
 
+      <RelatedGuides contextPath="/areas/mytholmroyd" title="Guidance for families in Mytholmroyd" />
       <MobileStickyCallBar />
     </>
   );

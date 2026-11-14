@@ -21,7 +21,14 @@ function GoogleAnalytics({ gaId }) {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${gaId}');
+          gtag('config', '${gaId}', {
+            send_page_view: false,
+            page_location: 'https://libra-support.co.uk/',
+            page_title: 'Libra Support Services',
+            page_referrer: '',
+            allow_google_signals: false,
+            allow_ad_personalization_signals: false
+          });
         `,
       },
     }),

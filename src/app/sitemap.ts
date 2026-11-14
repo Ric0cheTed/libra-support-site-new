@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 import { absoluteUrl } from '@/lib/seo';
+import { careGuides } from '@/content/guides';
 
 export const dynamic = 'force-static';
 
@@ -22,6 +23,7 @@ const routes = [
   '/areas/hebden-bridge',
   '/areas/mytholmroyd',
   '/faqs',
+  '/resources',
   '/careers',
   '/careers/meet-team',
   '/careers/open-roles',
@@ -31,7 +33,7 @@ const routes = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  return routes.map((route) => ({
+  return [...routes, ...careGuides.map(guide => `/resources/${guide.slug}/`)].map((route) => ({
     url: absoluteUrl(route),
     lastModified: now,
     changeFrequency: 'monthly',

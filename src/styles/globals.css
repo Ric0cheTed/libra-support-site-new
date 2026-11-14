@@ -2,6 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --libra-ink: #18382b;
+  --libra-green: #227f46;
+  --libra-green-dark: #164d2e;
+  --libra-orange: #f39159;
+  --libra-orange-ink: #9b4a24;
+  --libra-paper: #fbfaf7;
+  --libra-radius: 1.5rem;
+  --libra-section-space: clamp(3.5rem, 7vw, 6rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:focus-visible {
+  outline: 3px solid var(--libra-green-dark);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 7px white;
+}
+
+[hidden] { display: none !important; }
+
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  color: white;
+  background: var(--libra-green-dark);
+  border-radius: 0.5rem;
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; }
+.libra-section { padding-block: var(--libra-section-space); }
+.libra-card {
+  border: 1px solid #dce5dd;
+  border-radius: var(--libra-radius);
+  background: white;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+.libra-link {
+  display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  color: var(--libra-orange-ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.libra-menu {
+  max-height: calc(100dvh - var(--libra-header-height, 5.5rem) - 2px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 7.5rem;
@@ -11,6 +69,22 @@ body {
   font-family: var(--font-sans);
   background-color: #fbfaf7;
   text-rendering: optimizeLegibility;
+  overflow-wrap: anywhere;
+}
+
+button, a, input, textarea, select { -webkit-tap-highlight-color: transparent; }
+main:focus { outline: none; }
+img { max-width: 100%; }
+.grid > * { min-width: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @media (max-width: 640px) {

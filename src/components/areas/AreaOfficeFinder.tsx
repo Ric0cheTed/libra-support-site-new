@@ -25,7 +25,7 @@ export function AreaOfficeFinder({ section }: AreaOfficeFinderProps) {
             <div className="rounded-[2rem] border border-primary/10 bg-primary-50/50 p-6 shadow-[0_28px_70px_-52px_rgba(15,23,42,0.35)] sm:p-8">
               <div className="flex items-start gap-3">
                 <MapPin className="mt-1 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary-700">
                     {section.officeLabel}
                   </p>
@@ -47,7 +47,7 @@ export function AreaOfficeFinder({ section }: AreaOfficeFinderProps) {
                 <Button href={section.directionsCta.href} variant="secondary">
                   {section.directionsCta.label}
                 </Button>
-                <Button href={section.callCta.href} aria-label={section.callCta.ariaLabel}>
+                <Button href={section.callCta.href}>
                   <PhoneCall className="mr-2 h-4 w-4" aria-hidden="true" />
                   {section.callCta.label}
                 </Button>

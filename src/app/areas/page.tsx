@@ -6,6 +6,7 @@ import { CallRequestCallbackCta } from '@/components/ui/call-request-callback-ct
 import { MobileStickyCallBar } from '@/components/ui/mobile-sticky-call-bar';
 import { BUSINESS_PROFILE, formatInlineList } from '@/lib/business-profile';
 import { buildPageMetadata, getAreasPageStructuredData } from '@/lib/seo';
+import { RelatedGuides } from '@/components/resources/RelatedGuides';
 
 export const metadata = buildPageMetadata({
   title: 'Areas We Cover',
@@ -36,8 +37,8 @@ export default function AreasPage() {
     <>
       <StructuredDataScript data={structuredData} />
       <Breadcrumbs />
-      <div className="max-w-4xl mx-auto pb-24 sm:pb-0">
-        <h1 className="text-4xl font-extrabold tracking-tight mb-4">Areas we cover</h1>
+      <div className="max-w-6xl mx-auto pb-24 sm:pb-0">
+        <h1 className="text-4xl font-semibold tracking-tight text-primary-900 mb-4">Areas we cover</h1>
         <p className="text-lg text-gray-700 mb-8">
           Libra Support Services works from active branches in <strong>Todmorden</strong> and{' '}
           <strong>Burnley</strong>, with local coverage split clearly between each branch.
@@ -120,6 +121,7 @@ export default function AreasPage() {
         </div>
       </div>
 
+      <RelatedGuides contextPath="/areas" title="Local care, clearer next steps" />
       <MobileStickyCallBar />
     </>
   );

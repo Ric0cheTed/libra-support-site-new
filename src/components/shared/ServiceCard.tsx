@@ -30,7 +30,7 @@ export function ServiceCard({
         href={href}
         className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent-700 transition-colors hover:text-accent-900"
       >
-        Learn more
+        Explore {title.toLowerCase()}
         <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
       </Link>
     </article>

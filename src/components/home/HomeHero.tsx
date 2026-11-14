@@ -1,149 +1,40 @@
 import Image from "next/image";
-import { CheckCircle2, PhoneCall, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Check } from "lucide-react";
 
 import { homepageContent } from "@/content/homepage";
 import { Button } from "@/components/shared/Button";
 import { Container } from "@/components/shared/Container";
-import { HeroMediaSupportCard } from "@/components/shared/HeroMediaSupportCard";
-import { BUSINESS_PROFILE } from "@/lib/business-profile";
 
 export function HomeHero() {
   const { hero } = homepageContent;
 
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(63,168,102,0.16),_transparent_35%),linear-gradient(180deg,_#fff4ed_0%,_#ffffff_55%,_#fbfaf7_100%)]">
-      <Container
-        size="wide"
-        className="relative pb-20 pt-14 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-20"
-      >
-        <div className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center xl:gap-14">
-          <div className="max-w-[35rem]">
-            <p className="inline-flex items-center rounded-full border border-primary/20 bg-white/90 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-primary-800 shadow-sm">
-              {hero.eyebrow}
-            </p>
-
-            <h1 className="mt-6 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
-              {hero.title}
-            </h1>
-
-            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
-              {hero.description}
-            </p>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Button
-                href={hero.primaryCta.href}
-                aria-label={hero.primaryCta.ariaLabel}
-                className="w-full sm:w-auto"
-              >
-                {hero.primaryCta.label}
-              </Button>
-              <Button
-                href={hero.secondaryCta.href}
-                aria-label={hero.secondaryCta.ariaLabel}
-                variant="secondary"
-                className="w-full sm:w-auto"
-              >
-                {hero.secondaryCta.label}
-              </Button>
-            </div>
-
-            <ul className="mt-8 grid gap-3 rounded-[1.75rem] border border-stone-200/80 bg-white/80 p-5 text-sm text-slate-700 shadow-[0_18px_45px_-38px_rgba(15,23,42,0.2)] sm:grid-cols-2 sm:p-6 sm:text-base">
-              {hero.trustBullets.map((bullet) => (
-                <li key={bullet} className="flex items-start gap-3">
-                  <CheckCircle2
-                    className="mt-0.5 h-5 w-5 shrink-0 text-primary"
-                    aria-hidden="true"
-                  />
-                  <span>{bullet}</span>
-                </li>
-              ))}
-            </ul>
+    <section className="relative overflow-hidden bg-[#f5f4eb]" aria-labelledby="home-title">
+      <Container size="wide" className="relative grid gap-9 py-10 sm:py-14 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-12 lg:py-16">
+        <div className="max-w-xl">
+          <p className="text-xs font-semibold uppercase leading-6 tracking-[0.13em] text-primary-800">{hero.eyebrow}</p>
+          <h1 id="home-title" className="mt-4 text-[2.5rem] font-semibold leading-[1.12] tracking-tight text-primary-900 sm:text-5xl lg:text-[3.5rem]">{hero.title}</h1>
+          <p className="mt-5 max-w-lg text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">{hero.description}</p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Button href={hero.primaryCta.href}>Enquire about care <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" /></Button>
+            <Button href={hero.secondaryCta.href} variant="secondary">{hero.secondaryCta.label}</Button>
           </div>
-
-          <div className="relative">
-            <div className="absolute -left-4 top-12 hidden h-32 w-32 rounded-full bg-primary/20 blur-3xl lg:block" />
-            <div className="absolute -right-6 bottom-8 h-40 w-40 rounded-full bg-accent-100 blur-3xl" />
-
-            <div className="relative overflow-hidden rounded-[2.25rem] border border-white/70 bg-slate-900 shadow-[0_30px_80px_-36px_rgba(15,23,42,0.5)]">
-              <div className="relative h-[380px] sm:h-[500px] lg:h-[560px]">
-                {hero.image ? (
-                  <Image
-                    src={hero.image.src}
-                    alt={hero.image.alt}
-                    fill
-                    priority
-                    sizes="(min-width: 1024px) 42rem, 100vw"
-                    className="object-cover"
-                  />
-                ) : null}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/78 via-slate-950/28 to-slate-950/12" />
-
-                <div className="absolute inset-x-0 top-0 flex items-center justify-between p-5 sm:p-6">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/80 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-sm backdrop-blur-sm">
-                    <ShieldCheck
-                      className="h-4 w-4 text-primary-100"
-                      aria-hidden="true"
-                    />
-                    CQC-regulated
-                  </div>
-                  <div className="hidden rounded-full border border-white/20 bg-slate-950/65 px-3 py-1.5 text-xs font-medium text-white/95 backdrop-blur sm:block">
-                    Todmorden and Calderdale
-                  </div>
-                </div>
-
-                {hero.supportCard ? (
-                  <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-auto sm:right-6 sm:w-[22rem]">
-                    <HeroMediaSupportCard
-                      eyebrow={hero.supportCard.eyebrow}
-                      title={hero.supportCard.title}
-                      description={hero.supportCard.description}
-                      footer={
-                        hero.supportCard.meta ? (
-                          <p className="inline-flex items-center gap-2 rounded-full border border-primary-100 bg-primary-50/95 px-3.5 py-2 text-sm font-semibold text-slate-900 shadow-sm">
-                            <PhoneCall
-                              className="h-4 w-4 text-primary-dark"
-                              aria-hidden="true"
-                            />
-                            <span className="text-primary-dark">
-                              {hero.supportCard.meta}
-                            </span>
-                          </p>
-                        ) : null
-                      }
-                    />
-                  </div>
-                ) : null}
-              </div>
-            </div>
-
-            <div className="relative mt-5 flex justify-center lg:justify-start">
-              <a
-                href={BUSINESS_PROFILE.links.cqcLocation}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View Libra Support Services CQC profile, rated Good by the Care Quality Commission"
-                className="inline-flex w-full max-w-[26rem] flex-col gap-3 rounded-[1.35rem] border border-stone-200/80 bg-white/90 p-3 shadow-[0_18px_42px_-34px_rgba(15,23,42,0.32)] transition hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-[0_24px_48px_-34px_rgba(34,127,70,0.28)] sm:flex-row sm:items-center"
-              >
-                <Image
-                  src="/images/cqc-inspected-rated-good.png"
-                  alt="Care Quality Commission inspected and rated Good"
-                  width={1184}
-                  height={821}
-                  className="h-auto w-[11rem] shrink-0 rounded-[0.55rem]"
-                />
-                <span className="text-sm leading-6 text-slate-700">
-                  <span className="block font-semibold text-slate-950">
-                    Rated Good by the Care Quality Commission
-                  </span>
-                  <span className="mt-0.5 block font-semibold text-accent-700">
-                    View our CQC profile
-                  </span>
-                </span>
-              </a>
-            </div>
-          </div>
+          <ul className="mt-6 space-y-2 text-sm text-primary-900">
+            {hero.trustBullets.map((bullet) => <li key={bullet} className="flex items-start gap-2"><Check className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />{bullet}</li>)}
+          </ul>
+          <Link href="/#care-quality" className="libra-link mt-3 text-sm">See our branch-specific CQC information <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" /></Link>
         </div>
+        <figure className="min-w-0">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border-8 border-white bg-primary-100 shadow-sm sm:aspect-[5/4]">
+            {hero.image && <Image src={hero.image.src} alt={hero.image.alt} fill priority sizes="(min-width: 1280px) 640px, (min-width: 1024px) 48vw, (min-width: 640px) 90vw, 100vw" className="object-cover object-[42%_center]" />}
+          </div>
+          <figcaption className="mt-3 px-2 text-xs leading-5 text-slate-600">Illustrative care image, not a photograph of Libra staff or a person receiving Libra care.</figcaption>
+          <div className="mt-4 flex items-center gap-3 rounded-2xl border border-accent-200 bg-white px-5 py-4">
+            <span className="h-10 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+            <p className="text-sm leading-6 text-primary-900"><span className="block font-semibold">Care with a local connection</span>From the Calder Valley to our Burnley community.</p>
+          </div>
+        </figure>
       </Container>
     </section>
   );
